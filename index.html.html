@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Digital Desktop</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; font-family: sans-serif; background: url('https://wallpapercave.com/wp/wp5128415.jpg') no-repeat center center/cover; }
+    .desktop { position: relative; height: 100%; padding: 20px; }
+    .icon {
+      width: 60px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: white;
+      cursor: pointer;
+    }
+    .icon img { width: 48px; height: 48px; }
+    .taskbar {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 40px;
+      background: rgba(30,30,30,0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      padding: 0 10px;
+    }
+    .start {
+      display: flex;
+      align-items: center;
+    }
+    .start img {
+      width: 24px; margin-right: 8px;
+    }
+    .clock {
+      font-size: 14px;
+    }
+    .window {
+      position: absolute;
+      top: 100px; left: 150px;
+      width: 300px; height: 200px;
+      background: white;
+      border: 2px solid #000;
+      display: none;
+      padding: 10px;
+      z-index: 10;
+    }
+    .window h3 {
+      background: #0078D7; color: white;
+      padding: 5px; font-size: 16px;
+      margin: -10px -10px 10px -10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="desktop">
+    <div class="icon" onclick="openWindow('about')">
+      <img src="https://img.icons8.com/color/48/user-male-circle--v1.png" alt="About" />
+      <div>About Me</div>
+    </div>
+    <div class="icon" onclick="openWindow('projects')">
+      <img src="https://img.icons8.com/color/48/source-code.png" alt="Projects" />
+      <div>Projects</div>
+    </div>
+    <div class="icon" onclick="openWindow('contact')">
+      <img src="https://img.icons8.com/color/48/secured-letter.png" alt="Contact" />
+      <div>Contact</div>
+    </div>
+
+    <div class="window" id="about">
+      <h3>About Me</h3>
+      <p>Hello! I'm a Digital Marketer with skills in SEO, Ads, and strategy planning. This is my portfolio styled like Windows OS!</p>
+    </div>
+    <div class="window" id="projects">
+      <h3>Projects</h3>
+      <p>Explore my PPC campaigns, SEO ranking case studies, and branding strategies.</p>
+    </div>
+    <div class="window" id="contact">
+      <h3>Contact</h3>
+      <p>Email: your@email.com<br>Phone: 123-456-7890</p>
+    </div>
+
+    <div class="taskbar">
+      <div class="start">
+        <img src="https://img.icons8.com/fluency/48/windows-10.png" alt="Start" />
+        <span>Start</span>
+      </div>
+      <div class="clock" id="clock">Loading...</div>
+    </div>
+  </div>
+
+  <script>
+    function openWindow(id) {
+      const win = document.getElementById(id);
+      win.style.display = 'block';
+    }
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const date = now.toDateString();
+      document.getElementById('clock').textContent = `${date} | ${time}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
