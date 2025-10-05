@@ -1,109 +1,801 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Digital Desktop</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; font-family: sans-serif; background: url('https://wallpapercave.com/wp/wp5128415.jpg') no-repeat center center/cover; }
-    .desktop { position: relative; height: 100%; padding: 20px; }
-    .icon {
-      width: 60px;
-      text-align: center;
-      margin-bottom: 20px;
-      color: white;
-      cursor: pointer;
-    }
-    .icon img { width: 48px; height: 48px; }
-    .taskbar {
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%; height: 40px;
-      background: rgba(30,30,30,0.9);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-      padding: 0 10px;
-    }
-    .start {
-      display: flex;
-      align-items: center;
-    }
-    .start img {
-      width: 24px; margin-right: 8px;
-    }
-    .clock {
-      font-size: 14px;
-    }
-    .window {
-      position: absolute;
-      top: 100px; left: 150px;
-      width: 300px; height: 200px;
-      background: white;
-      border: 2px solid #000;
-      display: none;
-      padding: 10px;
-      z-index: 10;
-    }
-    .window h3 {
-      background: #0078D7; color: white;
-      padding: 5px; font-size: 16px;
-      margin: -10px -10px 10px -10px;
-    }
-  </style>
-</head>
-<body>
-  <div class="desktop">
-    <div class="icon" onclick="openWindow('about')">
-      <img src="https://img.icons8.com/color/48/user-male-circle--v1.png" alt="About" />
-      <div>About Me</div>
-    </div>
-    <div class="icon" onclick="openWindow('projects')">
-      <img src="https://img.icons8.com/color/48/source-code.png" alt="Projects" />
-      <div>Projects</div>
-    </div>
-    <div class="icon" onclick="openWindow('contact')">
-      <img src="https://img.icons8.com/color/48/secured-letter.png" alt="Contact" />
-      <div>Contact</div>
-    </div>
+  <head>
+    <meta charset="utf-8" />
+    <title>333Best Digital Marketer — Grow Faster with Simple, Creative Marketing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Best Digital Marketer helps brands grow with SEO, PPC, SMO, content, and creative strategy. Read our blogs, quick micro tips, and explore services tailored to your goals."
+    />
+    <link rel="canonical" href="https://bestdigitalmarketer.com/" />
+    <meta name="robots" content="index,follow" />
 
-    <div class="window" id="about">
-      <h3>About Me</h3>
-      <p>Hello! I'm a Digital Marketer with skills in SEO, Ads, and strategy planning. This is my portfolio styled like Windows OS!</p>
-    </div>
-    <div class="window" id="projects">
-      <h3>Projects</h3>
-      <p>Explore my PPC campaigns, SEO ranking case studies, and branding strategies.</p>
-    </div>
-    <div class="window" id="contact">
-      <h3>Contact</h3>
-      <p>Email: your@email.com<br>Phone: 123-456-7890</p>
-    </div>
 
-    <div class="taskbar">
-      <div class="start">
-        <img src="https://img.icons8.com/fluency/48/windows-10.png" alt="Start" />
-        <span>Start</span>
+    <meta property="og:title" content="Best Digital Marketer — Grow Faster with Simple, Creative Marketing" />
+    <meta property="og:description" content="Blogs, micro tips, and digital marketing services that focus on results." />
+    <meta property="og:url" content="https://bestdigitalmarketer.com/" />
+    <meta property="og:type" content="website" />
+
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Best Digital Marketer — Grow Faster with Simple, Creative Marketing" />
+    <meta name="twitter:description" content="Blogs, micro tips, and digital marketing services that focus on results." />
+
+    <style>
+      :root {
+        /* 3-5 color palette (tokens) */
+        --bg: #f6f8fb;            /* light neutral background */
+        --text: #0f172a;          /* dark neutral text */
+        --primary: #0ea5e9;       /* blue (brand primary) */
+        --accent: #f59e0b;        /* amber (accent) */
+        --border: #e5e7eb;        /* neutral border */
+
+        --surface: #ffffff;       /* derived neutral surface */
+        --radius: 0.75rem;        /* rounded corners */
+        --shadow: 0 10px 30px rgba(2, 6, 23, 0.06);
+        --shadow-soft: 0 4px 16px rgba(2, 6, 23, 0.05);
+
+        /* Typography scale */
+        --fs-900: clamp(1.8rem, 3vw + 1rem, 3rem);
+        --fs-700: clamp(1.25rem, 1.2vw + 1rem, 1.75rem);
+        --fs-600: 1.25rem;
+        --fs-500: 1.125rem;
+        --fs-400: 1rem;
+        --fs-300: 0.9375rem;
+        --lh: 1.55;
+      }
+
+      /* Reset-ish */
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: var(--bg);
+        color: var(--text);
+        line-height: var(--lh);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      img { max-width: 100%; display: block; }
+      a { color: inherit; text-decoration: none; }
+      a:focus { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+      :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+
+      .container {
+        width: min(1100px, 92vw);
+        margin-inline: auto;
+      }
+      .sr-only {
+        position: absolute; width: 1px; height: 1px;
+        padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+        white-space: nowrap; border: 0;
+      }
+
+      /* Header/Nav */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255,255,255,0.7);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 0;
+        gap: 1rem;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        color: var(--text);
+      }
+      .brand-badge {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        box-shadow: var(--shadow-soft);
+      }
+      .menu {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .menu a {
+        padding: 0.5rem 0.75rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+      }
+      .menu a:hover { border-color: var(--border); background: var(--surface); }
+      .cta {
+        padding: 0.55rem 0.9rem;
+        border-radius: 999px;
+        background: var(--primary);
+        color: white;
+        font-weight: 600;
+        box-shadow: var(--shadow-soft);
+        border: 1px solid transparent;
+      }
+      .cta:hover { filter: brightness(0.95); }
+
+      /* Hero */
+      .hero {
+        padding: 2.25rem 0 1.25rem;
+      }
+      .hero-wrap {
+        display: grid;
+        gap: 1rem;
+        align-items: start;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: var(--fs-300);
+        color: #334155;
+        background: color-mix(in srgb, var(--primary) 9%, white);
+        padding: 0.25rem 0.6rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+      }
+      .hero h1 {
+        font-size: var(--fs-900);
+        margin: 0.25rem 0 0.35rem;
+        letter-spacing: -0.3px;
+      }
+      .lead {
+        font-size: var(--fs-500);
+        color: #475569;
+        max-width: 70ch;
+      }
+
+      /* Section titles */
+      section { scroll-margin-top: 80px; }
+      .section-title {
+        display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+        margin: 1.75rem 0 1rem;
+      }
+      .section-title h2 { font-size: var(--fs-700); margin: 0; }
+      .section-sub { color: #64748b; font-size: var(--fs-400); }
+
+      /* Blog columns */
+      .blog-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      @media (min-width: 860px) {
+        .blog-grid { grid-template-columns: 1fr 1fr; }
+      }
+      .list-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: clip;
+        box-shadow: var(--shadow-soft);
+      }
+      .list-header {
+        padding: 0.9rem 1rem;
+        display: flex; align-items: center; justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+        background: linear-gradient(180deg, white, #fcfdff);
+      }
+      .list-header h3 { margin: 0; font-size: var(--fs-600); }
+      .list {
+        margin: 0; padding: 0; list-style: none;
+        max-height: 520px; /* shows ~10 compact items, adjust as needed */
+        overflow: auto;
+      }
+      .list li a {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.7rem 1rem;
+        border-bottom: 1px dashed var(--border);
+        transition: background 140ms ease, color 140ms ease;
+      }
+      .list li:last-child a { border-bottom: none; }
+      .dot {
+        width: 8px; height: 8px; border-radius: 999px; background: var(--primary);
+      }
+      .list li a:hover {
+        background: color-mix(in srgb, var(--primary) 6%, white);
+      }
+      .arrow { color: #94a3b8; font-size: 0.95rem; }
+
+      .card-actions {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 0.75rem 1rem; border-top: 1px solid var(--border);
+        background: #fbfdff;
+      }
+      .muted { color: #64748b; }
+
+      /* Micro tips */
+      .tips {
+        display: grid; gap: 0.85rem;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 700px) {
+        .tips { grid-template-columns: 1fr 1fr; }
+      }
+      .tips article {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 0.9rem 1rem;
+        box-shadow: var(--shadow-soft);
+        background: var(--surface);
+      }
+      .tips article:nth-child(2n) {
+        background: color-mix(in srgb, var(--primary) 8%, white);
+      }
+      .tips article:nth-child(3n) {
+        background: color-mix(in srgb, var(--accent) 9%, white);
+      }
+      .tip-title {
+        margin: 0 0 0.25rem; font-weight: 700;
+      }
+      .tip-meta {
+        font-size: var(--fs-300); color: #475569; margin-bottom: 0.35rem;
+      }
+
+      /* Services */
+      .services {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+      @media (min-width: 700px) {
+        .services { grid-template-columns: repeat(3, 1fr); }
+      }
+      .service-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1rem;
+        box-shadow: var(--shadow-soft);
+        transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+      }
+      .service-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+        border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+      }
+      .service-card h3 { margin: 0 0 0.25rem; font-size: var(--fs-600); }
+      .service-card p { margin: 0 0 0.6rem; color: #475569; }
+      .pill {
+        display: inline-flex; align-items: center; gap: 0.4rem;
+        padding: 0.35rem 0.6rem; border: 1px solid var(--border);
+        border-radius: 999px; color: #0b1324; background: #fff;
+        font-size: var(--fs-300);
+      }
+      .link {
+        color: var(--primary); font-weight: 600;
+      }
+      .link:hover { text-decoration: underline; }
+
+      /* About Section */
+      .about-section {
+        background: linear-gradient(180deg,
+          color-mix(in srgb, var(--primary) 10%, white),
+          color-mix(in srgb, var(--accent) 10%, white)
+        );
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        min-height: 10vh;
+        display: flex;
+        align-items: center;
+        padding: 3rem 0;
+      }
+
+      /* Marketing Wall (auto slider) */
+      .wall {
+        position: relative;
+        overflow: hidden;
+      }
+      .wall-track {
+        display: grid;
+        grid-auto-flow: column;
+        gap: 0.75rem;
+        align-items: center;
+        grid-auto-columns: 70%;
+      }
+      @media (min-width: 520px) { .wall-track { grid-auto-columns: 45%; } }
+      @media (min-width: 760px) { .wall-track { grid-auto-columns: 30%; } }
+      @media (min-width: 1024px){ .wall-track { grid-auto-columns: 22%; } }
+      @media (min-width: 1280px){ .wall-track { grid-auto-columns: 18%; } }
+      .wall-slide {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: var(--surface);
+        box-shadow: var(--shadow-soft);
+        cursor: zoom-in;
+      }
+      .wall-slide img {
+        display: block;
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+      }
+      @media (min-width: 760px) { .wall-slide img { height: 180px; } }
+      @media (min-width: 1024px){ .wall-slide img { height: 200px; } }
+
+      /* Lightbox for full-screen image view */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(2, 6, 23, 0.85);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 50;
+      }
+      .lightbox.open { display: flex; }
+      .lightbox img {
+        max-width: 92vw;
+        max-height: 92vh;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 2rem;
+        background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 25%, white), color-mix(in srgb, var(--accent) 20%, white));
+        color: #0b1324;
+        border-top: 1px solid var(--border);
+      }
+      .footer-line {
+        padding: 0.9rem 0;
+        font-weight: 600;
+        text-align: center;
+      }
+      .footer-nav {
+        padding: 0.75rem 0 1.25rem;
+        border-top: 1px solid color-mix(in srgb, var(--text) 6%, white);
+      }
+      .footer-menu {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1rem;
+        justify-content: center;
+      }
+      .footer-menu a {
+        padding: 0.35rem 0.6rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+      }
+      .footer-menu a:hover {
+        background: rgba(255,255,255,0.6);
+        border-color: var(--border);
+      }
+
+      /* Utility */
+      .spacer { height: 0.5rem; }
+      .badge {
+        display: inline-flex; align-items: center; gap: 0.35rem;
+        font-size: var(--fs-300);
+        color: #0b1324;
+        background: #fff;
+        border: 1px solid var(--border);
+        padding: 0.25rem 0.55rem;
+        border-radius: 999px;
+      }
+    </style>
+
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Best Digital Marketer",
+        "url": "https://bestdigitalmarketer.com/",
+        "sameAs": [],
+        "logo": "https://bestdigitalmarketer.com/favicon.ico"
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Best Digital Marketer",
+        "url": "https://bestdigitalmarketer.com/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://bestdigitalmarketer.com/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <a class="sr-only" href="#main">Skip to content</a>
+
+    <header class="topbar" role="banner">
+      <div class="container nav" aria-label="Primary">
+        <a class="brand" href="#top" aria-label="Best Digital Marketer home">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span>Best Digital Marketer</span>
+        </a>
+        <nav aria-label="Main menu">
+          <div class="menu">
+            <a href="#marketing-wall">Wall of Marketing Ideas</a>
+            <a href="#blogs">Blogs</a>
+            <a href="#category-blogs">Category Blogs</a>
+            <a href="#micro-tips">Micro Tips</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a class="cta" href="#contact">Get a Free Audit</a>
+          </div>
+        </nav>
       </div>
-      <div class="clock" id="clock">Loading...</div>
-    </div>
-  </div>
+    </header>
 
-  <script>
-    function openWindow(id) {
-      const win = document.getElementById(id);
-      win.style.display = 'block';
-    }
-    function updateClock() {
-      const now = new Date();
-      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      const date = now.toDateString();
-      document.getElementById('clock').textContent = `${date} | ${time}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-  </script>
-</body>
+    <main id="main">
+
+      <section class="hero container" id="top">
+        <span class="eyebrow">
+          <span class="badge" aria-hidden="true">Simple</span>
+          <span class="badge" aria-hidden="true">Creative</span>
+          <span class="badge" aria-hidden="true">Effective</span>
+        </span>
+        <h1>Marketing that makes growth look easy.</h1>
+        <p class="lead">
+          Zero fluff. Just clear strategies, useful blogs, punchy micro tips, and services that move the needle — SEO, PPC, SMO and more.
+        </p>
+      </section>
+
+
+      <section class="container" id="marketing-wall" aria-labelledby="wall-title">
+        <div class="section-title">
+          <h2 id="wall-title">Wall of Marketing Ideas</h2>
+          <p class="section-sub">Swipe or watch it auto-scroll. Click any image to view full screen.</p>
+        </div>
+        <div class="wall" aria-live="polite">
+          <div class="wall-track" id="wallTrack">
+            <button class="wall-slide" aria-label="Open idea 1">
+              <img src="/placeholder.svg?height=200&width=320" alt="Creative ad layout concept" />
+            </button>
+            <button class="wall-slide" aria-label="Open idea 2">
+              <img src="/placeholder.svg?height=200&width=320" alt="Billboard marketing idea" />
+            </button>
+            <button class="wall-slide" aria-label="Open idea 3">
+              <img src="/placeholder.svg?height=200&width=320" alt="Social post campaign grid" />
+            </button>
+            <button class="wall-slide" aria-label="Open idea 4">
+              <img src="/placeholder.svg?height=200&width=320" alt="Guerrilla marketing example" />
+            </button>
+            <button class="wall-slide" aria-label="Open idea 5">
+              <img src="/placeholder.svg?height=200&width=320" alt="Product display inspiration" />
+            </button>
+            <button class="wall-slide" aria-label="Open idea 6">
+              <img src="/placeholder.svg?height=200&width=320" alt="Email newsletter design" />
+            </button>
+            <button class="wall-slide" aria-label="Open idea 7">
+              <img src="/placeholder.svg?height=200&width=320" alt="Landing page hero pattern" />
+            </button>
+            <button class="wall-slide" aria-label="Open idea 8">
+              <img src="/placeholder.svg?height=200&width=320" alt="Landing page hero pattern" />
+            </button>
+
+            <button class="wall-slide" aria-label="Open idea 9">
+              <img src="/placeholder.svg?height=200&width=320" alt="Landing page hero pattern" />
+            </button>
+            <button class="wall-slide" aria-label="Open idea 10">
+              <img src="/placeholder.svg?height=200&width=320" alt="Landing page hero pattern" />
+            </button>
+            <button class="wall-slide" aria-label="Open idea 11">
+              <img src="/placeholder.svg?height=200&width=320" alt="Landing page hero pattern" />
+            </button>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="container" id="blogs">
+        <div class="section-title">
+          <h2>Latest Blogs</h2>
+          <p class="section-sub">Ten fresh reads — clean, helpful, no images needed.</p>
+        </div>
+
+        <div class="blog-grid">
+
+          <div class="list-card" aria-labelledby="general-blogs-title">
+            <div class="list-header">
+              <h3 id="general-blogs-title">General Marketing</h3>
+              <span class="pill" aria-hidden="true">Top 10</span>
+            </div>
+            <ol class="list">
+              <li><a href="/blogs/how-to-rank-2025"><span class="dot"></span><span>How to Rank #1 on Google in 2025</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/seo-content-framework"><span class="dot"></span><span>The 7-Point SEO Content Framework</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/ppc-budget-guide"><span class="dot"></span><span>PPC Budget: Spend Less, Win More Clicks</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/smo-engagement-ideas"><span class="dot"></span><span>SMO: 12 Engagement Ideas That Actually Work</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/landing-page-anatomy"><span class="dot"></span><span>Landing Page Anatomy: Convert Without Tricks</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/keyword-research-fast"><span class="dot"></span><span>Keyword Research in 20 Minutes</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/email-subject-lines"><span class="dot"></span><span>Subject Lines That Always Get Opened</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/ga4-setup-checklist"><span class="dot"></span><span>GA4 Setup Checklist (Don’t Miss These)</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/brand-voice-guide"><span class="dot"></span><span>Brand Voice: A Simple Style Guide</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/local-seo-starter"><span class="dot"></span><span>Local SEO Starter Kit for Small Biz</span><span class="arrow">→</span></a></li>
+            </ol>
+            <div class="card-actions">
+              <span class="muted">Showing 10 posts</span>
+              <a class="link" href="/blogs">View all blogs</a>
+            </div>
+          </div>
+
+          <div class="list-card" id="category-blogs" aria-labelledby="category-blogs-title">
+            <div class="list-header">
+              <h3 id="category-blogs-title">TV Ads & Marketing</h3>
+              <span class="pill" aria-hidden="true">Top 10</span>
+            </div>
+            <ol class="list">
+              <li><a href="/blogs/tv-ads-media-buying"><span class="dot"></span><span>TV Media Buying: The Smart Starter Guide</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/brand-lift-tv"><span class="dot"></span><span>Measuring Brand Lift from TV Ads</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/creative-testing-tv"><span class="dot"></span><span>Creative Testing for TV: What to Track</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/attribution-tv-digital"><span class="dot"></span><span>TV ↔ Digital Attribution That Makes Sense</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/cpm-vs-grp"><span class="dot"></span><span>CPM vs GRP: When Each Metric Matters</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/programmatic-tv-basics"><span class="dot"></span><span>Programmatic TV Basics (CTV, OTT)</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/ad-frequency-fatigue"><span class="dot"></span><span>Ad Frequency vs Fatigue: Finding Balance</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/tv-ads-scripts"><span class="dot"></span><span>TV Ad Scripts: A Simple Template</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/integrated-campaign-brief"><span class="dot"></span><span>Integrated Campaign Brief (Free Outline)</span><span class="arrow">→</span></a></li>
+              <li><a href="/blogs/post-campaign-analysis"><span class="dot"></span><span>Post-Campaign Analysis: What to Report</span><span class="arrow">→</span></a></li>
+            </ol>
+            <div class="card-actions">
+              <span class="muted">Showing 10 posts</span>
+              <a class="link" href="/blogs/tv-ads">View category</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="container" id="micro-tips" aria-labelledby="micro-title">
+        <div class="section-title">
+          <h2 id="micro-title">Micro Blog Tips</h2>
+          <p class="section-sub">Quick ideas. Each tip stands out with a different background.</p>
+        </div>
+
+        <div class="tips" aria-live="polite">
+          <article>
+            <h3 class="tip-title">Write first for humans, then for search.</h3>
+            <p class="tip-meta"> • SEO</p>
+            <p>Lead with clarity. If a sentence is simpler, it’s usually stronger — and more findable.</p>
+          </article>
+
+          <article>
+            <h3 class="tip-title">One page = one purpose.</h3>
+            <p class="tip-meta"> • CRO </p>
+            <p>Choose the one action you want a user to take and design everything to support it.</p>
+          </article>
+
+          <article>
+            <h3 class="tip-title">Make your CTAs say “what happens next.”</h3>
+            <p class="tip-meta"> • UX1 </p>
+            <p>“Get my report” beats “Submit.” The next step should be obvious and valuable.</p>
+          </article>
+
+
+          <article>
+            <h3 class="tip-title">Make your CTAs say “what happens next.”</h3>
+            <p class="tip-meta"> • UX </p>
+            <p>“Get my report” beats “Submit.” The next step should be obvious and valuable.</p>
+          </article>
+
+          <article>
+            <h3 class="tip-title">Make your CTAs say “what happens next.”</h3>
+            <p class="tip-meta"> • UX </p>
+            <p>“Get my report” beats “Submit.” The next step should be obvious and valuable.</p>
+          </article>
+
+          <article>
+            <h3 class="tip-title">Make your CTAs say “what happens next.”</h3>
+            <p class="tip-meta"> • UX </p>
+            <p>“Get my report” beats “Submit.” The next step should be obvious and valuable.</p>
+          </article>
+
+          <article>
+            <h3 class="tip-title">Make your CTAs say “what happens next.”</h3>
+            <p class="tip-meta"> • UX </p>
+            <p>“Get my report” beats “Submit.” The next step should be obvious and valuable.</p>
+          </article>
+
+          <article>
+            <h3 class="tip-title">Make your CTAs say “what happens next.”</h3>
+            <p class="tip-meta"> • UX </p>
+            <p>“Get my report” beats “Submit.” The next step should be obvious and valuable.</p>
+          </article>
+
+          <article>
+            <h3 class="tip-title">Short videos beat long paragraphs.</h3>
+            <p class="tip-meta"> • Content</p>
+            <p>Summarize posts into 30–60s clips. Let the details live on the blog.</p>
+          </article>
+
+          <article>
+            <h3 class="tip-title">Always measure the boring stuff.</h3>
+            <p class="tip-meta"> • Analytics</p>
+            <p>Source, campaign, landing page, CTA — small optimizations add up to big wins.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container" id="services" aria-labelledby="services-title">
+        <div class="section-title">
+          <h2 id="services-title">Digital Marketing Services</h2>
+          <p class="section-sub">Focused, practical, and built for outcomes.Focused, practical, and built for outcomes.
+
+</p>
+        </div>
+
+        <div class="services">
+          <a class="service-card" href="/services/seo">
+            <h3>SEO</h3>
+            <p>Technical, on-page, and content-led SEO that grows qualified traffic.</p>
+            <span class="pill">Audits</span>
+            <span class="pill">Content</span>
+            <span class="pill">Technical</span>
+            <div class="spacer"></div>
+            <span class="link">Explore SEO →</span>
+          </a>
+
+          <a class="service-card" href="/services/ppc">
+            <h3>PPC</h3>
+            <p>Efficient paid search and social campaigns with tight tracking.</p>
+            <span class="pill">Google Ads</span>
+            <span class="pill">Meta</span>
+            <span class="pill">Retargeting</span>
+            <div class="spacer"></div>
+            <span class="link">Explore PPC →</span>
+          </a>
+
+          <a class="service-card" href="/services/smo">
+            <h3>SMO</h3>
+            <p>Organic social that prioritizes engagement, reach, and saves.</p>
+            <span class="pill">Calendars</span>
+            <span class="pill">Playbooks</span>
+            <span class="pill">Creator Ops</span>
+            <div class="spacer"></div>
+            <span class="link">Explore SMO →</span>
+          </a>
+
+          <a class="service-card" href="/services/content">
+            <h3>Content Marketing</h3>
+            <p>Topic clusters, briefs, and distribution routines that compound.</p>
+            <span class="pill">Briefs</span>
+            <span class="pill">Clusters</span>
+            <span class="pill">Repurposing</span>
+            <div class="spacer"></div>
+            <span class="link">Explore Content →</span>
+          </a>
+
+          <a class="service-card" href="/services/analytics">
+            <h3>Analytics & Tracking</h3>
+            <p>Clean data, clear dashboards, and decisions you can trust.</p>
+            <span class="pill">GA4</span>
+            <span class="pill">Attribution</span>
+            <span class="pill">Dashboards</span>
+            <div class="spacer"></div>
+            <span class="link">Explore Analytics →</span>
+          </a>
+
+          <a class="service-card" href="/services/tv-ads">
+            <h3>TV & Video Ads</h3>
+            <p>CTV planning, creative strategy, and post-campaign analysis.</p>
+            <span class="pill">CTV</span>
+            <span class="pill">Scripts</span>
+            <span class="pill">Brand Lift</span>
+            <div class="spacer"></div>
+            <span class="link">Explore TV Ads →</span>
+          </a>
+        </div>
+      </section>
+
+
+      <section class="about-section" id="about" aria-labelledby="about-title">
+        <div class="container">
+          <div class="section-title">
+            <h2 id="about-title">About</h2>
+          </div>
+          <p class="lead" style="max-width: 100ch;">
+            We help brands grow with clear strategy and consistent execution. No jargon, just work that works.with clear strategy and consistent execution. No jargon, just work that works.with clear strategy and consistent execution. No jargon, just work that works.
+          </p>
+        </div>
+      </section>
+
+      <section class="container" id="contact" aria-labelledby="contact-title">
+        <div class="section-title">
+          <h2 id="contact-title">Contact</h2>
+        </div>
+        <p>Prefer email? Reach us at: <a class="link" href="mailto:hello@bestdigitalmarketer.com">hello@bestdigitalmarketer.com</a></p>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <div class="container footer-line">
+        Built for clarity, crafted for growth — Best Digital Marketer.
+      </div>
+      <nav class="container footer-nav" aria-label="Footer">
+        <div class="footer-menu">
+          <a href="#top">Home</a>
+          <a href="#blogs">Blogs</a>
+          <a href="#micro-tips">Micro Tips</a>
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </footer>
+
+    <!-- Lightbox element for full-screen image view -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Full screen image viewer">
+      <img id="lightboxImg" alt="Marketing idea full view" />
+    </div>
+
+    <!-- Minimal JS: auto-scroll wall slider + lightbox -->
+    <script>
+      // Auto-scrolling carousel
+      const track = document.getElementById('wallTrack');
+      if (track) {
+        let rafId, paused = false;
+        const speed = 0.6; // pixels per frame ~60fps
+
+        function step() {
+          if (!paused) {
+            track.scrollLeft += speed;
+            // Loop back when reaching end
+            if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 2) {
+              track.scrollLeft = 0;
+            }
+          }
+          rafId = requestAnimationFrame(step);
+        }
+        rafId = requestAnimationFrame(step);
+
+        // Pause on user interaction for accessibility
+        track.addEventListener('pointerenter', () => paused = true);
+        track.addEventListener('pointerleave', () => paused = false);
+        track.addEventListener('focusin', () => paused = true);
+        track.addEventListener('focusout', () => paused = false);
+      }
+
+      // Lightbox
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightboxImg');
+
+      function openLightbox(src, alt) {
+        lbImg.src = src;
+        lbImg.alt = alt || 'Marketing idea';
+        lb.classList.add('open');
+      }
+      function closeLightbox() {
+        lb.classList.remove('open');
+        lbImg.src = '';
+      }
+
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.wall-slide');
+        if (btn) {
+          const img = btn.querySelector('img');
+          if (img) {
+            openLightbox(img.src, img.alt);
+          }
+        }
+      });
+      lb?.addEventListener('click', closeLightbox);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lb?.classList.contains('open')) closeLightbox();
+      });
+    </script>
+  </body>
 </html>
