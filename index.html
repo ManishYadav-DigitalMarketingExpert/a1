@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>333Best Digital Marketer — Grow Faster with Simple, Creative Marketing</title>
+    <title>qwall3Best Digital Marketer — Grow Faster with Simple, Creative Marketing</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
@@ -11,12 +11,10 @@
     <link rel="canonical" href="https://bestdigitalmarketer.com/" />
     <meta name="robots" content="index,follow" />
 
-
     <meta property="og:title" content="Best Digital Marketer — Grow Faster with Simple, Creative Marketing" />
     <meta property="og:description" content="Blogs, micro tips, and digital marketing services that focus on results." />
     <meta property="og:url" content="https://bestdigitalmarketer.com/" />
     <meta property="og:type" content="website" />
-
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Best Digital Marketer — Grow Faster with Simple, Creative Marketing" />
@@ -77,7 +75,7 @@
       .topbar {
         position: sticky;
         top: 0;
-        z-index: 20;
+        z-index: 30;
         background: rgba(255,255,255,0.7);
         backdrop-filter: blur(8px);
         border-bottom: 1px solid var(--border);
@@ -88,6 +86,7 @@
         justify-content: space-between;
         padding: 0.75rem 0;
         gap: 1rem;
+        position: relative; /* for mobile dropdown positioning */
       }
       .brand {
         display: inline-flex;
@@ -104,6 +103,31 @@
         background: linear-gradient(135deg, var(--primary), var(--accent));
         box-shadow: var(--shadow-soft);
       }
+
+      /* mobile hamburger button (hidden on desktop) */
+      .menu-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 38px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        box-shadow: var(--shadow-soft);
+      }
+      .menu-toggle .bars {
+        display: grid;
+        gap: 4px;
+      }
+      .menu-toggle .bars span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: #0b1324;
+        border-radius: 2px;
+      }
+
       .menu {
         display: flex;
         gap: 1rem;
@@ -127,6 +151,32 @@
         border: 1px solid transparent;
       }
       .cta:hover { filter: brightness(0.95); }
+
+      /* responsive behavior for mobile dropdown */
+      @media (max-width: 760px) {
+        .menu-toggle { display: inline-flex; }
+        /* hide menu by default on mobile */
+        #primaryNav .menu {
+          display: none;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: calc(100% + 6px);
+          background: rgba(255,255,255,0.98);
+          border: 1px solid var(--border);
+          border-radius: var(--radius);
+          box-shadow: var(--shadow);
+          padding: 0.5rem;
+          grid-template-columns: 1fr;
+          z-index: 25;
+        }
+        #primaryNav[data-open="true"] .menu {
+          display: grid;
+          gap: 0.35rem;
+        }
+        #primaryNav .menu a { border-radius: 8px; }
+        #primaryNav .menu .cta { width: 100%; text-align: center; }
+      }
 
       /* Hero */
       .hero {
@@ -193,7 +243,7 @@
       .list-header h3 { margin: 0; font-size: var(--fs-600); }
       .list {
         margin: 0; padding: 0; list-style: none;
-        max-height: 520px; /* shows ~10 compact items, adjust as needed */
+        max-height: 520px; /* shows ~10 compact items */
         overflow: auto;
       }
       .list li a {
@@ -298,7 +348,7 @@
         padding: 3rem 0;
       }
 
-      /* Marketing Wall (auto slider) */
+      /* Marketing Wall */
       .wall {
         position: relative;
         overflow: hidden;
@@ -307,13 +357,16 @@
         display: grid;
         grid-auto-flow: column;
         gap: 0.75rem;
-        align-items: center;
+        align-items: stretch;
         grid-auto-columns: 70%;
+        overflow-x: auto; /* ensure arrows can scroll */
+        scroll-behavior: smooth;
       }
       @media (min-width: 520px) { .wall-track { grid-auto-columns: 45%; } }
       @media (min-width: 760px) { .wall-track { grid-auto-columns: 30%; } }
       @media (min-width: 1024px){ .wall-track { grid-auto-columns: 22%; } }
       @media (min-width: 1280px){ .wall-track { grid-auto-columns: 18%; } }
+
       .wall-slide {
         border: 1px solid var(--border);
         border-radius: var(--radius);
@@ -321,6 +374,9 @@
         background: var(--surface);
         box-shadow: var(--shadow-soft);
         cursor: zoom-in;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
       }
       .wall-slide img {
         display: block;
@@ -330,6 +386,44 @@
       }
       @media (min-width: 760px) { .wall-slide img { height: 180px; } }
       @media (min-width: 1024px){ .wall-slide img { height: 200px; } }
+
+      /* caption area under each image */
+      .wall-caption {
+        border-top: 1px solid var(--border);
+        padding: 0.5rem 0.6rem;
+        text-align: left;
+        background: #fff;
+      }
+      .wall-caption h4 {
+        margin: 0;
+        font-size: var(--fs-400);
+        line-height: 1.35;
+        color: #0b1324;
+      }
+
+      /* arrows for manual scroll */
+      .wall-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.9);
+        box-shadow: var(--shadow-soft);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        z-index: 10;
+      }
+      .wall-nav.prev { left: 6px; }
+      .wall-nav.next { right: 6px; }
+      .wall-nav span {
+        font-size: 20px;
+        color: #0b1324;
+        line-height: 1;
+      }
 
       /* Lightbox for full-screen image view */
       .lightbox {
@@ -394,7 +488,6 @@
       }
     </style>
 
-
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -428,13 +521,23 @@
           <span class="brand-badge" aria-hidden="true"></span>
           <span>Best Digital Marketer</span>
         </a>
-        <nav aria-label="Main menu">
-          <div class="menu">
+
+         mobile menu toggle button added 
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-controls="mainMenu" aria-expanded="false">
+          <span class="bars" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+
+        <nav id="primaryNav" aria-label="Main menu">
+          <div class="menu" id="mainMenu">
             <a href="#marketing-wall">Wall of Marketing Ideas</a>
             <a href="#blogs">Blogs</a>
             <a href="#category-blogs">Category Blogs</a>
             <a href="#micro-tips">Micro Tips</a>
             <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#about">About</a>
             <a href="#about">About</a>
             <a class="cta" href="#contact">Get a Free Audit</a>
           </div>
@@ -443,7 +546,6 @@
     </header>
 
     <main id="main">
-
       <section class="hero container" id="top">
         <span class="eyebrow">
           <span class="badge" aria-hidden="true">Simple</span>
@@ -456,49 +558,73 @@
         </p>
       </section>
 
-
       <section class="container" id="marketing-wall" aria-labelledby="wall-title">
         <div class="section-title">
           <h2 id="wall-title">Wall of Marketing Ideas</h2>
-          <p class="section-sub">Swipe or watch it auto-scroll. Click any image to view full screen.</p>
+          <p class="section-sub">Auto-scrolls right. Use arrows or click any image/heading to view full screen.</p>
         </div>
+
         <div class="wall" aria-live="polite">
+           manual scroll arrows 
+          <button class="wall-nav prev" type="button" aria-label="Previous"><span>‹</span></button>
+          <button class="wall-nav next" type="button" aria-label="Next"><span>›</span></button>
+
           <div class="wall-track" id="wallTrack">
+             add captions under each image 
             <button class="wall-slide" aria-label="Open idea 1">
               <img src="/placeholder.svg?height=200&width=320" alt="Creative ad layout concept" />
+              <div class="wall-caption"><h4>Idea 1: Creative Ad Layout</h4></div>
             </button>
+
             <button class="wall-slide" aria-label="Open idea 2">
               <img src="/placeholder.svg?height=200&width=320" alt="Billboard marketing idea" />
+              <div class="wall-caption"><h4>Idea 2: Billboard Concept</h4></div>
             </button>
+
             <button class="wall-slide" aria-label="Open idea 3">
               <img src="/placeholder.svg?height=200&width=320" alt="Social post campaign grid" />
+              <div class="wall-caption"><h4>Idea 3: Social Grid</h4></div>
             </button>
+
             <button class="wall-slide" aria-label="Open idea 4">
               <img src="/placeholder.svg?height=200&width=320" alt="Guerrilla marketing example" />
+              <div class="wall-caption"><h4>Idea 4: Guerrilla Activation</h4></div>
             </button>
+
             <button class="wall-slide" aria-label="Open idea 5">
               <img src="/placeholder.svg?height=200&width=320" alt="Product display inspiration" />
+              <div class="wall-caption"><h4>Idea 5: Product Display</h4></div>
             </button>
+
             <button class="wall-slide" aria-label="Open idea 6">
               <img src="/placeholder.svg?height=200&width=320" alt="Email newsletter design" />
+              <div class="wall-caption"><h4>Idea 6: Newsletter Design</h4></div>
             </button>
+
             <button class="wall-slide" aria-label="Open idea 7">
               <img src="/placeholder.svg?height=200&width=320" alt="Landing page hero pattern" />
+              <div class="wall-caption"><h4>Idea 7: Hero Pattern</h4></div>
             </button>
+
             <button class="wall-slide" aria-label="Open idea 8">
               <img src="/placeholder.svg?height=200&width=320" alt="Landing page hero pattern" />
+              <div class="wall-caption"><h4>Idea 8: Hero Variant</h4></div>
             </button>
 
             <button class="wall-slide" aria-label="Open idea 9">
               <img src="/placeholder.svg?height=200&width=320" alt="Landing page hero pattern" />
-            </button>
-            <button class="wall-slide" aria-label="Open idea 10">
-              <img src="/placeholder.svg?height=200&width=320" alt="Landing page hero pattern" />
-            </button>
-            <button class="wall-slide" aria-label="Open idea 11">
-              <img src="/placeholder.svg?height=200&width=320" alt="Landing page hero pattern" />
+              <div class="wall-caption"><h4>Idea 9: Hero Variation</h4></div>
             </button>
 
+            <button class="wall-slide" aria-label="Open idea 10">
+              <img src="/placeholder.svg?height=200&width=320" alt="Landing page hero pattern" />
+              <div class="wall-caption"><h4>Idea 10: Hero Study</h4></div>
+            </button>
+
+            <button class="wall-slide" aria-label="Open idea 11">
+              <img src="/placeholder.svg?height=200&width=320" alt="Landing page hero pattern" />
+              <div class="wall-caption"><h4>Idea 11: Hero Concept</h4></div>
+            </button>
           </div>
         </div>
       </section>
@@ -510,7 +636,6 @@
         </div>
 
         <div class="blog-grid">
-
           <div class="list-card" aria-labelledby="general-blogs-title">
             <div class="list-header">
               <h3 id="general-blogs-title">General Marketing</h3>
@@ -559,7 +684,6 @@
         </div>
       </section>
 
-
       <section class="container" id="micro-tips" aria-labelledby="micro-title">
         <div class="section-title">
           <h2 id="micro-title">Micro Blog Tips</h2>
@@ -584,7 +708,6 @@
             <p class="tip-meta"> • UX1 </p>
             <p>“Get my report” beats “Submit.” The next step should be obvious and valuable.</p>
           </article>
-
 
           <article>
             <h3 class="tip-title">Make your CTAs say “what happens next.”</h3>
@@ -633,9 +756,7 @@
       <section class="container" id="services" aria-labelledby="services-title">
         <div class="section-title">
           <h2 id="services-title">Digital Marketing Services</h2>
-          <p class="section-sub">Focused, practical, and built for outcomes.Focused, practical, and built for outcomes.
-
-</p>
+          <p class="section-sub">Focused, practical, and built for outcomes.Focused, practical, and built for outcomes.</p>
         </div>
 
         <div class="services">
@@ -701,7 +822,6 @@
         </div>
       </section>
 
-
       <section class="about-section" id="about" aria-labelledby="about-title">
         <div class="container">
           <div class="section-title">
@@ -737,39 +857,83 @@
       </nav>
     </footer>
 
-    <!-- Lightbox element for full-screen image view -->
+     Lightbox element for full-screen image view 
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Full screen image viewer">
       <img id="lightboxImg" alt="Marketing idea full view" />
     </div>
 
-    <!-- Minimal JS: auto-scroll wall slider + lightbox -->
+     Minimal JS: mobile menu toggle + auto-scroll wall slider + arrows + lightbox 
     <script>
-      // Auto-scrolling carousel
+      const menuToggle = document.getElementById('menuToggle');
+      const primaryNav = document.getElementById('primaryNav');
+      const mainMenu = document.getElementById('mainMenu');
+
+      if (menuToggle && primaryNav && mainMenu) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = primaryNav.getAttribute('data-open') === 'true';
+          primaryNav.setAttribute('data-open', String(!isOpen));
+          menuToggle.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        // Reset state if resized to desktop
+        window.addEventListener('resize', () => {
+          if (window.innerWidth >= 760) {
+            primaryNav.removeAttribute('data-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // Auto-scrolling carousel + manual arrows
       const track = document.getElementById('wallTrack');
+      const prevBtn = document.querySelector('.wall .prev');
+      const nextBtn = document.querySelector('.wall .next');
+
       if (track) {
         let rafId, paused = false;
         const speed = 0.6; // pixels per frame ~60fps
-
-        function step() {
+        const step = () => {
           if (!paused) {
-            track.scrollLeft += speed;
+            track.scrollLeft += speed; // scrolls toward right
             // Loop back when reaching end
             if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 2) {
               track.scrollLeft = 0;
             }
           }
           rafId = requestAnimationFrame(step);
-        }
+        };
         rafId = requestAnimationFrame(step);
 
-        // Pause on user interaction for accessibility
+        // Pause on hover/focus for accessibility
         track.addEventListener('pointerenter', () => paused = true);
         track.addEventListener('pointerleave', () => paused = false);
         track.addEventListener('focusin', () => paused = true);
         track.addEventListener('focusout', () => paused = false);
+
+        const jump = () => Math.max(160, Math.floor(track.clientWidth * 0.8));
+        const resumeAfter = () => setTimeout(() => { paused = false; }, 1500);
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', () => {
+            paused = true;
+            track.scrollLeft -= jump();
+            if (track.scrollLeft < 0) track.scrollLeft = 0;
+            resumeAfter();
+          });
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener('click', () => {
+            paused = true;
+            track.scrollLeft += jump();
+            if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 2) {
+              track.scrollLeft = 0;
+            }
+            resumeAfter();
+          });
+        }
       }
 
-      // Lightbox
+      // Lightbox (click image or caption area to open full-screen)
       const lb = document.getElementById('lightbox');
       const lbImg = document.getElementById('lightboxImg');
 
