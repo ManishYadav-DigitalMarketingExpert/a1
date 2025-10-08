@@ -1,1 +1,139 @@
-<h1><a href="https://bestdigitalmarketer.com/">Best Digital Marketer</a></h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instagram Video Downloader | Best Digital Marketer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff7a00, #ff007f);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    p {
+      margin-bottom: 20px;
+      color: #fff;
+      opacity: 0.9;
+    }
+
+    input {
+      width: 80%;
+      max-width: 400px;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #fff;
+      color: #ff007f;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff007f;
+      color: #fff;
+    }
+
+    #result {
+      margin-top: 20px;
+    }
+
+    video {
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    a.download-btn {
+      display: inline-block;
+      background-color: #fff;
+      color: #ff007f;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    a.download-btn:hover {
+      background-color: #ff007f;
+      color: #fff;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <h1>Instagram Video Downloader</h1>
+  <p>Paste the Instagram post URL below and download the video instantly 🎥</p>
+
+  <input type="text" id="instaURL" placeholder="Enter Instagram Post URL here..." />
+  <br />
+  <button onclick="downloadVideo()">Get Video</button>
+
+  <div id="result"></div>
+
+  <footer>© 2025 Best Digital Marketer | For personal use only</footer>
+
+  <script>
+    async function downloadVideo() {
+      const url = document.getElementById("instaURL").value.trim();
+      const resultDiv = document.getElementById("result");
+
+      if (!url) {
+        alert("Please enter an Instagram post URL!");
+        return;
+      }
+
+      resultDiv.innerHTML = "<p>Fetching video... please wait ⏳</p>";
+
+      try {
+        // Using free external API (rapidapi.com / instagram-downloader-service)
+        const apiUrl = `https://instagram-downloader-service.vercel.app/?url=${encodeURIComponent(url)}`;
+
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+
+        if (data && data.download_url) {
+          resultDiv.innerHTML = `
+            <video controls src="${data.download_url}"></video>
+            <br/>
+            <a class="download-btn" href="${data.download_url}" target="_blank" download>Download Video</a>
+          `;
+        } else {
+          resultDiv.innerHTML = "<p>❌ Could not fetch video. Make sure the post is public.</p>";
+        }
+      } catch (err) {
+        console.error(err);
+        resultDiv.innerHTML = "<p>⚠️ Error fetching video. Try again later.</p>";
+      }
+    }
+  </script>
+</body>
+</html>
