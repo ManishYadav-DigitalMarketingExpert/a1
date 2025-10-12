@@ -4,46 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BestDigitalMarketer — Free Marketing Toolkit</title>
-  <meta name="description" content="A single‑page collection of free digital marketing tools: UTM builder, meta checker, headline analyzer, readability, OG/Twitter tags, schema generator, robots & sitemap, A/B sample size, ROAS/CPA calculator, contrast checker, subject tester, and more."/>
+  <meta name="description" content="A single‑page collection of free digital marketing tools: UTM builder, meta checker, headline analyzer, readability, OG/Twitter tags, schema generator, robots & sitemap, A/B sample size, ROAS/CPA calculator, contrast checker, subject tester, canonical builder, open DA/PA/spam/age checker."/>
   <style>
     :root{
-      --bg:#0f172a;           /* slate-900 */
-      --panel:#111827;        /* gray-900 */
-      --muted:#6b7280;        /* gray-500 */
-      --text:#e5e7eb;         /* gray-200 */
-      --brand:#22c55e;        /* green-500 */
-      --accent:#38bdf8;       /* sky-400 */
-      --warning:#f59e0b;      /* amber-500 */
-      --danger:#ef4444;       /* red-500 */
-      --ok:#10b981;           /* emerald-500 */
-      --card:#0b1227;         /* custom */
-      --chip:#1f2937;         /* gray-800 */
-      --border:#1f2a44;       /* custom */
+      --bg:#0f172a; --panel:#111827; --muted:#6b7280; --text:#e5e7eb; --brand:#22c55e; --accent:#38bdf8; --warning:#f59e0b; --danger:#ef4444; --ok:#10b981; --card:#0b1227; --chip:#1f2937; --border:#1f2a44;
     }
     *{box-sizing:border-box}
-    body{
-      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; background:linear-gradient(180deg, #0b1022, #0a0f1d 60%, #070b16); color:var(--text);
-    }
+    body{margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; background:linear-gradient(180deg, #0b1022, #0a0f1d 60%, #070b16); color:var(--text)}
     a{color:var(--accent); text-decoration:none}
     .wrap{max-width:1200px; margin:0 auto; padding:24px}
-    header{
-      display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px;
-    }
-    .brand{
-      display:flex; gap:12px; align-items:center;
-    }
+    header{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:16px}
+    .brand{display:flex; gap:12px; align-items:center}
     .logo{width:44px; height:44px; border-radius:12px; background:radial-gradient(circle at 30% 30%, #34d399, #2563eb 60%, #111 62%); box-shadow:0 8px 28px rgba(56,189,248,.32), inset 0 0 28px rgba(34,197,94,.3)}
     h1{font-size:clamp(20px, 3vw, 28px); margin:0}
     .sub{color:var(--muted); font-size:14px}
     .note{background:linear-gradient(180deg, rgba(34,197,94,.1), rgba(56,189,248,.08)); border:1px solid var(--border); padding:14px 16px; border-radius:12px; margin:12px 0 20px}
-
-    /* Tabs */
     .tabs{display:flex; gap:8px; flex-wrap:wrap; position:sticky; top:0; padding:12px 0; background:linear-gradient(180deg, rgba(9,12,22,.92), rgba(9,12,22,.8)); backdrop-filter: blur(6px); z-index:10; border-bottom:1px solid var(--border)}
     .tab{cursor:pointer; border:1px solid var(--border); padding:10px 14px; border-radius:12px; background:var(--chip); color:#dbeafe; font-weight:600; font-size:13px; letter-spacing:.2px; transition:.2s}
     .tab:hover{transform:translateY(-1px); box-shadow:0 6px 20px rgba(56,189,248,.15)}
     .tab.active{background:linear-gradient(180deg, #1f2937, #111827); border-color:#334155}
-
-    /* Panels */
     .panel{display:none; border:1px solid var(--border); background:linear-gradient(180deg, #0a1226, #080e1d); border-radius:16px; padding:18px; margin:16px 0; box-shadow:0 10px 30px rgba(2,8,23,.45)}
     .panel.active{display:block}
     .panel h2{margin:6px 0 10px; font-size:18px}
@@ -51,22 +30,15 @@
     .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px}
     .field{display:flex; flex-direction:column; gap:6px}
     label{font-size:12px; color:#9ca3af}
-    input[type="text"], input[type="number"], textarea, select{
-      background:#0b1328; border:1px solid #1f2a44; color:var(--text); border-radius:10px; padding:10px 12px; outline:none; font-size:14px; width:100%
-    }
+    input[type="text"], input[type="number"], textarea, select{background:#0b1328; border:1px solid #1f2a44; color:var(--text); border-radius:10px; padding:10px 12px; outline:none; font-size:14px; width:100%}
     textarea{min-height:110px; resize:vertical}
     .row{display:flex; flex-wrap:wrap; gap:10px}
     .btn{cursor:pointer; background:linear-gradient(180deg, #22c55e, #16a34a); color:#061014; font-weight:700; border:none; padding:10px 14px; border-radius:10px; box-shadow:0 6px 18px rgba(16,185,129,.35)}
     .btn.sec{background:linear-gradient(180deg, #38bdf8,#0ea5e9); color:#061014}
     .btn.ghost{background:#0b1328; color:#d1d5db; border:1px solid #1f2a44}
     .out{background:#030712; border:1px dashed #334155; padding:12px; border-radius:12px; min-height:48px; white-space:pre-wrap; font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; font-size:13px}
-    .chip{display:inline-block; background:#0b1328; border:1px solid #1f2a44; color:#cbd5e1; padding:6px 10px; border-radius:999px; font-size:12px; margin:4px 6px 0 0}
-    .hint{font-size:12px; color:#93c5fd}
     .badge{display:inline-flex; align-items:center; gap:6px; font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid #1f2a44; background:#0b1328; color:#cbd5e1}
-    .good{color:#22c55e}
-    .warn{color:#f59e0b}
-    .bad{color:#ef4444}
-    .copy{cursor:pointer; font-size:12px; border:1px solid #1f2a44; background:#0b1328; color:#cbd5e1; padding:6px 10px; border-radius:999px}
+    .hint{font-size:12px; color:#93c5fd}
     .footer{opacity:.8; font-size:12px; text-align:center; padding:32px 0}
     .small{font-size:12px}
   </style>
@@ -78,7 +50,7 @@
         <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>BestDigitalMarketer — Free Marketing Toolkit</h1>
-          <div class="sub">All tools on ONE page. 100% client‑side. No logins. No servers.</div>
+          <div class="sub">All tools on ONE page. Mostly client‑side. No logins. No servers.</div>
         </div>
       </div>
       <div class="row">
@@ -87,39 +59,23 @@
       </div>
     </header>
 
-    <div class="note small">Tip: Click a tab below. Every tool stays on this page and runs in your browser. Use the green <b>Copy</b> buttons to grab results quickly.</div>
+    <div class="note small">Tip: Click a tab below. Every tool stays on this page and runs in your browser. The DA/PA/Spam/Age checker uses free public endpoints (WHOIS/DNS/reader) — no API keys.</div>
 
-    <!-- Tabs -->
     <nav class="tabs" id="tabs"></nav>
-
-    <!-- Panels container -->
     <div id="panels"></div>
 
     <div class="footer">Made with ❤ for marketers. Share: <a href="https://bestdigitalmarketer.com" target="_blank" rel="noopener">bestdigitalmarketer.com</a></div>
   </div>
 
 <script>
-/***********************
- * Helper utilities
- ***********************/
 const $ = (sel, el=document) => el.querySelector(sel);
 const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel));
 const copyText = (str) => navigator.clipboard.writeText(str || '').then(()=> alert('Copied!'));
-const dl = (filename, text) => {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob([text], {type:'text/plain'}));
-  a.download = filename; a.click(); URL.revokeObjectURL(a.href);
-};
-const slugify = (s) => s.toLowerCase().trim()
-  .replace(/['"]/g,'')
-  .replace(/[^a-z0-9]+/g,'-')
-  .replace(/(^-|-$)/g,'');
-const pxEstimate = (str, fallback=580)=> Math.round(Math.min(fallback, str.length*7)); // rough px width
+const dl = (filename, text) => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], {type:'text/plain'})); a.download = filename; a.click(); URL.revokeObjectURL(a.href); };
+const slugify = (s) => s.toLowerCase().trim().replace(/["']/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+const pxEstimate = (str, fallback=580)=> Math.round(Math.min(fallback, str.length*7));
 const clamp = (n, min, max) => Math.max(min, Math.min(n, max));
 
-/***********************
- * Tab/Panel framework
- ***********************/
 const tools = [
   { id:'utm', label:'UTM Builder' },
   { id:'meta', label:'Meta Title/Description Checker' },
@@ -133,42 +89,18 @@ const tools = [
   { id:'contrast', label:'Color Contrast Checker' },
   { id:'subject', label:'Email Subject Tester' },
   { id:'canonical', label:'Canonical URL & Slug' },
+  { id:'authority', label:'DA/PA/Spam/Age (Open)'}
 ];
 
 const tabs = $('#tabs');
 const panels = $('#panels');
-
-function renderTabs(){
-  tools.forEach((t,i)=>{
-    const b = document.createElement('button');
-    b.className = 'tab'+(i===0?' active':'');
-    b.textContent = (i+1)+'. '+t.label;
-    b.dataset.target = t.id;
-    b.addEventListener('click', ()=> activate(t.id));
-    tabs.appendChild(b);
-  });
-}
-
-function addPanel(id, html){
-  const p = document.createElement('section');
-  p.className = 'panel'+(id===tools[0].id?' active':'');
-  p.id = id;
-  p.innerHTML = html;
-  panels.appendChild(p);
-}
-
-function activate(id){
-  $$('.tab').forEach(t=> t.classList.toggle('active', t.dataset.target===id));
-  $$('.panel').forEach(p=> p.classList.toggle('active', p.id===id));
-  window.scrollTo({top: $('.tabs').offsetTop, behavior:'smooth'});
-}
-
+function renderTabs(){ tools.forEach((t,i)=>{ const b=document.createElement('button'); b.className='tab'+(i===0?' active':''); b.textContent=(i+1)+'. '+t.label; b.dataset.target=t.id; b.addEventListener('click',()=>activate(t.id)); tabs.appendChild(b); }); }
+function addPanel(id, html){ const p=document.createElement('section'); p.className='panel'+(id===tools[0].id?' active':''); p.id=id; p.innerHTML=html; panels.appendChild(p); }
+function activate(id){ $$('.tab').forEach(t=> t.classList.toggle('active', t.dataset.target===id)); $$('.panel').forEach(p=> p.classList.toggle('active', p.id===id)); window.scrollTo({top: $('.tabs').offsetTop, behavior:'smooth'}); }
 $('#expandAll').onclick = ()=> $$('.panel').forEach(p=> p.classList.add('active'));
 $('#collapseAll').onclick = ()=> $$('.panel').forEach((p,i)=> p.classList.toggle('active', i===0));
 
-/***********************
- * TOOL 1: UTM Builder
- ***********************/
+/*********************** TOOL 1: UTM ************************/
 addPanel('utm', `
   <h2>1) UTM Link Builder</h2>
   <p>Build campaign‑tracked URLs. Only fills what you enter.</p>
@@ -183,28 +115,14 @@ addPanel('utm', `
   <div class="row" style="margin-top:8px">
     <button class="btn" id="utm_build">Build URL</button>
     <button class="btn ghost" id="utm_clear">Clear</button>
-    <button class="copy" id="utm_copy">Copy</button>
+    <button class="btn ghost" id="utm_copy">Copy</button>
   </div>
   <div class="out" id="utm_out"></div>
 `);
+function buildUTM(){ const base=$('#utm_base').value.trim(); if(!base){ $('#utm_out').textContent='Enter Base URL'; return;} const params=new URLSearchParams(); const add=(k)=>{ const v=$(`#${k}`).value.trim(); if(v) params.set(k,v); }; ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(add); const url=new URL(base, window.location.origin); params.forEach((v,k)=> url.searchParams.set(k,v)); $('#utm_out').textContent=url.toString(); }
+$('#utm_build').onclick=buildUTM; $('#utm_clear').onclick=()=>{['utm_base','utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(id=> $(`#${id}`).value=''); $('#utm_out').textContent=''}; $('#utm_copy').onclick=()=> copyText($('#utm_out').textContent);
 
-function buildUTM(){
-  const base = $('#utm_base').value.trim();
-  if(!base){ $('#utm_out').textContent='Enter Base URL'; return; }
-  const params = new URLSearchParams();
-  const add=(k)=>{ const v=$(`#${k}`).value.trim(); if(v) params.set(k, v); };
-  ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(add);
-  const url = new URL(base, window.location.origin);
-  params.forEach((v,k)=> url.searchParams.set(k,v));
-  $('#utm_out').textContent = url.toString();
-}
-$('#utm_build').onclick = buildUTM;
-$('#utm_clear').onclick = ()=>{['utm_base','utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(id=> $(`#${id}`).value=''); $('#utm_out').textContent=''}
-$('#utm_copy').onclick = ()=> copyText($('#utm_out').textContent);
-
-/********************************************
- * TOOL 2: Meta Title / Description Checker
- ********************************************/
+/********** TOOL 2: Meta Title/Description Checker ***********/
 addPanel('meta', `
   <h2>2) Meta Title & Description Checker</h2>
   <p>Checks length (chars) & rough pixel width (approx). Green is ideal.</p>
@@ -212,58 +130,24 @@ addPanel('meta', `
     <div class="field"><label>Meta Title</label><input id="mt_title" type="text" placeholder="Buy Period Panties Online | D'chica"/></div>
     <div class="field"><label>Meta Description</label><textarea id="mt_desc" placeholder="Shop comfortable, reusable period panties for teens and women. Leak protection, breathable fabric, and affordable prices. Free shipping in India."></textarea></div>
   </div>
-  <div class="row" style="margin-top:8px"><button class="btn" id="mt_check">Check</button><button class="copy" id="mt_copy">Copy report</button></div>
+  <div class="row" style="margin-top:8px"><button class="btn" id="mt_check">Check</button><button class="btn ghost" id="mt_copy">Copy report</button></div>
   <div class="out" id="mt_out"></div>
   <div class="hint">Guidelines: Title ~ 50–60 chars (≤ 600px). Description ~ 120–160 chars (≤ 1000px).</div>
 `);
+$('#mt_check').onclick=()=>{ const t=$('#mt_title').value||''; const d=$('#mt_desc').value||''; const tp=t.length, dp=d.length; const tpx=pxEstimate(t,600), dpx=pxEstimate(d,1000); const badge=(ok,label,val)=> `<span class="badge">${label}: ${val} ${ok?'✅':'⚠️'}</span>`; const html=[badge(tp<=60,'Title chars',tp),badge(tpx<=600,'Title px',tpx),badge(dp>=120&&dp<=160,'Desc chars',dp),badge(dpx<=1000,'Desc px',dpx)].join(' ')+`\n\nPreview (approx):\n<title>${t}</title>\n<meta name="description" content="${d}">`; $('#mt_out').innerHTML=html; }; $('#mt_copy').onclick=()=> copyText($('#mt_out').innerText);
 
-$('#mt_check').onclick = ()=>{
-  const t=$('#mt_title').value||''; const d=$('#mt_desc').value||'';
-  const tp=t.length, dp=d.length; const tpx=pxEstimate(t,600), dpx=pxEstimate(d,1000);
-  const badge=(ok, label, val)=> `<span class="badge ${ok?'good': val> (label==='Title px'?600:1000)?'bad':'warn'}">${label}: ${val}</span>`;
-  const html = [
-    badge(tp<=60, 'Title chars', tp),
-    badge(tpx<=600, 'Title px', tpx),
-    badge(dp>=120 && dp<=160, 'Desc chars', dp),
-    badge(dpx<=1000, 'Desc px', dpx)
-  ].join(' ')+`\n\nPreview (approx):\n`+`<title>${t}</title>\n<meta name="description" content="${d}">`;
-  $('#mt_out').innerHTML = html;
-};
-$('#mt_copy').onclick = ()=> copyText($('#mt_out').innerText);
-
-/*******************************
- * TOOL 3: Headline Analyzer
- *******************************/
+/*********************** TOOL 3: Headline ********************/
 addPanel('headline', `
   <h2>3) Blog/Ad Headline Analyzer</h2>
   <p>Scores by length, power words, numbers, questions, and clarity.</p>
   <div class="field"><label>Headline</label><input id="hl_text" type="text" placeholder="Can Period Panties Really Replace Pads? 7 Truths You Should Know"/></div>
   <div class="row" style="margin-top:8px"><button class="btn" id="hl_check">Analyze</button></div>
   <div class="out" id="hl_out"></div>
-  <div class="hint">Tip: Add numbers, a promise, or a question to lift CTR.</div>
 `);
+const POWER=['free','proven','ultimate','secret','new','simple','smart','quick','easy','best','guaranteed','step-by-step','today','now','limited'];
+$('#hl_check').onclick=()=>{ const s=($('#hl_text').value||'').trim(); if(!s){ $('#hl_out').textContent='Enter a headline.'; return;} const words=s.toLowerCase().split(/\s+/); const len=s.length; const wc=words.length; let score=0; const notes=[]; if(/\d/.test(s)){ score+=10; notes.push('Contains number'); } if(/[\?\!]/.test(s)){ score+=6; notes.push('Has punctuation (?!).'); } const pcount=words.filter(w=> POWER.includes(w.replace(/[^a-z-]/g,''))).length; score+=pcount*6; if(pcount) notes.push(`Power words: ${pcount}`); if(wc>=6&&wc<=12){ score+=12; notes.push('Good word length (6–12).'); } else notes.push('Adjust length (aim 6–12 words).'); if(len<=72){ score+=10; } else notes.push('Headline may truncate (>72 chars).'); if(/^how|what|why|can|should|when\b/i.test(s)){ score+=6; notes.push('Question-led'); } const uniq=new Set(words).size; if(uniq/wc>0.85){ score+=6; notes.push('High uniqueness'); } score=Math.max(0,Math.min(100,Math.round(score))); $('#hl_out').innerHTML=`Score: <b>${score}/100</b>\n`+notes.map(n=>'• '+n).join('\n'); };
 
-const POWER = ['free','proven','ultimate','secret','new','simple','smart','quick','easy','best','guaranteed','step-by-step','today','now','limited'];
-$('#hl_check').onclick = ()=>{
-  const s = ($('#hl_text').value||'').trim();
-  if(!s){ $('#hl_out').textContent = 'Enter a headline.'; return; }
-  const words = s.toLowerCase().split(/\s+/);
-  const len = s.length; const wc=words.length;
-  let score=0; const notes=[];
-  if(/\d/.test(s)){ score+=10; notes.push('Contains number'); }
-  if(/[\?\!]/.test(s)){ score+=6; notes.push('Has punctuation (?!).'); }
-  const pcount = words.filter(w=> POWER.includes(w.replace(/[^a-z-]/g,''))).length; score+=pcount*6; if(pcount) notes.push(`Power words: ${pcount}`);
-  if(wc>=6 && wc<=12){ score+=12; notes.push('Good word length (6–12).'); } else notes.push('Adjust length (aim 6–12 words).');
-  if(len<=72){ score+=10; } else notes.push('Headline may truncate (>72 chars).');
-  if(/^how|what|why|can|should|when\b/i.test(s)){ score+=6; notes.push('Question-led'); }
-  const uniq = new Set(words).size; if(uniq/wc>0.85){ score+=6; notes.push('High uniqueness'); }
-  score = clamp(score, 0, 100);
-  $('#hl_out').innerHTML = `Score: <b>${score}/100</b>\n`+notes.map(n=>`• ${n}`).join('\n');
-};
-
-/******************************************
- * TOOL 4: Readability & Keyword Density
- ******************************************/
+/**************** TOOL 4: Readability & Keyword Density ******/
 addPanel('readability', `
   <h2>4) Readability & Keyword Density</h2>
   <p>Flesch Reading Ease + keyword frequency. Paste your copy below.</p>
@@ -271,36 +155,13 @@ addPanel('readability', `
     <div class="field" style="grid-column:1/-1"><label>Text</label><textarea id="rd_text" placeholder="Paste blog or ad copy..."></textarea></div>
     <div class="field"><label>Target keyword/phrase</label><input id="rd_kw" type="text" placeholder="period panties"/></div>
   </div>
-  <div class="row" style="margin-top:8px"><button class="btn" id="rd_analyze">Analyze</button><button class="copy" id="rd_copy">Copy report</button></div>
+  <div class="row" style="margin-top:8px"><button class="btn" id="rd_analyze">Analyze</button><button class="btn ghost" id="rd_copy">Copy report</button></div>
   <div class="out" id="rd_out"></div>
-  <div class="hint">Guides: Flesch 60–70 (easy). Keyword density ~1–2% is usually safe.</div>
 `);
+function flesch(txt){ const sentences=txt.split(/[.!?]+/).filter(Boolean).length||1; const words=(txt.match(/\b[\w']+\b/g)||[]); const syllables=words.reduce((a,w)=> a+Math.max(1,(w.toLowerCase().match(/[aeiouy]+/g)||[]).length),0); const W=words.length||1,S=sentences||1,Sy=syllables||1; const score=206.835-1.015*(W/S)-84.6*(Sy/W); return {score:Math.round(score*10)/10,words:W,sentences:S,syllables:Sy}; }
+$('#rd_analyze').onclick=()=>{ const txt=$('#rd_text').value||''; const kw=($('#rd_kw').value||'').toLowerCase(); const {score,words,sentences,syllables}=flesch(txt); let dens=0,kcount=0; if(kw){ const reg=new RegExp(kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'); kcount=(txt.match(reg)||[]).length; dens=words?(kcount/words*100):0; } const band=score>=70?'Easy ✅': score>=60?'Fair 🙂': score>=50?'OK ⚠️':'Hard 👀'; $('#rd_out').innerHTML=`Flesch Score: <b>${score}</b> (${band})\nWords: ${words} | Sentences: ${sentences} | Syllables: ${syllables}\n`+(kw?`Keyword “${kw}”: ${kcount} hits (${dens.toFixed(2)}%)`:''); }; $('#rd_copy').onclick=()=> copyText($('#rd_out').innerText);
 
-function flesch(txt){
-  const sentences = txt.split(/[.!?]+/).filter(Boolean).length||1;
-  const words = (txt.match(/\b[\w']+\b/g)||[]);
-  const syllables = words.reduce((a,w)=> a + Math.max(1,(w.toLowerCase().match(/[aeiouy]+/g)||[]).length),0);
-  const W=words.length||1, S=sentences||1, Sy=syllables||1;
-  const score = 206.835 - 1.015*(W/S) - 84.6*(Sy/W);
-  return {score: Math.round(score*10)/10, words:W, sentences:S, syllables:Sy};
-}
-$('#rd_analyze').onclick = ()=>{
-  const txt = ($('#rd_text').value||'');
-  const kw = ($('#rd_kw').value||'').toLowerCase();
-  const {score, words, sentences, syllables} = flesch(txt);
-  let dens=0, kcount=0;
-  if(kw){
-    const reg = new RegExp(kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
-    kcount = (txt.match(reg)||[]).length; dens = words? (kcount/words*100):0;
-  }
-  const band = score>=70? 'Easy ✅' : score>=60? 'Fair 🙂' : score>=50? 'OK ⚠️' : 'Hard 👀';
-  $('#rd_out').innerHTML = `Flesch Score: <b>${score}</b> (${band})\nWords: ${words} | Sentences: ${sentences} | Syllables: ${syllables}\n`+(kw?`Keyword “${kw}”: ${kcount} hits (${dens.toFixed(2)}%)`:'');
-};
-$('#rd_copy').onclick = ()=> copyText($('#rd_out').innerText);
-
-/****************************************
- * TOOL 5: Open Graph & Twitter Tags
- ****************************************/
+/********************** TOOL 5: OG/Twitter *******************/
 addPanel('og', `
   <h2>5) Open Graph & Twitter Card Generator</h2>
   <p>Generate SEO/social preview tags for your page.</p>
@@ -311,20 +172,12 @@ addPanel('og', `
     <div class="field"><label>Image URL</label><input id="og_img" type="text" placeholder="https://.../og-image.jpg"/></div>
     <div class="field"><label>Twitter Card</label><select id="og_card"><option value="summary_large_image">summary_large_image</option><option>summary</option></select></div>
   </div>
-  <div class="row" style="margin-top:8px"><button class="btn" id="og_gen">Generate</button><button class="copy" id="og_copy">Copy tags</button></div>
+  <div class="row" style="margin-top:8px"><button class="btn" id="og_gen">Generate</button><button class="btn ghost" id="og_copy">Copy tags</button></div>
   <div class="out" id="og_out"></div>
 `);
+$('#og_gen').onclick=()=>{ const u=$('#og_url').value, t=$('#og_title').value, d=$('#og_desc').value, i=$('#og_img').value, c=$('#og_card').value; const tags=`<!-- Open Graph -->\n<meta property="og:type" content="website">\n<meta property="og:url" content="${u}">\n<meta property="og:title" content="${t}">\n<meta property="og:description" content="${d}">\n<meta property="og:image" content="${i}">\n\n<!-- Twitter -->\n<meta name="twitter:card" content="${c}">\n<meta name="twitter:title" content="${t}">\n<meta name="twitter:description" content="${d}">\n<meta name="twitter:image" content="${i}">`; $('#og_out').textContent=tags; }; $('#og_copy').onclick=()=> copyText($('#og_out').textContent);
 
-$('#og_gen').onclick = ()=>{
-  const u=$('#og_url').value, t=$('#og_title').value, d=$('#og_desc').value, i=$('#og_img').value, c=$('#og_card').value;
-  const tags = `<!-- Open Graph -->\n<meta property="og:type" content="website">\n<meta property="og:url" content="${u}">\n<meta property="og:title" content="${t}">\n<meta property="og:description" content="${d}">\n<meta property="og:image" content="${i}">\n\n<!-- Twitter -->\n<meta name="twitter:card" content="${c}">\n<meta name="twitter:title" content="${t}">\n<meta name="twitter:description" content="${d}">\n<meta name="twitter:image" content="${i}">`;
-  $('#og_out').textContent = tags;
-}
-$('#og_copy').onclick = ()=> copyText($('#og_out').textContent);
-
-/****************************************
- * TOOL 6: Schema.org JSON‑LD Generator
- ****************************************/
+/********************** TOOL 6: Schema JSON‑LD **************/
 addPanel('schema', `
   <h2>6) Schema.org JSON‑LD Generator</h2>
   <p>Create structured data. Choose type and fill details.</p>
@@ -345,38 +198,12 @@ addPanel('schema', `
     <div class="field"><label>Region</label><input id="sc_region" type="text" placeholder="KA"/></div>
     <div class="field"><label>PIN/ZIP</label><input id="sc_zip" type="text" placeholder="560001"/></div>
   </div>
-  <div class="row" style="margin-top:8px"><button class="btn" id="sc_gen">Generate</button><button class="copy" id="sc_copy">Copy JSON‑LD</button></div>
+  <div class="row" style="margin-top:8px"><button class="btn" id="sc_gen">Generate</button><button class="btn ghost" id="sc_copy">Copy JSON‑LD</button></div>
   <div class="out" id="sc_out"></div>
 `);
+$('#sc_gen').onclick=()=>{ const type=$('#sc_type').value; const d={'@context':'https://schema.org','@type':type,name:$('#sc_name').value,description:$('#sc_desc').value,url:$('#sc_url').value,image:$('#sc_img').value}; const author=$('#sc_author').value; if(type==='Article'&&author) d.author={'@type':'Person',name:author}; if(type==='LocalBusiness'){ d['@type']='LocalBusiness'; d.address={'@type':'PostalAddress',streetAddress:$('#sc_street').value,addressLocality:$('#sc_city').value,addressRegion:$('#sc_region').value,postalCode:$('#sc_zip').value}; } if(type==='Product'){ d.brand=author?{'@type':'Brand',name:author}:undefined; const price=$('#sc_price').value,curr=$('#sc_curr').value||'INR'; if(price) d.offers={'@type':'Offer',price:price,priceCurrency:curr,availability:'https://schema.org/InStock'}; } $('#sc_out').textContent=JSON.stringify(d,null,2); }; $('#sc_copy').onclick=()=> copyText($('#sc_out').textContent);
 
-$('#sc_gen').onclick = ()=>{
-  const type = $('#sc_type').value;
-  const d = {
-    '@context':'https://schema.org',
-    '@type': type,
-    name: $('#sc_name').value,
-    description: $('#sc_desc').value,
-    url: $('#sc_url').value,
-    image: $('#sc_img').value,
-  };
-  const author=$('#sc_author').value;
-  if(type==='Article' && author) d.author = { '@type':'Person', name: author };
-  if(type==='LocalBusiness'){
-    d['@type']='LocalBusiness';
-    d.address = { '@type':'PostalAddress', streetAddress:$('#sc_street').value, addressLocality:$('#sc_city').value, addressRegion:$('#sc_region').value, postalCode:$('#sc_zip').value };
-  }
-  if(type==='Product'){
-    d.brand = author? {'@type':'Brand', name: author}: undefined;
-    const price=$('#sc_price').value, curr=$('#sc_curr').value||'INR';
-    if(price) d.offers = {'@type':'Offer','price':price,'priceCurrency':curr, availability:'https://schema.org/InStock'};
-  }
-  $('#sc_out').textContent = JSON.stringify(d, null, 2);
-};
-$('#sc_copy').onclick = ()=> copyText($('#sc_out').textContent);
-
-/****************************************
- * TOOL 7: robots.txt & sitemap.xml
- ****************************************/
+/********************** TOOL 7: robots/sitemap ***************/
 addPanel('robots', `
   <h2>7) robots.txt & sitemap.xml Generator</h2>
   <p>Create basic files for SEO crawling.</p>
@@ -389,22 +216,9 @@ addPanel('robots', `
   <button class="btn ghost" id="rb_dl_sitemap">Download sitemap.xml</button></div>
   <div class="out" id="rb_out"></div>
 `);
+let rbCache={robots:'',sitemap:''}; $('#rb_gen').onclick=()=>{ const base=($('#rb_url').value||'').replace(/\/$/,''); const allow=$('#rb_allow').value==='yes'; const robots=`User-agent: *\n${allow?'Allow: /':'Disallow: /'}\nSitemap: ${base}/sitemap.xml`; const sitemap=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${base}/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>\n</urlset>`; rbCache={robots,sitemap}; $('#rb_out').textContent=`robots.txt\n${robots}\n\n---\n\nsitemap.xml\n${sitemap}`; }; $('#rb_dl_robots').onclick=()=> dl('robots.txt', rbCache.robots||''); $('#rb_dl_sitemap').onclick=()=> dl('sitemap.xml', rbCache.sitemap||'');
 
-let rbCache = {robots:'', sitemap:''};
-$('#rb_gen').onclick = ()=>{
-  const base = ($('#rb_url').value||'').replace(/\/$/,'');
-  const allow = $('#rb_allow').value==='yes';
-  const robots = `User-agent: *\n${allow?'Allow: /':'Disallow: /'}\nSitemap: ${base}/sitemap.xml`;
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${base}/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>\n</urlset>`;
-  rbCache = {robots, sitemap};
-  $('#rb_out').textContent = `robots.txt\n${robots}\n\n---\n\nsitemap.xml\n${sitemap}`;
-};
-$('#rb_dl_robots').onclick = ()=> dl('robots.txt', rbCache.robots||'');
-$('#rb_dl_sitemap').onclick = ()=> dl('sitemap.xml', rbCache.sitemap||'');
-
-/****************************************
- * TOOL 8: A/B Test Sample Size Calculator
- ****************************************/
+/**************** TOOL 8: A/B Sample Size ********************/
 addPanel('abtest', `
   <h2>8) A/B Test Minimum Sample Size</h2>
   <p>For conversion-rate tests. Uses standard normal approximation (α=0.05, power=0.8).</p>
@@ -415,25 +229,10 @@ addPanel('abtest', `
   </div>
   <div class="row" style="margin-top:8px"><button class="btn" id="ab_calc">Calculate</button></div>
   <div class="out" id="ab_out"></div>
-  <div class="hint">Rough rule: harder lifts or lower base rates need bigger samples.</div>
 `);
+$('#ab_calc').onclick=()=>{ const p1=($('#ab_base').valueAsNumber||0)/100; const lift=($('#ab_lift').valueAsNumber||0)/100; const p2=p1*(1+lift); const zA=1.96, zB=0.84; const pbar=(p1+p2)/2, qbar=1-pbar; const n=Math.pow(zA*Math.sqrt(2*pbar*qbar)+zB*Math.sqrt(p1*(1-p1)+p2*(1-p2)),2)/Math.pow(p2-p1,2); const variants=parseInt($('#ab_variants').value,10); const perGroup=Math.ceil(n); const total=perGroup*variants; $('#ab_out').innerHTML=`Per variant: <b>${perGroup.toLocaleString()}</b> visitors\nTotal (all variants): <b>${total.toLocaleString()}</b>`; };
 
-$('#ab_calc').onclick = ()=>{
-  const p1 = ($('#ab_base').valueAsNumber||0)/100; // baseline
-  const lift = ($('#ab_lift').valueAsNumber||0)/100; // relative
-  const p2 = p1 * (1 + lift);
-  const zAlpha = 1.96; const zBeta = 0.84; // alpha=.05, power=.8
-  const pbar = (p1+p2)/2; const qbar = 1-pbar;
-  const n = Math.pow(zAlpha*Math.sqrt(2*pbar*qbar) + zBeta*Math.sqrt(p1*(1-p1)+p2*(1-p2)),2) / Math.pow(p2-p1,2);
-  const variants = parseInt($('#ab_variants').value,10);
-  const perGroup = Math.ceil(n);
-  const total = perGroup * variants;
-  $('#ab_out').innerHTML = `Per variant: <b>${perGroup.toLocaleString()}</b> visitors\nTotal (all variants): <b>${total.toLocaleString()}</b>`;
-};
-
-/***************************************
- * TOOL 9: Budget • ROAS • CPA Calculator
- ***************************************/
+/****************** TOOL 9: ROAS/CPA Planner *****************/
 addPanel('roas', `
   <h2>9) Budget • ROAS • CPA Calculator</h2>
   <p>Plan performance and break‑even quickly.</p>
@@ -447,26 +246,10 @@ addPanel('roas', `
   </div>
   <div class="row" style="margin-top:8px"><button class="btn" id="ro_calc">Calculate</button></div>
   <div class="out" id="ro_out"></div>
-  <div class="hint">Break‑even ACoS = 1 / margin. ROAS = Revenue / Ad Spend.</div>
 `);
+$('#ro_calc').onclick=()=>{ const B=+($('#ro_budget').value||0), CPC=+($('#ro_cpc').value||0), CTR=+($('#ro_ctr').value||0)/100, CR=+($('#ro_cr').value||0)/100, AOV=+($('#ro_aov').value||0), M=+($('#ro_margin').value||0)/100; const clicks=CPC? Math.floor(B/CPC):0; const impressions=CTR? Math.floor(clicks/CTR):0; const orders=Math.round(clicks*CR); const revenue=orders*AOV; const roas=B?(revenue/B):0; const cpa=orders?(B/orders):0; const acos=revenue?(B/revenue):0; const beAcos=M?(1/M):Infinity; const profit=revenue*M - B; $('#ro_out').innerHTML=`Impressions: <b>${impressions.toLocaleString()}</b>\nClicks: <b>${clicks.toLocaleString()}</b> | Orders: <b>${orders.toLocaleString()}</b>\nRevenue: <b>₹${revenue.toLocaleString()}</b> | ROAS: <b>${roas.toFixed(2)}x</b>\nCPA: <b>₹${cpa.toFixed(2)}</b> | ACoS: <b>${(acos*100).toFixed(1)}%</b>\nBreak‑even ACoS (at ${Math.round(M*100)}% margin): <b>${(beAcos*100).toFixed(1)}%</b>\nEstimated Profit: <b>₹${profit.toFixed(2)}</b>`; };
 
-$('#ro_calc').onclick = ()=>{
-  const B=+($('#ro_budget').value||0), CPC=+($('#ro_cpc').value||0), CTR=+($('#ro_ctr').value||0)/100, CR=+($('#ro_cr').value||0)/100, AOV=+($('#ro_aov').value||0), M=+($('#ro_margin').value||0)/100;
-  const clicks = CPC? Math.floor(B/CPC):0;
-  const impressions = CTR? Math.floor(clicks/CTR):0;
-  const orders = Math.round(clicks*CR);
-  const revenue = orders*AOV;
-  const roas = B? (revenue/B):0;
-  const cpa = orders? (B/orders):0;
-  const acos = revenue? (B/revenue):0;
-  const beAcos = M? (1/M):Infinity;
-  const profit = revenue*M - B;
-  $('#ro_out').innerHTML = `Impressions: <b>${impressions.toLocaleString()}</b>\nClicks: <b>${clicks.toLocaleString()}</b> | Orders: <b>${orders.toLocaleString()}</b>\nRevenue: <b>₹${revenue.toLocaleString()}</b> | ROAS: <b>${roas.toFixed(2)}x</b>\nCPA: <b>₹${cpa.toFixed(2)}</b> | ACoS: <b>${(acos*100).toFixed(1)}%</b>\nBreak‑even ACoS (at ${Math.round(M*100)}% margin): <b>${(beAcos*100).toFixed(1)}%</b>\nEstimated Profit: <b>₹${profit.toFixed(2)}</b>`;
-};
-
-/********************************
- * TOOL 10: Color Contrast Checker
- ********************************/
+/******************* TOOL 10: Contrast Checker ****************/ 
 addPanel('contrast', `
   <h2>10) Color Contrast Checker (WCAG)</h2>
   <p>Check accessibility contrast for text on background.</p>
@@ -479,44 +262,22 @@ addPanel('contrast', `
   <div class="out" id="cc_out"></div>
   <div class="row" style="margin-top:8px"><div id="cc_preview" style="border:1px solid var(--border); padding:16px; border-radius:12px">Preview text</div></div>
 `);
-
 function hexToRgb(h){ const m=h.replace('#','').match(/.{1,2}/g)||[]; return m.length===3? m.map(x=>parseInt(x,16)) : [0,0,0]; }
 function luma([r,g,b]){ const a=[r,g,b].map(v=>{v/=255; return v<=0.03928? v/12.92 : Math.pow((v+0.055)/1.055,2.4)}); return 0.2126*a[0]+0.7152*a[1]+0.0722*a[2]; }
-$('#cc_check').onclick = ()=>{
-  const fg=hexToRgb($('#cc_fg').value), bg=hexToRgb($('#cc_bg').value);
-  const L1=luma(fg), L2=luma(bg); const ratio=(Math.max(L1,L2)+0.05)/(Math.min(L1,L2)+0.05);
-  const large = $('#cc_size').value==='large';
-  const passAA = ratio >= (large? 3.0 : 4.5);
-  const passAAA = ratio >= (large? 4.5 : 7.0);
-  $('#cc_out').innerHTML = `Contrast ratio: <b>${ratio.toFixed(2)}:1</b> — AA: ${passAA?'✅ Pass':'❌ Fail'} | AAA: ${passAAA?'✅ Pass':'❌ Fail'}`;
-  const prev=$('#cc_preview'); prev.style.color=$('#cc_fg').value; prev.style.background=$('#cc_bg').value; prev.style.fontSize=large?'20px':'16px';
-};
+$('#cc_check').onclick=()=>{ const fg=hexToRgb($('#cc_fg').value), bg=hexToRgb($('#cc_bg').value); const L1=luma(fg), L2=luma(bg); const ratio=(Math.max(L1,L2)+0.05)/(Math.min(L1,L2)+0.05); const large=$('#cc_size').value==='large'; const passAA=ratio>=(large?3.0:4.5); const passAAA=ratio>=(large?4.5:7.0); $('#cc_out').innerHTML=`Contrast ratio: <b>${ratio.toFixed(2)}:1</b> — AA: ${passAA?'✅ Pass':'❌ Fail'} | AAA: ${passAAA?'✅ Pass':'❌ Fail'}`; const prev=$('#cc_preview'); prev.style.color=$('#cc_fg').value; prev.style.background=$('#cc_bg').value; prev.style.fontSize=large?'20px':'16px'; };
 
-/********************************
- * TOOL 11: Email Subject Tester
- ********************************/
+/******************* TOOL 11: Subject Tester ******************/
 addPanel('subject', `
   <h2>11) Email Subject Line Tester</h2>
   <p>Flags spammy words and length issues.</p>
   <div class="field"><label>Subject</label><input id="es_text" type="text" placeholder="Get ₹200 OFF — Today Only"/></div>
   <div class="row" style="margin-top:8px"><button class="btn" id="es_check">Test</button></div>
   <div class="out" id="es_out"></div>
-  <div class="hint">Keep ≤ 60 characters. Avoid ALL‑CAPS, too many emojis, and spammy words.</div>
 `);
+const SPAM=['free','offer','buy now','guarantee','winner','win','credit','deal','discount','save big','urgent','act now','risk‑free','cheap','limited time','money'];
+$('#es_check').onclick=()=>{ const s=($('#es_text').value||'').trim(); if(!s){ $('#es_out').textContent='Enter a subject.'; return;} const len=s.length; const emojis=(s.match(/[\p{Emoji_Presentation}\p{Emoji}\uFE0F]/gu)||[]).length; const capLetters=s.replace(/[^A-Z]/g,'').length, letters=s.replace(/[^A-Za-z]/g,'').length||1; const caps=capLetters/letters; const spamHits=SPAM.filter(w=> s.toLowerCase().includes(w)); const score=Math.max(0,Math.min(100, Math.round(100 - (len>60?10:0) - emojis*5 - (caps>0.5?15:0) - spamHits.length*6))); $('#es_out').innerHTML=`Score: <b>${score}/100</b>\nLength: ${len} | Emojis: ${emojis} | CAPS ratio: ${caps.toFixed(2)}\nSpam flags: ${spamHits.length? spamHits.join(', '):'None'}`; };
 
-const SPAM = ['free','offer','buy now','guarantee','winner','win','credit','deal','discount','save big','urgent','act now','risk‑free','cheap','limited time','money'];
-$('#es_check').onclick = ()=>{
-  const s = ($('#es_text').value||'').trim(); if(!s){ $('#es_out').textContent='Enter a subject.'; return; }
-  const len=s.length; const emojis=(s.match(/[\p{Emoji_Presentation}\p{Emoji}\uFE0F]/gu)||[]).length;
-  const caps = (s.replace(/[^A-Z]/g,'').length)/(s.replace(/[^A-Za-z]/g,'').length||1);
-  const spamHits = SPAM.filter(w=> s.toLowerCase().includes(w));
-  const score = clamp(100 - (len>60?10:0) - emojis*5 - Math.max(0,(caps>0.5?15:0)) - spamHits.length*6, 0, 100);
-  $('#es_out').innerHTML = `Score: <b>${score}/100</b>\nLength: ${len} | Emojis: ${emojis} | CAPS ratio: ${caps.toFixed(2)}\nSpam flags: ${spamHits.length? spamHits.join(', '):'None'}`;
-};
-
-/********************************
- * TOOL 12: Canonical URL & Slug
- ********************************/
+/******************* TOOL 12: Canonical/Slug ******************/
 addPanel('canonical', `
   <h2>12) Canonical URL & Slug Builder</h2>
   <p>Turn a title into a clean SEO slug and canonical tag.</p>
@@ -524,18 +285,39 @@ addPanel('canonical', `
     <div class="field"><label>Site base URL</label><input id="cn_base" type="text" placeholder="https://bestdigitalmarketer.com/blog"/></div>
     <div class="field" style="grid-column:1/-1"><label>Post/Page Title</label><input id="cn_title" type="text" placeholder="What Is a Camisole for Women and How Is It Different from a Tank Top"/></div>
   </div>
-  <div class="row" style="margin-top:8px"><button class="btn" id="cn_make">Generate</button><button class="copy" id="cn_copy">Copy</button></div>
+  <div class="row" style="margin-top:8px"><button class="btn" id="cn_make">Generate</button><button class="btn ghost" id="cn_copy">Copy</button></div>
   <div class="out" id="cn_out"></div>
 `);
+$('#cn_make').onclick=()=>{ const base=($('#cn_base').value||'').replace(/\/$/,''); const slug=slugify($('#cn_title').value||''); const url=`${base}/${slug}`; const tag=`<link rel="canonical" href="${url}" />`; $('#cn_out').textContent=`${url}\n${tag}`; }; $('#cn_copy').onclick=()=> copyText($('#cn_out').textContent);
 
-$('#cn_make').onclick = ()=>{
-  const base = ($('#cn_base').value||'').replace(/\/$/,'');
-  const slug = slugify($('#cn_title').value||'');
-  const url = `${base}/${slug}`;
-  const tag = `<link rel="canonical" href="${url}" />`;
-  $('#cn_out').textContent = `${url}\n${tag}`;
-};
-$('#cn_copy').onclick = ()=> copyText($('#cn_out').textContent);
+/* ===== TOOL 13: Open DA/PA/Spam Score & Domain Age ===== */
+addPanel('authority', `
+  <h2>13) Open Authority (DA/PA), Spam Risk & Domain Age — Free</h2>
+  <p><b>Note:</b> Real Moz DA/PA & Spam Score are proprietary. This free tool estimates <i>open</i> equivalents using public signals (WHOIS, DNS, HTTPS, sitemap, content reachability) fetched client‑side. Good for quick benchmarking.</p>
+  <div class="grid">
+    <div class="field" style="grid-column:1/-1"><label>Domain or URL</label><input id="au_input" type="text" placeholder="https://bestdigitalmarketer.com"/></div>
+  </div>
+  <div class="row" style="margin-top:8px">
+    <button class="btn" id="au_check">Check</button>
+    <button class="btn ghost" id="au_copy">Copy report</button>
+  </div>
+  <div class="out" id="au_out"></div>
+  <div class="hint">Signals used: WHOIS creation date, DNS (A/AAAA/MX/NS), HTTPS reachability, sitemap presence, www/non‑www reachability, TLD risk heuristics. No API keys.</div>
+`);
+function auHost(val){ let v=(val||'').trim(); if(!v) return ''; try{ if(!/^https?:\/\//i.test(v)) v='https://'+v; return new URL(v).hostname.toLowerCase(); }catch{ return v.toLowerCase().replace(/^[^a-z0-9]+/,''); } }
+async function getJSON(url){ try{ const r=await fetch(url); return await r.json(); }catch(e){ return null; } }
+async function getText(url){ try{ const r=await fetch(url); return await r.text(); }catch(e){ return ''; } }
+function daysBetween(a,b){ const ms=Math.abs(b-a); return Math.floor(ms/86400000); }
+function scoreClamp(x){ return Math.max(0, Math.min(100, Math.round(x))); }
+async function fetchWhois(host){ let txt=''; try{ const r=await fetch(`https://api.whois.vu/?q=${host}`); txt=await r.text(); }catch(e){} if(!txt){ txt=await getText(`https://r.jina.ai/http://api.whois.vu/?q=${host}`); } let created=null, registrar=''; try{ const data=JSON.parse(txt); created=data.created||data.creation_date||data.registryData?.createdDate||null; registrar=data.registrar||data.registryData?.registrarName||''; }catch(e){ const m=txt.match(/(created|creation_date)\W*[:=]\W*(\d{4}-\d{2}-\d{2})/i); if(m) created=m[2]; const r=txt.match(/registrar[^\w]?\W*[:=]\W*([\w .-]+)/i); if(r) registrar=r[1].trim(); } return {created, registrar}; }
+async function fetchDNS(host){ const types=['A','AAAA','NS','MX']; const out={}; for(const t of types){ out[t]=await getJSON(`https://dns.google/resolve?name=${host}&type=${t}`)||{}; } return out; }
+async function reachable(url){ const txt=await getText(`https://r.jina.ai/${url}`); return (txt && txt.length>50); }
+function tldRisk(host){ const risky=['.xyz','.top','.icu','.click','.work','.info','.buzz','.study','.kim','.gq','.cf','.ml','.ga']; const tld=host.slice(host.lastIndexOf('.')); return risky.includes(tld)?1:0; }
+function domainSpamHeuristics(host, ageDays, hasHttps, nsCount, mxCount, hyphens){ let risk=0; if(ageDays<90) risk+=25; if(!hasHttps) risk+=20; if(nsCount<2) risk+=10; if(mxCount===0) risk+=10; if(hyphens>=2) risk+=10; if(/[0-9]{3,}/.test(host)) risk+=8; if(tldRisk(host)) risk+=10; return scoreClamp(risk); }
+function openDA(ageDays, nsCount, mxCount, hasHttps, hasSitemap){ let s=0; s+=Math.min(40, ageDays/36); s+=Math.min(15, nsCount*3); s+=Math.min(10, mxCount?10:0); s+=hasHttps?15:0; s+=hasSitemap?10:0; return scoreClamp(s); }
+function openPA(contentLen){ if(!contentLen) return 10; const kb=contentLen/1024; return scoreClamp(Math.min(90, 10+Math.sqrt(kb)*6)); }
+$('#au_check').onclick=async()=>{ const input=$('#au_input').value; const host=auHost(input); if(!host){ $('#au_out').textContent='Enter a valid domain or URL.'; return;} $('#au_out').textContent='Checking… (WHOIS, DNS, HTTPS, sitemap)'; const [whois,dns,httpsOK,httpsWWW,sitemapTxt]=await Promise.all([ fetchWhois(host), fetchDNS(host), reachable(`https://${host}`), reachable(`https://www.${host}`), getText(`https://r.jina.ai/https://${host}/sitemap.xml`) ]); let createdDate=null, ageDays=0, ageYears=0; if(whois.created){ const d=new Date(whois.created); if(!isNaN(d)){ createdDate=d.toISOString().slice(0,10); ageDays=daysBetween(d,new Date()); ageYears=Math.floor(ageDays/365); } } const nsCount=(dns.NS?.Answer?.length)||0; const mxCount=(dns.MX?.Answer?.length)||0; const hasSitemap=/<urlset|<sitemapindex/i.test(sitemapTxt); const pageText=await getText(`https://r.jina.ai/https://${host}`); const contentLen=pageText.length||0; const hyphens=(host.match(/-/g)||[]).length; const spamRisk=domainSpamHeuristics(host, ageDays, httpsOK||httpsWWW, nsCount, mxCount, hyphens); const oda=openDA(ageDays, nsCount, mxCount, (httpsOK||httpsWWW), hasSitemap); const opa=openPA(contentLen); const lines=[]; lines.push(`Domain: ${host}`); lines.push(`Creation date: ${createdDate||'Unknown'}${createdDate?'':' (WHOIS blocked or unavailable)'}`); lines.push(`Age: ${ageYears? ageYears+' years (~'+ageDays+' days)':'Unknown'}`); lines.push(`DNS → NS: ${nsCount} | MX: ${mxCount}`); lines.push(`HTTPS reachable: ${(httpsOK||httpsWWW)?'Yes':'No'}${httpsOK&&!httpsWWW?' (apex only)':''}${httpsWWW&&!httpsOK?' (www only)':''}`); lines.push(`Sitemap: ${hasSitemap?'Found':'Not found'}`); lines.push(`Open Domain Authority (0–100): ${oda}`); lines.push(`Open Page Authority (0–100): ${opa}`); lines.push(`Spam Risk (0 low – 100 high): ${spamRisk}`); $('#au_out').textContent=lines.join('\n'); };
+$('#au_copy').onclick=()=> copyText($('#au_out').innerText);
 
 // Initialize UI
 renderTabs();
