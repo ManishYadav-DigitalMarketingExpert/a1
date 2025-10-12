@@ -1,93 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Instagram Video Downloader | Best Digital Marketer</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #ff7a00, #ff007f);
-      color: white;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    h1 { margin-bottom: 10px; font-size: 2rem; }
-    p { margin-bottom: 20px; color: #fff; opacity: 0.9; }
-    input {
-      width: 80%; max-width: 400px; padding: 12px;
-      border-radius: 8px; border: none; font-size: 16px; margin-bottom: 15px;
-    }
-    button {
-      background-color: #fff; color: #ff007f; border: none;
-      padding: 12px 20px; border-radius: 8px; cursor: pointer;
-      font-size: 16px; transition: all 0.3s ease;
-    }
-    button:hover { background-color: #ff007f; color: #fff; }
-    #result { margin-top: 20px; }
-    video { width: 90%; max-width: 400px; border-radius: 10px; margin-top: 15px; }
-    a.download-btn {
-      display: inline-block; background-color: #fff; color: #ff007f;
-      padding: 10px 20px; border-radius: 8px; text-decoration: none;
-      margin-top: 15px; font-weight: bold;
-    }
-    a.download-btn:hover { background-color: #ff007f; color: #fff; }
-    footer { margin-top: 40px; font-size: 14px; opacity: 0.7; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk DA/PA Checker</title>
+    <style>
+        /* Add your CSS styling here */
+    </style>
 </head>
 <body>
-  <h1>Instagram Video Downloader</h1>
-  <p>Paste the Instagram Reel or Post URL below 🎥</p>
+    <h1>Bulk DA/PA/Spam Score/Domain Age Checker</h1>
+    <textarea id="urls" placeholder="Enter URLs here, one per line"></textarea>
+    <button onclick="checkUrls()">Check URLs</button>
+    <table id="results">
+        <thead>
+            <tr>
+                <th>URL</th>
+                <th>DA</th>
+                <th>PA</th>
+                <th>Spam Score</th>
+                <th>Domain Age</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <button onclick="downloadCSV()">Download CSV</button>
 
-  <input type="text" id="instaURL" placeholder="Enter Instagram Post/Reel URL..." />
-  <br />
-  <button onclick="downloadVideo()">Get Video</button>
+    <script>
+        async function checkUrls() {
+            const urls = document.getElementById('urls').value.split('\n').map(url => url.trim()).filter(url => url);
+            const results = await fetch('/.netlify/functions/checkUrls', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ urls }),
+            }).then(res => res.json());
 
-  <div id="result"></div>
-  <footer>© 2025 Best Digital Marketer | For personal use only</footer>
-
-  <script>
-    async function downloadVideo() {
-      const url = document.getElementById("instaURL").value.trim();
-      const resultDiv = document.getElementById("result");
-      if (!url) { alert("Please enter an Instagram post URL!"); return; }
-
-      resultDiv.innerHTML = "<p>Fetching video... please wait ⏳</p>";
-
-      try {
-        // Using working API (as of Oct 2025)
-        const apiUrl = "https://api.saveig.app/api/ajaxSearch";
-        const res = await fetch(apiUrl, {
-          method: "POST",
-          headers: {
-            "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-          },
-          body: "q=" + encodeURIComponent(url),
-        });
-
-        const data = await res.json();
-        if (data && data.medias && data.medias.length > 0) {
-          const video = data.medias.find(m => m.type === "video") || data.medias[0];
-          const vidUrl = video.url;
-
-          resultDiv.innerHTML = `
-            <video controls src="${vidUrl}"></video>
-            <br/>
-            <a class="download-btn" href="${vidUrl}" target="_blank" download>Download Video</a>
-          `;
-        } else {
-          resultDiv.innerHTML = "<p>❌ Could not fetch video. Make sure it's a public post.</p>";
+            const tbody = document.querySelector('#results tbody');
+            tbody.innerHTML = '';
+            results.forEach(result => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${result.url}</td>
+                    <td>${result.da}</td>
+                    <td>${result.pa}</td>
+                    <td>${result.spamScore}</td>
+                    <td>${result.domainAge}</td>
+                `;
+                tbody.appendChild(row);
+            });
         }
-      } catch (err) {
-        console.error(err);
-        resultDiv.innerHTML = "<p>⚠️ Error fetching video. Try again later.</p>";
-      }
-    }
-  </script>
+
+        function downloadCSV() {
+            const rows = [['URL', 'DA', 'PA', 'Spam Score', 'Domain Age']];
+            document.querySelectorAll('#results tbody tr').forEach(row => {
+                const cols = row.querySelectorAll('td');
+                rows.push(Array.from(cols).map(col => col.innerText));
+            });
+
+            const csvContent = 'data:text/csv;charset=utf-8,' + rows.map(e => e.join(',')).join('\n');
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'domain_metrics.csv');
+            link.click();
+        }
+    </script>
 </body>
 </html>
