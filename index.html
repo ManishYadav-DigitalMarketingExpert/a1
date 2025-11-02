@@ -1,290 +1,106 @@
-<!--
-BDM P2P Share - Single-file HTML app (ready to upload to GitHub Pages)
-Instructions:
-1. Create a Firebase project (Realtime Database) and enable Realtime Database in test mode.
-2. In the Firebase console, find your web app config and paste it into the `firebaseConfig` variable below.
-3. Host this file on GitHub Pages (place as index.html in your repo) or upload to your site root.
-
-Notes:
-- This app uses Firebase Realtime Database **only** for ephemeral signaling (offer/answer/ICE) and does NOT upload file content to Firebase.
-- File bytes are transferred directly peer-to-peer over a WebRTC DataChannel.
-- Default chunk size is 64KB. Large files are supported but test first.
-- You can add password/expiry features later by enhancing the signaling step.
--->
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BDM Share — Instant P2P File Share</title>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free File Transfer – Best Digital Marketer</title>
+<meta name="description" content="Upload and share files instantly with a unique download link. 100% free, secure, and no signup required.">
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <div class="max-w-3xl mx-auto p-6">
-    <h1 class="text-2xl font-bold mb-4">BDM Share — Instant P2P File Sharing</h1>
-    <p class="mb-4">Private, direct browser-to-browser file transfer. No files stored on server. Use the <strong>Create room</strong> button to start and copy the link to share with the receiver.</p>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col items-center justify-center px-4">
+  <div class="max-w-md w-full bg-white p-6 rounded-2xl shadow-lg text-center">
+    <h1 class="text-2xl font-bold mb-3">🚀 Free File Transfer</h1>
+    <p class="text-gray-600 mb-6">Upload your file and get a private download link instantly.</p>
 
-    <div class="grid grid-cols-1 gap-4">
-      <div class="p-4 bg-white rounded shadow">
-        <h2 class="font-semibold mb-2">Create a room (send files)</h2>
-        <button id="createBtn" class="px-4 py-2 bg-blue-600 text-white rounded">Create room</button>
-        <div id="roomInfo" class="mt-3 break-words"></div>
-        <label class="block mt-3">Select file to send:</label>
-        <input id="fileInput" type="file" class="mt-1" />
-        <div id="sendStatus" class="mt-2 text-sm"></div>
-      </div>
+    <form id="uploadForm" class="space-y-4">
+      <input type="file" id="fileInput" class="w-full border p-2 rounded" required />
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Upload & Generate Link</button>
+    </form>
 
-      <div class="p-4 bg-white rounded shadow">
-        <h2 class="font-semibold mb-2">Join a room (receive files)</h2>
-        <input id="joinRoomId" placeholder="Paste room ID or full link" class="w-full p-2 border rounded" />
-        <button id="joinBtn" class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Join & Receive</button>
-        <div id="receiveList" class="mt-3"></div>
+    <div id="progressContainer" class="hidden mt-4">
+      <div class="w-full bg-gray-200 rounded-full h-2.5">
+        <div id="progressBar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
       </div>
-
-      <div class="p-4 bg-white rounded shadow">
-        <h2 class="font-semibold mb-2">Debug / Controls</h2>
-        <div id="log" class="text-xs h-40 overflow-auto p-2 bg-gray-100 rounded"></div>
-      </div>
+      <p id="progressText" class="text-sm text-gray-600 mt-2">Uploading...</p>
     </div>
 
-    <footer class="mt-6 text-sm text-gray-500">Made with ❤️ by Best Digital Marketer — Host on GitHub Pages or your domain.</footer>
+    <div id="resultContainer" class="hidden mt-6">
+      <p class="text-green-600 font-semibold mb-2">✅ File uploaded successfully!</p>
+      <p class="text-sm text-gray-600 mb-2">Copy and share your unique download link:</p>
+      <input id="downloadLink" readonly class="w-full border p-2 rounded text-blue-600 font-medium cursor-pointer" />
+      <button id="copyBtn" class="mt-3 bg-gray-800 text-white py-2 px-4 rounded hover:bg-black">Copy Link</button>
+      <p class="text-xs text-gray-500 mt-2">Note: File stays on transfer.sh for 14 days.</p>
+    </div>
   </div>
 
+  <footer class="mt-8 text-sm text-gray-500">
+    © 2025 Best Digital Marketer | Secure file sharing made simple
+  </footer>
+
 <script>
-// ======== PASTE YOUR FIREBASE CONFIG HERE ========
-const firebaseConfig = {
-  // apiKey: "...",
-  // authDomain: "...",
-  // databaseURL: "https://<your-db>.firebaseio.com",
-  // projectId: "...",
-  // storageBucket: "...",
-  // messagingSenderId: "...",
-  // appId: "..."
-};
+const form = document.getElementById('uploadForm');
+const fileInput = document.getElementById('fileInput');
+const progressContainer = document.getElementById('progressContainer');
+const progressBar = document.getElementById('progressBar');
+const progressText = document.getElementById('progressText');
+const resultContainer = document.getElementById('resultContainer');
+const downloadLink = document.getElementById('downloadLink');
+const copyBtn = document.getElementById('copyBtn');
 
-if (!firebaseConfig || !firebaseConfig.apiKey) {
-  console.warn('Firebase config missing — paste your Firebase web app config in the firebaseConfig variable at top of file.');
-}
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const file = fileInput.files[0];
+  if (!file) return alert("Please select a file first.");
 
-// Initialize Firebase (compat libs)
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+  progressContainer.classList.remove('hidden');
+  resultContainer.classList.add('hidden');
+  progressBar.style.width = '0%';
+  progressText.textContent = 'Uploading...';
 
-// Simple helpers
-const $ = id => document.getElementById(id);
-const logEl = $('log');
-function log(...args){
-  console.log(...args);
-  logEl.innerText += args.map(a=>typeof a==='object'?JSON.stringify(a):String(a)).join(' ') + '\n';
-  logEl.scrollTop = logEl.scrollHeight;
-}
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
 
-// WebRTC / DataChannel setup
-const servers = { iceServers: [{ urls: ['stun:stun.l.google.com:19302'] }] };
-let pc, dataChannel;
-let roomRef;
-const CHUNK_SIZE = 64 * 1024; // 64KB chunks
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', `https://transfer.sh/${file.name}`);
 
-async function createRoom() {
-  pc = new RTCPeerConnection(servers);
-  setupPcEvents();
-
-  dataChannel = pc.createDataChannel('file');
-  setupDataChannel();
-
-  const offer = await pc.createOffer();
-  await pc.setLocalDescription(offer);
-
-  // Create a short roomId using timestamp + random
-  const roomId = 'bdm-' + Math.random().toString(36).slice(2,8);
-  roomRef = db.ref('rooms/' + roomId);
-
-  const roomWithOffer = {
-    offer: {
-      type: offer.type,
-      sdp: offer.sdp
-    },
-    createdAt: Date.now()
-  };
-  await roomRef.set(roomWithOffer);
-
-  // Listen for answer
-  roomRef.child('answer').on('value', async snapshot => {
-    const ans = snapshot.val();
-    if (!ans) return;
-    log('Answer received');
-    const answerDesc = new RTCSessionDescription(ans);
-    await pc.setRemoteDescription(answerDesc);
-  });
-
-  // Listen for remote ICE candidates
-  roomRef.child('calleeCandidates').on('child_added', snapshot => {
-    const c = snapshot.val();
-    pc.addIceCandidate(new RTCIceCandidate(c));
-  });
-
-  // Copyable link
-  const fullLink = location.origin + location.pathname + '?room=' + roomId;
-  $('roomInfo').innerHTML = `<strong>Room ID:</strong> ${roomId}<br><strong>Share this link:</strong><br><a href="${fullLink}">${fullLink}</a>`;
-  log('Room created:', roomId);
-}
-
-function setupPcEvents(){
-  pc.onicecandidate = event => {
-    if (!event.candidate) return;
-    const cand = event.candidate.toJSON();
-    if (!roomRef) return;
-    // Push caller candidate
-    roomRef.child('callerCandidates').push(cand);
-  };
-  pc.onconnectionstatechange = () => log('Connection state:', pc.connectionState);
-  pc.ondatachannel = e => {
-    log('Datachannel received (this peer joined as caller?)', e.channel.label);
-    dataChannel = e.channel;
-    setupDataChannel();
-  };
-}
-
-function setupDataChannel(){
-  dataChannel.onopen = () => log('DataChannel open');
-  dataChannel.onclose = () => log('DataChannel closed');
-  dataChannel.onmessage = handleDataChannelMessage;
-}
-
-let incomingBuffers = [];
-let incomingMeta = null;
-
-function handleDataChannelMessage(ev){
-  // We send JSON messages for metadata, and binary for chunks
-  if (typeof ev.data === 'string'){
-    try{
-      const msg = JSON.parse(ev.data);
-      if (msg.type === 'meta'){
-        incomingMeta = msg;
-        incomingBuffers = [];
-        log('Incoming file:', msg.name, msg.size);
-      } else if (msg.type === 'done'){
-        // assemble
-        const blob = new Blob(incomingBuffers);
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = incomingMeta.name;
-        a.textContent = `Download ${incomingMeta.name} (${Math.round(incomingMeta.size/1024)} KB)`;
-        $('receiveList').appendChild(a);
-        $('receiveList').appendChild(document.createElement('br'));
-        log('File received fully:', incomingMeta.name);
-        incomingMeta = null;
-        incomingBuffers = [];
+    xhr.upload.onprogress = (event) => {
+      if (event.lengthComputable) {
+        const percent = Math.round((event.loaded / event.total) * 100);
+        progressBar.style.width = percent + '%';
+        progressText.textContent = `Uploading... ${percent}%`;
       }
-    }catch(e){ log('Error parsing message', e); }
-  } else {
-    // binary chunk
-    incomingBuffers.push(ev.data);
-    log('Received chunk', ev.data.byteLength);
+    };
+
+    xhr.onload = () => {
+      progressContainer.classList.add('hidden');
+      if (xhr.status >= 200 && xhr.status < 300) {
+        const link = xhr.responseText.trim();
+        downloadLink.value = link;
+        resultContainer.classList.remove('hidden');
+      } else {
+        alert('Upload failed. Please try again.');
+      }
+    };
+
+    xhr.onerror = () => {
+      progressContainer.classList.add('hidden');
+      alert('Upload error. Please check your connection.');
+    };
+
+    xhr.send(formData);
+  } catch (err) {
+    progressContainer.classList.add('hidden');
+    alert('Error: ' + err.message);
   }
-}
-
-// Join room (answerer)
-async function joinRoomById(roomId){
-  const roomRefLocal = db.ref('rooms/' + roomId);
-  const snap = await roomRefLocal.get();
-  if (!snap.exists()) { alert('Room not found'); return; }
-
-  const roomData = snap.val();
-
-  pc = new RTCPeerConnection(servers);
-  setupPcEvents();
-
-  pc.ondatachannel = e => { dataChannel = e.channel; setupDataChannel(); };
-
-  // Add caller's ICE candidates
-  roomRefLocal.child('callerCandidates').on('child_added', snapshot => {
-    const c = snapshot.val();
-    pc.addIceCandidate(new RTCIceCandidate(c));
-  });
-
-  const offer = roomData.offer;
-  await pc.setRemoteDescription(new RTCSessionDescription(offer));
-
-  const answer = await pc.createAnswer();
-  await pc.setLocalDescription(answer);
-
-  // Save answer
-  await roomRefLocal.child('answer').set({ type: answer.type, sdp: answer.sdp });
-
-  // push callee ICE candidates
-  pc.onicecandidate = event => {
-    if (!event.candidate) return;
-    const cand = event.candidate.toJSON();
-    roomRefLocal.child('calleeCandidates').push(cand);
-  };
-
-  log('Joined room:', roomId);
-}
-
-// Sending file through DataChannel
-function sendFile(file){
-  if (!dataChannel || dataChannel.readyState !== 'open') { alert('DataChannel not open yet. Wait for receiver to join.'); return; }
-  const meta = { type: 'meta', name: file.name, size: file.size, mime: file.type };
-  dataChannel.send(JSON.stringify(meta));
-  const reader = new FileReader();
-  let offset = 0;
-  reader.addEventListener('error', e => log('FileRead error', e));
-  reader.addEventListener('load', e => {
-    const chunk = e.target.result;
-    dataChannel.send(chunk);
-    offset += chunk.byteLength;
-    $('sendStatus').innerText = `Sent ${offset} / ${file.size} bytes`;
-    if (offset < file.size){
-      readSlice(offset);
-    } else {
-      dataChannel.send(JSON.stringify({ type: 'done' }));
-      $('sendStatus').innerText = `File sent: ${file.name}`;
-    }
-  });
-  const readSlice = o => {
-    const slice = file.slice(o, o + CHUNK_SIZE);
-    reader.readAsArrayBuffer(slice);
-  };
-  readSlice(0);
-}
-
-// UI wiring
-$('createBtn').addEventListener('click', async ()=>{
-  if (!firebaseConfig || !firebaseConfig.apiKey) { alert('Firebase config missing - open the HTML and paste it.'); return; }
-  await createRoom();
 });
 
-$('joinBtn').addEventListener('click', async ()=>{
-  const v = $('joinRoomId').value.trim();
-  if (!v) { alert('Paste room id or link'); return; }
-  // accept either room id or full ?room=bdm-xxx
-  let roomId = v;
-  try{ const u = new URL(v); const p = new URLSearchParams(u.search); if (p.get('room')) roomId = p.get('room'); }
-  catch(e){}
-  await joinRoomById(roomId);
+copyBtn.addEventListener('click', () => {
+  downloadLink.select();
+  document.execCommand('copy');
+  copyBtn.textContent = '✅ Copied!';
+  setTimeout(() => (copyBtn.textContent = 'Copy Link'), 2000);
 });
-
-$('fileInput').addEventListener('change', e=>{
-  const f = e.target.files[0];
-  if (!f) return;
-  if (!dataChannel || dataChannel.readyState !== 'open') {
-    alert('Please create room and wait for receiver to join (DataChannel open).');
-    return;
-  }
-  sendFile(f);
-});
-
-// Auto-join when link has ?room=
-(function autoJoinFromQuery(){
-  const qp = new URLSearchParams(location.search);
-  const r = qp.get('room');
-  if (r){ $('joinRoomId').value = r; }
-})();
 </script>
 </body>
 </html>
