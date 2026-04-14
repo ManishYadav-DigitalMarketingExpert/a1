@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 40% 6%;
+    --foreground: 40 20% 95%;
+
+    --card: 225 30% 10%;
+    --card-foreground: 40 20% 95%;
+
+    --popover: 225 30% 10%;
+    --popover-foreground: 40 20% 95%;
+
+    --primary: 40 55% 58%;
+    --primary-foreground: 225 40% 6%;
+
+    --secondary: 225 25% 15%;
+    --secondary-foreground: 40 20% 90%;
+
+    --muted: 225 20% 14%;
+    --muted-foreground: 220 15% 55%;
+
+    --accent: 40 55% 58%;
+    --accent-foreground: 225 40% 6%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 225 20% 18%;
+    --input: 225 20% 18%;
+    --ring: 40 55% 58%;
+
+    --radius: 0.75rem;
+
+    --gold: 40 55% 58%;
+    --gold-light: 40 60% 72%;
+    --navy: 225 40% 6%;
+    --navy-light: 225 30% 12%;
+    --glass: 225 30% 12%;
+
+    --sidebar-background: 225 30% 8%;
+    --sidebar-foreground: 40 20% 95%;
+    --sidebar-primary: 40 55% 58%;
+    --sidebar-primary-foreground: 225 40% 6%;
+    --sidebar-accent: 225 25% 15%;
+    --sidebar-accent-foreground: 40 20% 90%;
+    --sidebar-border: 225 20% 18%;
+    --sidebar-ring: 40 55% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-border/50 rounded-xl;
+  }
+  .gold-gradient {
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-light)));
+  }
+  .text-gold-gradient {
+    background: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-light)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .glow-gold {
+    box-shadow: 0 0 40px -10px hsl(var(--gold) / 0.3);
+  }
+}
