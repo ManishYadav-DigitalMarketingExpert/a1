@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eSIMly – Compare & Buy eSIM Plans for 200+ Countries</title>
+<meta name="description" content="Compare the best eSIM plans from 50+ providers for 200+ countries. Instant activation, no physical SIM needed. Save on roaming with eSIMly.">
+<meta name="keywords" content="eSIM, travel eSIM, international eSIM, buy eSIM, best eSIM provider, compare eSIM plans">
+<meta property="og:title" content="eSIMly – Compare & Buy eSIM Plans for 200+ Countries">
+<meta property="og:description" content="Compare the best eSIM plans from 50+ providers. Instant activation, no roaming fees.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://esimly.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #0B4FD4;
+    --primary-dark: #0839A8;
+    --primary-light: #EBF1FF;
+    --accent: #00C88C;
+    --accent-dark: #009E6E;
+    --surface: #FFFFFF;
+    --bg: #F5F7FA;
+    --bg2: #EEF2F8;
+    --text: #0D1526;
+    --text2: #445577;
+    --text3: #7A90B5;
+    --border: #D8E2F0;
+    --border2: #BFD0E8;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --radius-lg: 22px;
+    --shadow: 0 2px 16px rgba(11,79,212,0.08);
+    --shadow-md: 0 8px 40px rgba(11,79,212,0.13);
+    --font: 'Manrope', sans-serif;
+    --font-display: 'DM Serif Display', serif;
+  }
+
+  body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+  
+  /* ========== NAVBAR ========== */
+  nav {
+    position: sticky; top: 0; z-index: 1000;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    height: 64px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; }
+  .nav-logo-icon { width: 36px; height: 36px; background: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+  .nav-logo-icon svg { width: 20px; height: 20px; fill: white; }
+  .nav-logo-text { font-size: 20px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+  .nav-logo-text span { color: var(--primary); }
+  .nav-links { display: flex; gap: 6px; align-items: center; }
+  .nav-links a { text-decoration: none; color: var(--text2); font-size: 14px; font-weight: 500; padding: 7px 14px; border-radius: 8px; transition: all .2s; cursor: pointer; }
+  .nav-links a:hover, .nav-links a.active { background: var(--primary-light); color: var(--primary); }
+  .nav-cta { background: var(--primary); color: white !important; border-radius: 8px; padding: 8px 18px !important; }
+  .nav-cta:hover { background: var(--primary-dark) !important; color: white !important; }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+  .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: white; border-bottom: 1px solid var(--border); padding: 16px 24px; z-index: 999; flex-direction: column; gap: 4px; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { padding: 10px 14px; border-radius: 8px; color: var(--text2); font-weight: 500; cursor: pointer; text-decoration: none; }
+  .mobile-menu a:hover { background: var(--primary-light); color: var(--primary); }
+
+  /* ========== PAGE SYSTEM ========== */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ========== HERO ========== */
+  .hero {
+    background: linear-gradient(135deg, #0B4FD4 0%, #0D3A9E 50%, #081F6B 100%);
+    padding: 90px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1.5' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E");
+    background-size: 60px 60px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    color: white; font-size: 13px; font-weight: 600; padding: 6px 16px;
+    border-radius: 50px; margin-bottom: 28px; position: relative;
+  }
+  .hero-badge::before { content: ''; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 6vw, 68px);
+    color: white; line-height: 1.1; margin-bottom: 18px;
+    position: relative;
+    max-width: 860px; margin-left: auto; margin-right: auto;
+  }
+  .hero h1 em { font-style: italic; color: #7EDDFF; }
+  .hero p { color: rgba(255,255,255,0.78); font-size: 18px; max-width: 560px; margin: 0 auto 40px; position: relative; }
+  .hero-stats { display: flex; gap: 32px; justify-content: center; margin-bottom: 44px; position: relative; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-size: 26px; font-weight: 800; color: white; }
+  .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 500; margin-top: 2px; }
+
+  /* ========== SEARCH BOX ========== */
+  .search-box {
+    max-width: 680px; margin: 0 auto; position: relative; z-index: 2;
+  }
+  .search-inner {
+    display: flex; background: white; border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+  }
+  .search-inner input {
+    flex: 1; border: none; outline: none;
+    padding: 18px 20px; font-size: 16px; font-family: var(--font);
+    color: var(--text); background: white;
+  }
+  .search-inner input::placeholder { color: var(--text3); }
+  .search-btn {
+    background: var(--accent); color: white; border: none; cursor: pointer;
+    padding: 0 28px; font-size: 15px; font-weight: 700; font-family: var(--font);
+    transition: background .2s; white-space: nowrap;
+  }
+  .search-btn:hover { background: var(--accent-dark); }
+  .search-suggestions {
+    position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+    background: white; border-radius: 14px; box-shadow: var(--shadow-md);
+    border: 1px solid var(--border); overflow: hidden; display: none; z-index: 100;
+  }
+  .search-suggestions.show { display: block; }
+  .search-suggestion {
+    padding: 12px 20px; cursor: pointer; display: flex; align-items: center; gap: 12px;
+    font-size: 14px; color: var(--text); transition: background .15s;
+  }
+  .search-suggestion:hover { background: var(--primary-light); color: var(--primary); }
+  .search-suggestion .flag { font-size: 20px; }
+
+  /* ========== SECTIONS ========== */
+  section { padding: 72px 24px; max-width: 1200px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 48px; }
+  .section-tag { display: inline-block; background: var(--primary-light); color: var(--primary); font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 50px; margin-bottom: 14px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .section-title { font-family: var(--font-display); font-size: clamp(28px, 4vw, 42px); color: var(--text); line-height: 1.2; margin-bottom: 14px; }
+  .section-desc { color: var(--text2); font-size: 17px; max-width: 560px; margin: 0 auto; }
+  .section-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ========== COUNTRIES GRID ========== */
+  .countries-section { background: white; }
+  .countries-section > div { max-width: 1200px; margin: 0 auto; padding: 72px 24px; }
+  .countries-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+  .country-card {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px; background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); cursor: pointer; text-decoration: none;
+    transition: all .2s; font-size: 14px; font-weight: 600; color: var(--text);
+  }
+  .country-card:hover { background: var(--primary-light); border-color: var(--primary); color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .country-card .flag { font-size: 22px; }
+  .load-more-btn {
+    display: block; margin: 32px auto 0;
+    background: var(--surface); border: 2px solid var(--primary); color: var(--primary);
+    font-family: var(--font); font-size: 15px; font-weight: 700;
+    padding: 14px 36px; border-radius: 10px; cursor: pointer; transition: all .2s;
+  }
+  .load-more-btn:hover { background: var(--primary); color: white; }
+
+  /* ========== PROVIDERS GRID ========== */
+  .providers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .provider-card {
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 24px; display: flex; flex-direction: column; gap: 14px;
+    transition: all .25s; cursor: pointer;
+  }
+  .provider-card:hover { box-shadow: var(--shadow-md); border-color: var(--primary); transform: translateY(-3px); }
+  .provider-top { display: flex; align-items: center; gap: 14px; }
+  .provider-logo {
+    width: 56px; height: 56px; border-radius: 12px; background: var(--bg2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 800; color: var(--primary); border: 1px solid var(--border); flex-shrink: 0;
+  }
+  .provider-name { font-size: 17px; font-weight: 800; color: var(--text); }
+  .provider-meta { font-size: 12px; color: var(--text3); font-weight: 500; margin-top: 2px; }
+  .provider-badge { display: inline-flex; align-items: center; gap: 4px; background: var(--primary-light); color: var(--primary); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 50px; }
+  .provider-desc { font-size: 13px; color: var(--text2); line-height: 1.6; flex: 1; }
+  .provider-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--border); }
+  .provider-price { font-size: 13px; color: var(--text3); font-weight: 600; }
+  .provider-price strong { color: var(--accent-dark); font-size: 17px; }
+  .provider-cta {
+    background: var(--primary); color: white; border: none; cursor: pointer;
+    font-family: var(--font); font-size: 13px; font-weight: 700;
+    padding: 9px 18px; border-radius: 8px; transition: background .2s; text-decoration: none;
+    display: inline-block;
+  }
+  .provider-cta:hover { background: var(--primary-dark); }
+
+  /* ========== TRUST BADGES ========== */
+  .trust-strip { background: var(--text); padding: 28px 24px; }
+  .trust-strip-inner { max-width: 1100px; margin: 0 auto; display: flex; gap: 40px; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .trust-item { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 600; }
+  .trust-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+
+  /* ========== HOW IT WORKS ========== */
+  .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px; }
+  .step-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 24px; text-align: center; position: relative; }
+  .step-num { width: 44px; height: 44px; background: var(--primary); color: white; font-size: 18px; font-weight: 800; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+  .step-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .step-desc { color: var(--text2); font-size: 14px; line-height: 1.7; }
+
+  /* ========== REVIEWS ========== */
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .review-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+  .review-stars { color: #F4A82A; font-size: 16px; margin-bottom: 12px; letter-spacing: 2px; }
+  .review-text { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+  .review-author { display: flex; align-items: center; gap: 10px; }
+  .review-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+  .review-name { font-weight: 700; font-size: 14px; }
+  .review-location { font-size: 12px; color: var(--text3); }
+
+  /* ========== SEO CONTENT ========== */
+  .seo-content { max-width: 860px; margin: 0 auto; }
+  .seo-content h2 { font-family: var(--font-display); font-size: 32px; margin-bottom: 16px; margin-top: 48px; color: var(--text); }
+  .seo-content h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; margin-top: 32px; color: var(--text); }
+  .seo-content p { color: var(--text2); margin-bottom: 16px; line-height: 1.8; }
+  .seo-content ul { padding-left: 20px; color: var(--text2); margin-bottom: 16px; }
+  .seo-content li { margin-bottom: 8px; line-height: 1.7; }
+
+  /* ========== FAQ ========== */
+  .faq-list { max-width: 780px; margin: 0 auto; }
+  .faq-item { border: 1px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 12px; overflow: hidden; }
+  .faq-question { padding: 18px 20px; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: white; }
+  .faq-question:hover { background: var(--primary-light); color: var(--primary); }
+  .faq-toggle { font-size: 20px; font-weight: 300; transition: transform .3s; }
+  .faq-answer { display: none; padding: 0 20px 18px; color: var(--text2); font-size: 14px; line-height: 1.8; background: white; }
+  .faq-item.open .faq-answer { display: block; }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); }
+  .faq-item.open .faq-question { color: var(--primary); }
+
+  /* ========== BLOG SECTION ========== */
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 24px; }
+  .blog-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all .25s; cursor: pointer; }
+  .blog-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .blog-img { height: 180px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); display: flex; align-items: center; justify-content: center; font-size: 48px; position: relative; overflow: hidden; }
+  .blog-img-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, rgba(8,57,168,0.4)); }
+  .blog-category { position: absolute; top: 12px; left: 12px; background: var(--accent); color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .blog-body { padding: 20px; }
+  .blog-date { font-size: 11px; color: var(--text3); font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .blog-title { font-size: 17px; font-weight: 700; color: var(--text); line-height: 1.4; margin-bottom: 10px; }
+  .blog-excerpt { font-size: 13px; color: var(--text2); line-height: 1.7; }
+  .blog-read-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 13px; font-weight: 700; color: var(--primary); cursor: pointer; }
+
+  /* ========== COUNTRY DETAIL PAGE ========== */
+  .country-hero { background: linear-gradient(135deg, #0B4FD4, #0D3A9E); padding: 60px 24px; text-align: center; }
+  .country-hero h1 { font-family: var(--font-display); font-size: clamp(30px,5vw,52px); color: white; margin-bottom: 12px; }
+  .country-hero p { color: rgba(255,255,255,0.8); font-size: 17px; }
+  .country-flag-big { font-size: 72px; margin-bottom: 16px; display: block; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 24px; justify-content: center; }
+  .breadcrumb a { color: rgba(255,255,255,0.6); cursor: pointer; text-decoration: none; }
+  .breadcrumb a:hover { color: white; }
+  .breadcrumb span { color: rgba(255,255,255,0.4); }
+
+  /* ========== BLOG POST PAGE ========== */
+  .blog-post-hero { background: linear-gradient(135deg, #0B4FD4, #0D3A9E); padding: 60px 24px 40px; text-align: center; }
+  .blog-post-hero h1 { font-family: var(--font-display); font-size: clamp(28px,4vw,48px); color: white; max-width: 800px; margin: 16px auto 0; line-height: 1.2; }
+  .blog-post-body { max-width: 780px; margin: 0 auto; padding: 48px 24px; }
+  .blog-post-body h2 { font-family: var(--font-display); font-size: 28px; margin: 40px 0 14px; }
+  .blog-post-body h3 { font-size: 20px; font-weight: 700; margin: 28px 0 10px; }
+  .blog-post-body p { color: var(--text2); line-height: 1.85; margin-bottom: 18px; }
+  .blog-post-body ul { padding-left: 20px; color: var(--text2); margin-bottom: 18px; }
+  .blog-post-body li { margin-bottom: 8px; line-height: 1.7; }
+
+  /* ========== FOOTER ========== */
+  footer { background: var(--text); color: rgba(255,255,255,0.7); padding: 60px 24px 32px; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand-name { font-size: 22px; font-weight: 800; color: white; margin-bottom: 12px; }
+  .footer-brand-name span { color: var(--accent); }
+  .footer-desc { font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+  .footer-col-title { color: white; font-size: 13px; font-weight: 700; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .footer-col a { display: block; color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 8px; cursor: pointer; text-decoration: none; transition: color .2s; }
+  .footer-col a:hover { color: white; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; gap: 12px; }
+  .footer-copy { font-size: 13px; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); cursor: pointer; text-decoration: none; }
+  .footer-links a:hover { color: white; }
+
+  /* ========== UTILITY ========== */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--primary); color: white; border: none;
+    font-family: var(--font); font-size: 15px; font-weight: 700;
+    padding: 14px 28px; border-radius: 10px; cursor: pointer; transition: all .2s;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: white; color: var(--primary); border: 2px solid var(--primary);
+    font-family: var(--font); font-size: 15px; font-weight: 700;
+    padding: 13px 28px; border-radius: 10px; cursor: pointer; transition: all .2s;
+    text-decoration: none;
+  }
+  .btn-secondary:hover { background: var(--primary-light); transform: translateY(-1px); }
+  .text-center { text-align: center; }
+  .mt-8 { margin-top: 8px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-32 { margin-top: 32px; }
+  .mt-48 { margin-top: 48px; }
+  .full-bg { background: white; }
+  .full-bg2 { background: var(--bg); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Regions strip */
+  .regions-strip { background: var(--bg2); padding: 20px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .regions-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .region-tag { display: inline-flex; align-items: center; gap: 6px; background: white; border: 1px solid var(--border); padding: 8px 16px; border-radius: 50px; font-size: 13px; font-weight: 600; color: var(--text2); cursor: pointer; transition: all .2s; text-decoration: none; }
+  .region-tag:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+  /* Rating badge */
+  .rating-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.15); color: white; padding: 6px 14px; border-radius: 50px; font-size: 13px; font-weight: 700; margin-bottom: 32px; }
+  .stars-inline { color: #F4A82A; letter-spacing: 1px; font-size: 14px; }
+
+  /* Feature grid */
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .feature-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 22px; text-align: center; }
+  .feature-icon { width: 56px; height: 56px; background: var(--primary-light); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 26px; }
+  .feature-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .feature-desc { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .hero { padding: 60px 20px 60px; }
+    .search-btn { padding: 0 18px; font-size: 14px; }
+    section { padding: 48px 20px; }
+  }
+  @media (max-width: 520px) {
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .hero-stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <a class="nav-logo" onclick="navigate('home')">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+    </div>
+    <div class="nav-logo-text">eSIM<span>ly</span></div>
+  </a>
+  <div class="nav-links">
+    <a onclick="navigate('home')" id="nav-home">Home</a>
+    <a onclick="navigate('countries')" id="nav-countries">Destinations</a>
+    <a onclick="navigate('providers')" id="nav-providers">Providers</a>
+    <a onclick="navigate('blog')" id="nav-blog">Blog</a>
+    <a onclick="navigate('faq')" id="nav-faq">FAQ</a>
+    <a class="nav-cta" onclick="navigate('providers')">Compare Plans</a>
+  </div>
+  <div class="nav-hamburger" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="navigate('home');toggleMobileMenu()">Home</a>
+  <a onclick="navigate('countries');toggleMobileMenu()">Destinations</a>
+  <a onclick="navigate('providers');toggleMobileMenu()">Providers</a>
+  <a onclick="navigate('blog');toggleMobileMenu()">Blog</a>
+  <a onclick="navigate('faq');toggleMobileMenu()">FAQ</a>
+</div>
+
+<!-- ===== HOME PAGE ===== -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">🌍 Trusted by 2M+ travelers worldwide</div>
+    <h1>Stay Connected <em>Anywhere</em> in the World</h1>
+    <p>Compare eSIM plans from 50+ top providers for 200+ countries. Instant activation. No plastic SIM needed.</p>
+    <div class="rating-badge">
+      <span class="stars-inline">★★★★★</span> 4.9/5 from 180,000+ reviews
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">200+</div><div class="hero-stat-label">Countries</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">50+</div><div class="hero-stat-label">Providers</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">45,000+</div><div class="hero-stat-label">Plans</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">2M+</div><div class="hero-stat-label">Users</div></div>
+    </div>
+    <!-- Search -->
+    <div class="search-box">
+      <div class="search-inner">
+        <input type="text" id="heroSearch" placeholder="🔍  Search any country — e.g. Japan, France, UAE..." autocomplete="off" oninput="handleSearch(this.value)" onfocus="showSuggestions()" onblur="setTimeout(hideSuggestions,200)">
+        <button class="search-btn" onclick="doSearch()">Find eSIM Plans →</button>
+      </div>
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+  </div>
+
+  <!-- Regions strip -->
+  <div class="regions-strip">
+    <div class="regions-inner">
+      <a class="region-tag" onclick="navigate('countries')">🌍 Africa</a>
+      <a class="region-tag" onclick="navigate('countries')">🌍 Europe</a>
+      <a class="region-tag" onclick="navigate('countries')">🌏 Asia</a>
+      <a class="region-tag" onclick="navigate('countries')">🌎 North America</a>
+      <a class="region-tag" onclick="navigate('countries')">🌎 South America</a>
+      <a class="region-tag" onclick="navigate('countries')">🌏 Oceania</a>
+      <a class="region-tag" onclick="navigate('countries')">🌍 Middle East</a>
+      <a class="region-tag" onclick="navigate('countries')">🌐 Global Plans</a>
+    </div>
+  </div>
+
+  <!-- Popular Countries -->
+  <div class="full-bg">
+    <section>
+      <div class="section-header">
+        <div class="section-tag">Destinations</div>
+        <h2 class="section-title">Popular Countries & Regions</h2>
+        <p class="section-desc">Explore eSIM plans for the most visited destinations. Click any country to see all available plans.</p>
+      </div>
+      <div class="countries-grid" id="homeCountriesGrid"></div>
+      <button class="load-more-btn" id="homeLoadMoreCountries" onclick="loadMoreHomeCountries()">Load More Countries ↓</button>
+    </section>
+  </div>
+
+  <!-- Trust strip -->
+  <div class="trust-strip">
+    <div class="trust-strip-inner">
+      <div class="trust-item"><div class="trust-icon">🔒</div>Secure & Private</div>
+      <div class="trust-item"><div class="trust-icon">⚡</div>Instant Activation</div>
+      <div class="trust-item"><div class="trust-icon">💸</div>Best Price Guarantee</div>
+      <div class="trust-item"><div class="trust-icon">🌐</div>200+ Countries</div>
+      <div class="trust-item"><div class="trust-icon">🎧</div>24/7 Support</div>
+    </div>
+  </div>
+
+  <!-- Providers Section -->
+  <div class="full-bg2">
+    <section>
+      <div class="section-header">
+        <div class="section-tag">Top Providers</div>
+        <h2 class="section-title">Compare the Best eSIM Providers</h2>
+        <p class="section-desc">We've handpicked 50+ trusted eSIM providers so you can compare plans, prices, and coverage instantly.</p>
+      </div>
+      <div class="providers-grid" id="homeProvidersGrid"></div>
+      <div class="text-center mt-32">
+        <button class="load-more-btn" id="homeLoadMoreProviders" onclick="loadMoreHomeProviders()">See More Providers ↓</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- How it Works -->
+  <div class="full-bg">
+    <section>
+      <div class="section-header">
+        <div class="section-tag">How It Works</div>
+        <h2 class="section-title">Get Connected in 3 Simple Steps</h2>
+        <p class="section-desc">No stores, no plastic cards. Just instant digital connectivity wherever you go.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num">1</div><div class="step-title">Search Your Destination</div><div class="step-desc">Enter the country you're traveling to. Instantly see all available eSIM plans from trusted providers.</div></div>
+        <div class="step-card"><div class="step-num">2</div><div class="step-title">Compare & Choose</div><div class="step-desc">Filter by data, duration, and price. Read reviews and pick the plan that fits your trip perfectly.</div></div>
+        <div class="step-card"><div class="step-num">3</div><div class="step-title">Activate Instantly</div><div class="step-desc">Purchase directly from the provider. Scan the QR code and you're online — no waiting, no hassle.</div></div>
+        <div class="step-card"><div class="step-num">4</div><div class="step-title">Travel & Enjoy</div><div class="step-desc">Enjoy seamless 4G/5G connectivity. Keep your original number for calls while browsing on your eSIM.</div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Features -->
+  <div class="full-bg2">
+    <section>
+      <div class="section-header">
+        <div class="section-tag">Why eSIMly</div>
+        <h2 class="section-title">Everything You Need to Travel Connected</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card"><div class="feature-icon">⚡</div><div class="feature-title">Instant Activation</div><div class="feature-desc">Activate your eSIM before you board. Be online the moment you land.</div></div>
+        <div class="feature-card"><div class="feature-icon">💰</div><div class="feature-title">Best Prices Compared</div><div class="feature-desc">We compare 50+ providers so you always get the most competitive rate.</div></div>
+        <div class="feature-card"><div class="feature-icon">🛡️</div><div class="feature-title">Verified Providers</div><div class="feature-desc">Every provider on eSIMly is vetted, reviewed, and trusted by millions.</div></div>
+        <div class="feature-card"><div class="feature-icon">📱</div><div class="feature-title">Multi-Device Support</div><div class="feature-desc">Works on iPhone, Samsung, Google Pixel, iPad and 400+ eSIM devices.</div></div>
+        <div class="feature-card"><div class="feature-icon">🌐</div><div class="feature-title">Global & Regional Plans</div><div class="feature-desc">Find single-country, regional, and worldwide plans for long-term travelers.</div></div>
+        <div class="feature-card"><div class="feature-icon">🔄</div><div class="feature-title">Flexible Data Plans</div><div class="feature-desc">From 1GB day-trips to 50GB+ month-long adventures. Plans for every need.</div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Reviews -->
+  <div class="full-bg">
+    <section>
+      <div class="section-header">
+        <div class="section-tag">Reviews</div>
+        <h2 class="section-title">Loved by 2 Million+ Travelers</h2>
+        <p class="section-desc">Real experiences from real travelers who've used eSIMly to stay connected worldwide.</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Found an incredible Airalo plan for Japan in under 2 minutes. $8 for 3GB that lasted my whole trip. eSIMly is a game-changer!"</div><div class="review-author"><div class="review-avatar">SM</div><div><div class="review-name">Sarah M.</div><div class="review-location">🇺🇸 Traveling to Japan</div></div></div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"I compared 8 different providers in minutes. The filtering is excellent — I found exactly what I needed for my 3-week Europe trip."</div><div class="review-author"><div class="review-avatar">JK</div><div><div class="review-name">James K.</div><div class="review-location">🇬🇧 Europe Road Trip</div></div></div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"No more hunting for SIM cards at airports! I activated my eSIM on the plane. Landed in Bangkok and was instantly online."</div><div class="review-author"><div class="review-avatar">PA</div><div><div class="review-name">Priya A.</div><div class="review-location">🇮🇳 Traveling to Thailand</div></div></div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"As a digital nomad I need reliable internet across many countries. eSIMly helps me find the best plan wherever I am. Indispensable!"</div><div class="review-author"><div class="review-avatar">MC</div><div><div class="review-name">Marco C.</div><div class="review-location">🌍 Digital Nomad</div></div></div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"The UTM tracking means I get the best deal from providers. Saved $12 on my UAE plan compared to buying direct. Brilliant site!"</div><div class="review-author"><div class="review-avatar">RL</div><div><div class="review-name">Rachel L.</div><div class="review-location">🇦🇺 Traveling to Dubai</div></div></div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text">"Fast, clean, and honest. I love that eSIMly shows real user reviews alongside provider specs. First place I check before every trip."</div><div class="review-author"><div class="review-avatar">TN</div><div><div class="review-name">Tom N.</div><div class="review-location">🇩🇪 Frequent Traveler</div></div></div></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SEO Content -->
+  <div class="full-bg2">
+    <section>
+      <div class="seo-content">
+        <h2>What Is an eSIM and How Does It Work?</h2>
+        <p>An eSIM (embedded SIM) is a digital SIM card built directly into your smartphone, tablet, or smartwatch. Unlike a traditional plastic SIM card, an eSIM can be programmed remotely and allows you to switch between mobile carriers without physically swapping cards. This technology, standardized by the GSMA, is now supported by over 400 devices including all iPhones from iPhone XR onwards, Samsung Galaxy S21 and newer, and most Google Pixel phones.</p>
+        <p>When you travel internationally, an eSIM lets you purchase and activate a local data plan within minutes — without visiting a store, waiting for delivery, or dealing with tiny plastic cards. You simply scan a QR code or use an app, and your eSIM is ready to use.</p>
+
+        <h3>Benefits of Using an eSIM for Travel</h3>
+        <ul>
+          <li><strong>Instant activation:</strong> Purchase and activate a plan before you leave home, or even while on the plane.</li>
+          <li><strong>No roaming fees:</strong> Local eSIM plans are significantly cheaper than international roaming charges from your home carrier.</li>
+          <li><strong>Keep your number:</strong> Use your original SIM for calls and texts while your eSIM handles data — perfect for receiving 2FA codes.</li>
+          <li><strong>Eco-friendly:</strong> No plastic waste from disposable SIM cards.</li>
+          <li><strong>Multi-country plans:</strong> Regional eSIM plans cover entire continents like Europe or Southeast Asia under one plan.</li>
+        </ul>
+
+        <h3>How to Choose the Best eSIM Plan</h3>
+        <p>Selecting the right eSIM plan depends on several factors: how long you'll be traveling, how much data you typically use, and whether you need voice calls or just data. For most leisure travelers, a data-only eSIM is sufficient since most calls and messages can be handled via WhatsApp, iMessage, or other apps over WiFi.</p>
+        <p>At eSIMly, we recommend comparing plans based on price per GB, network coverage quality, plan validity duration, and provider reputation. Our comparison tool lets you filter all these variables instantly across 50+ providers.</p>
+
+        <h3>eSIM vs Physical SIM Card: Which Is Better?</h3>
+        <p>For travelers, eSIMs win on almost every dimension. They're faster to set up, more flexible, and often cheaper since providers have lower distribution costs. The only scenario where a physical SIM might be preferred is if your device doesn't support eSIM — though this is becoming increasingly rare in modern smartphones.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Blog Section -->
+  <div class="full-bg">
+    <section>
+      <div class="section-header">
+        <div class="section-tag">Blog</div>
+        <h2 class="section-title">Travel Connectivity Guides</h2>
+        <p class="section-desc">Expert tips, destination guides, and eSIM reviews to help you stay connected while traveling.</p>
+      </div>
+      <div class="blog-grid" id="homeBlogGrid"></div>
+      <div class="text-center mt-32">
+        <button class="load-more-btn" id="blogLoadMoreBtn" onclick="loadMoreBlogs()">Load More Articles ↓</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- FAQ on Home -->
+  <div class="full-bg2">
+    <section>
+      <div class="section-header">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list" id="homeFaqList"></div>
+      <div class="text-center mt-32">
+        <button class="btn-secondary" onclick="navigate('faq')">View All FAQs →</button>
+      </div>
+    </section>
+  </div>
+
+</div><!-- end home page -->
+
+
+<!-- ===== COUNTRIES PAGE ===== -->
+<div class="page" id="page-countries">
+  <div class="country-hero">
+    <h1>All Destinations</h1>
+    <p>Browse eSIM plans for 200+ countries and regions worldwide</p>
+  </div>
+  <div class="regions-strip">
+    <div class="regions-inner">
+      <a class="region-tag">🌍 Africa</a>
+      <a class="region-tag">🌍 Europe</a>
+      <a class="region-tag">🌏 Asia</a>
+      <a class="region-tag">🌎 North America</a>
+      <a class="region-tag">🌎 South America</a>
+      <a class="region-tag">🌏 Oceania</a>
+      <a class="region-tag">🌍 Middle East</a>
+    </div>
+  </div>
+  <div class="full-bg2">
+    <section>
+      <div class="countries-grid" id="allCountriesGrid"></div>
+      <button class="load-more-btn" id="allCountriesLoadMore" onclick="loadMoreAllCountries()">Load More Countries ↓</button>
+    </section>
+  </div>
+</div>
+
+<!-- ===== COUNTRY DETAIL PAGE ===== -->
+<div class="page" id="page-country-detail">
+  <div class="country-hero">
+    <div class="breadcrumb">
+      <a onclick="navigate('home')">Home</a><span>›</span>
+      <a onclick="navigate('countries')">Destinations</a><span>›</span>
+      <span id="detailCountryName">Japan</span>
+    </div>
+    <span class="country-flag-big" id="detailCountryFlag">🇯🇵</span>
+    <h1 id="detailCountryTitle">eSIM Plans for Japan</h1>
+    <p id="detailCountrySubtitle">Compare 24 plans from 12 providers · From $3.50</p>
+  </div>
+  <div class="full-bg2">
+    <section>
+      <div class="section-header">
+        <div class="section-tag">All Providers</div>
+        <h2 class="section-title">Best eSIM Providers for <span id="detailCountryTitle2">Japan</span></h2>
+        <p class="section-desc">All providers are verified and trusted. Click "Get This Plan" to be redirected to the provider's website.</p>
+      </div>
+      <div class="providers-grid" id="countryProvidersGrid"></div>
+    </section>
+  </div>
+  <div class="full-bg">
+    <section>
+      <div class="seo-content" id="countrySeoCOntent">
+        <!-- Dynamic SEO content per country -->
+      </div>
+    </section>
+  </div>
+  <div class="full-bg2">
+    <section>
+      <div class="section-header">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">eSIM in <span id="detailCountryTitle3">Japan</span> — FAQs</h2>
+      </div>
+      <div class="faq-list" id="countryFaqList"></div>
+    </section>
+  </div>
+</div>
+
+<!-- ===== PROVIDERS PAGE ===== -->
+<div class="page" id="page-providers">
+  <div class="country-hero">
+    <h1>All eSIM Providers</h1>
+    <p>Compare 50+ trusted eSIM providers — plans, coverage, prices and reviews</p>
+  </div>
+  <div class="full-bg2">
+    <section>
+      <div class="section-header">
+        <div class="section-tag">Providers</div>
+        <h2 class="section-title">Every Major eSIM Provider Compared</h2>
+        <p class="section-desc">We update our provider list regularly to ensure you always see the latest plans and best prices.</p>
+      </div>
+      <div class="providers-grid" id="allProvidersGrid"></div>
+      <div class="text-center mt-32">
+        <button class="load-more-btn" id="providersLoadMore" onclick="loadMoreAllProviders()">Load More Providers ↓</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ===== BLOG PAGE ===== -->
+<div class="page" id="page-blog">
+  <div class="country-hero">
+    <h1>Travel Connectivity Blog</h1>
+    <p>Guides, tips, and eSIM reviews for savvy travelers</p>
+  </div>
+  <div class="full-bg2">
+    <section>
+      <div class="blog-grid" id="allBlogGrid"></div>
+      <div class="text-center mt-32">
+        <button class="load-more-btn" id="allBlogLoadMore" onclick="loadMoreAllBlogs()">Load More Articles ↓</button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ===== BLOG POST PAGE ===== -->
+<div class="page" id="page-blog-post">
+  <div class="blog-post-hero">
+    <div class="breadcrumb">
+      <a onclick="navigate('home')">Home</a><span>›</span>
+      <a onclick="navigate('blog')">Blog</a><span>›</span>
+      <span id="blogPostCategory">Guide</span>
+    </div>
+    <h1 id="blogPostTitle">Blog Post Title</h1>
+  </div>
+  <div class="blog-post-body" id="blogPostBody"></div>
+</div>
+
+<!-- ===== FAQ PAGE ===== -->
+<div class="page" id="page-faq">
+  <div class="country-hero">
+    <h1>Frequently Asked Questions</h1>
+    <p>Everything you need to know about eSIMs and how eSIMly works</p>
+  </div>
+  <div class="full-bg2">
+    <section>
+      <div class="section-header">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">Got Questions? We've Got Answers.</h2>
+      </div>
+      <div class="faq-list" id="allFaqList"></div>
+    </section>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">eSIM<span>ly</span></div>
+        <p class="footer-desc">The world's most comprehensive eSIM comparison platform. We help millions of travelers find the best eSIM plans for any destination, from any provider.</p>
+        <div style="display:flex;gap:10px;margin-top:16px;">
+          <div style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;">𝕏</div>
+          <div style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;">📘</div>
+          <div style="width:36px;height:36px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;">📸</div>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Destinations</div>
+        <a onclick="navigate('countries')">All Countries</a>
+        <a onclick="navigate('countries')">Europe eSIMs</a>
+        <a onclick="navigate('countries')">Asia eSIMs</a>
+        <a onclick="navigate('countries')">Americas eSIMs</a>
+        <a onclick="navigate('countries')">Africa eSIMs</a>
+        <a onclick="navigate('countries')">Global Plans</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Providers</div>
+        <a onclick="navigate('providers')">All Providers</a>
+        <a onclick="navigate('providers')">Airalo</a>
+        <a onclick="navigate('providers')">Holafly</a>
+        <a onclick="navigate('providers')">Nomad</a>
+        <a onclick="navigate('providers')">Maya Mobile</a>
+        <a onclick="navigate('providers')">BNESIM</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Help</div>
+        <a onclick="navigate('faq')">FAQ</a>
+        <a onclick="navigate('blog')">Blog</a>
+        <a>What is eSIM?</a>
+        <a>Compatible Devices</a>
+        <a>Privacy Policy</a>
+        <a>Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 eSIMly. All rights reserved. Links marked with ↗ are affiliate links.</p>
+      <div class="footer-links">
+        <a>Privacy</a>
+        <a>Terms</a>
+        <a>Sitemap</a>
+        <a>Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ========== DATA ==========
+
+const ALL_COUNTRIES = [
+  {name:"United States",flag:"🇺🇸",slug:"united-states"},{name:"United Kingdom",flag:"🇬🇧",slug:"united-kingdom"},
+  {name:"France",flag:"🇫🇷",slug:"france"},{name:"Germany",flag:"🇩🇪",slug:"germany"},
+  {name:"Japan",flag:"🇯🇵",slug:"japan"},{name:"South Korea",flag:"🇰🇷",slug:"south-korea"},
+  {name:"Australia",flag:"🇦🇺",slug:"australia"},{name:"Canada",flag:"🇨🇦",slug:"canada"},
+  {name:"Italy",flag:"🇮🇹",slug:"italy"},{name:"Spain",flag:"🇪🇸",slug:"spain"},
+  {name:"Thailand",flag:"🇹🇭",slug:"thailand"},{name:"India",flag:"🇮🇳",slug:"india"},
+  {name:"UAE",flag:"🇦🇪",slug:"uae"},{name:"Turkey",flag:"🇹🇷",slug:"turkey"},
+  {name:"Mexico",flag:"🇲🇽",slug:"mexico"},{name:"Brazil",flag:"🇧🇷",slug:"brazil"},
+  {name:"Netherlands",flag:"🇳🇱",slug:"netherlands"},{name:"Portugal",flag:"🇵🇹",slug:"portugal"},
+  {name:"Greece",flag:"🇬🇷",slug:"greece"},{name:"Switzerland",flag:"🇨🇭",slug:"switzerland"},
+  {name:"Singapore",flag:"🇸🇬",slug:"singapore"},{name:"Hong Kong",flag:"🇭🇰",slug:"hong-kong"},
+  {name:"New Zealand",flag:"🇳🇿",slug:"new-zealand"},{name:"Indonesia",flag:"🇮🇩",slug:"indonesia"},
+  {name:"Malaysia",flag:"🇲🇾",slug:"malaysia"},{name:"Philippines",flag:"🇵🇭",slug:"philippines"},
+  {name:"Vietnam",flag:"🇻🇳",slug:"vietnam"},{name:"Cambodia",flag:"🇰🇭",slug:"cambodia"},
+  {name:"Myanmar",flag:"🇲🇲",slug:"myanmar"},{name:"Sri Lanka",flag:"🇱🇰",slug:"sri-lanka"},
+  {name:"Nepal",flag:"🇳🇵",slug:"nepal"},{name:"Bangladesh",flag:"🇧🇩",slug:"bangladesh"},
+  {name:"Pakistan",flag:"🇵🇰",slug:"pakistan"},{name:"Saudi Arabia",flag:"🇸🇦",slug:"saudi-arabia"},
+  {name:"Qatar",flag:"🇶🇦",slug:"qatar"},{name:"Kuwait",flag:"🇰🇼",slug:"kuwait"},
+  {name:"Bahrain",flag:"🇧🇭",slug:"bahrain"},{name:"Oman",flag:"🇴🇲",slug:"oman"},
+  {name:"Jordan",flag:"🇯🇴",slug:"jordan"},{name:"Egypt",flag:"🇪🇬",slug:"egypt"},
+  {name:"Morocco",flag:"🇲🇦",slug:"morocco"},{name:"South Africa",flag:"🇿🇦",slug:"south-africa"},
+  {name:"Kenya",flag:"🇰🇪",slug:"kenya"},{name:"Nigeria",flag:"🇳🇬",slug:"nigeria"},
+  {name:"Ghana",flag:"🇬🇭",slug:"ghana"},{name:"Tanzania",flag:"🇹🇿",slug:"tanzania"},
+  {name:"Ethiopia",flag:"🇪🇹",slug:"ethiopia"},{name:"Uganda",flag:"🇺🇬",slug:"uganda"},
+  {name:"Rwanda",flag:"🇷🇼",slug:"rwanda"},{name:"Senegal",flag:"🇸🇳",slug:"senegal"},
+  {name:"Argentina",flag:"🇦🇷",slug:"argentina"},{name:"Chile",flag:"🇨🇱",slug:"chile"},
+  {name:"Colombia",flag:"🇨🇴",slug:"colombia"},{name:"Peru",flag:"🇵🇪",slug:"peru"},
+  {name:"Venezuela",flag:"🇻🇪",slug:"venezuela"},{name:"Ecuador",flag:"🇪🇨",slug:"ecuador"},
+  {name:"Bolivia",flag:"🇧🇴",slug:"bolivia"},{name:"Paraguay",flag:"🇵🇾",slug:"paraguay"},
+  {name:"Uruguay",flag:"🇺🇾",slug:"uruguay"},{name:"Cuba",flag:"🇨🇺",slug:"cuba"},
+  {name:"Austria",flag:"🇦🇹",slug:"austria"},{name:"Belgium",flag:"🇧🇪",slug:"belgium"},
+  {name:"Sweden",flag:"🇸🇪",slug:"sweden"},{name:"Norway",flag:"🇳🇴",slug:"norway"},
+  {name:"Denmark",flag:"🇩🇰",slug:"denmark"},{name:"Finland",flag:"🇫🇮",slug:"finland"},
+  {name:"Poland",flag:"🇵🇱",slug:"poland"},{name:"Czech Republic",flag:"🇨🇿",slug:"czech-republic"},
+  {name:"Hungary",flag:"🇭🇺",slug:"hungary"},{name:"Romania",flag:"🇷🇴",slug:"romania"},
+  {name:"Bulgaria",flag:"🇧🇬",slug:"bulgaria"},{name:"Croatia",flag:"🇭🇷",slug:"croatia"},
+  {name:"Serbia",flag:"🇷🇸",slug:"serbia"},{name:"Ukraine",flag:"🇺🇦",slug:"ukraine"},
+  {name:"Russia",flag:"🇷🇺",slug:"russia"},{name:"Georgia",flag:"🇬🇪",slug:"georgia"},
+  {name:"Armenia",flag:"🇦🇲",slug:"armenia"},{name:"Azerbaijan",flag:"🇦🇿",slug:"azerbaijan"},
+  {name:"Kazakhstan",flag:"🇰🇿",slug:"kazakhstan"},{name:"Uzbekistan",flag:"🇺🇿",slug:"uzbekistan"},
+  {name:"Israel",flag:"🇮🇱",slug:"israel"},{name:"Lebanon",flag:"🇱🇧",slug:"lebanon"},
+  {name:"Cyprus",flag:"🇨🇾",slug:"cyprus"},{name:"Malta",flag:"🇲🇹",slug:"malta"},
+  {name:"Iceland",flag:"🇮🇸",slug:"iceland"},{name:"Ireland",flag:"🇮🇪",slug:"ireland"},
+  {name:"Scotland",flag:"🏴󠁧󠁢󠁳󠁣󠁴󠁿",slug:"scotland"},{name:"Wales",flag:"🏴󠁧󠁢󠁷󠁬󠁳󠁿",slug:"wales"},
+  {name:"Luxembourg",flag:"🇱🇺",slug:"luxembourg"},{name:"Monaco",flag:"🇲🇨",slug:"monaco"},
+  {name:"Liechtenstein",flag:"🇱🇮",slug:"liechtenstein"},{name:"Andorra",flag:"🇦🇩",slug:"andorra"},
+  {name:"San Marino",flag:"🇸🇲",slug:"san-marino"},{name:"Montenegro",flag:"🇲🇪",slug:"montenegro"},
+  {name:"Albania",flag:"🇦🇱",slug:"albania"},{name:"North Macedonia",flag:"🇲🇰",slug:"north-macedonia"},
+  {name:"Bosnia & Herzegovina",flag:"🇧🇦",slug:"bosnia"},{name:"Kosovo",flag:"🇽🇰",slug:"kosovo"},
+  {name:"Moldova",flag:"🇲🇩",slug:"moldova"},{name:"Belarus",flag:"🇧🇾",slug:"belarus"},
+  {name:"Estonia",flag:"🇪🇪",slug:"estonia"},{name:"Latvia",flag:"🇱🇻",slug:"latvia"},
+  {name:"Lithuania",flag:"🇱🇹",slug:"lithuania"},{name:"Slovakia",flag:"🇸🇰",slug:"slovakia"},
+  {name:"Slovenia",flag:"🇸🇮",slug:"slovenia"},{name:"Taiwan",flag:"🇹🇼",slug:"taiwan"},
+  {name:"China",flag:"🇨🇳",slug:"china"},{name:"Mongolia",flag:"🇲🇳",slug:"mongolia"},
+  {name:"Laos",flag:"🇱🇦",slug:"laos"},{name:"Brunei",flag:"🇧🇳",slug:"brunei"},
+  {name:"Timor-Leste",flag:"🇹🇱",slug:"timor-leste"},{name:"Papua New Guinea",flag:"🇵🇬",slug:"papua-new-guinea"},
+  {name:"Fiji",flag:"🇫🇯",slug:"fiji"},{name:"Samoa",flag:"🇼🇸",slug:"samoa"},
+  {name:"Tonga",flag:"🇹🇴",slug:"tonga"},{name:"Vanuatu",flag:"🇻🇺",slug:"vanuatu"},
+  {name:"Solomon Islands",flag:"🇸🇧",slug:"solomon-islands"},{name:"Palau",flag:"🇵🇼",slug:"palau"},
+  {name:"Micronesia",flag:"🇫🇲",slug:"micronesia"},{name:"Marshall Islands",flag:"🇲🇭",slug:"marshall-islands"},
+  {name:"Kiribati",flag:"🇰🇮",slug:"kiribati"},{name:"Nauru",flag:"🇳🇷",slug:"nauru"},
+  {name:"Tuvalu",flag:"🇹🇻",slug:"tuvalu"},{name:"Maldives",flag:"🇲🇻",slug:"maldives"},
+  {name:"Seychelles",flag:"🇸🇨",slug:"seychelles"},{name:"Mauritius",flag:"🇲🇺",slug:"mauritius"},
+  {name:"Madagascar",flag:"🇲🇬",slug:"madagascar"},{name:"Mozambique",flag:"🇲🇿",slug:"mozambique"},
+  {name:"Zimbabwe",flag:"🇿🇼",slug:"zimbabwe"},{name:"Zambia",flag:"🇿🇲",slug:"zambia"},
+  {name:"Malawi",flag:"🇲🇼",slug:"malawi"},{name:"Botswana",flag:"🇧🇼",slug:"botswana"},
+  {name:"Namibia",flag:"🇳🇦",slug:"namibia"},{name:"Lesotho",flag:"🇱🇸",slug:"lesotho"},
+  {name:"Eswatini",flag:"🇸🇿",slug:"eswatini"},{name:"Angola",flag:"🇦🇴",slug:"angola"},
+  {name:"Cameroon",flag:"🇨🇲",slug:"cameroon"},{name:"Ivory Coast",flag:"🇨🇮",slug:"ivory-coast"},
+  {name:"Benin",flag:"🇧🇯",slug:"benin"},{name:"Togo",flag:"🇹🇬",slug:"togo"},
+  {name:"Burkina Faso",flag:"🇧🇫",slug:"burkina-faso"},{name:"Mali",flag:"🇲🇱",slug:"mali"},
+  {name:"Niger",flag:"🇳🇪",slug:"niger"},{name:"Chad",flag:"🇹🇩",slug:"chad"},
+  {name:"Sudan",flag:"🇸🇩",slug:"sudan"},{name:"Libya",flag:"🇱🇾",slug:"libya"},
+  {name:"Tunisia",flag:"🇹🇳",slug:"tunisia"},{name:"Algeria",flag:"🇩🇿",slug:"algeria"},
+  {name:"Mauritania",flag:"🇲🇷",slug:"mauritania"},{name:"Guinea",flag:"🇬🇳",slug:"guinea"},
+  {name:"Sierra Leone",flag:"🇸🇱",slug:"sierra-leone"},{name:"Liberia",flag:"🇱🇷",slug:"liberia"},
+  {name:"Gambia",flag:"🇬🇲",slug:"gambia"},{name:"Guinea-Bissau",flag:"🇬🇼",slug:"guinea-bissau"},
+  {name:"Cape Verde",flag:"🇨🇻",slug:"cape-verde"},{name:"São Tomé",flag:"🇸🇹",slug:"sao-tome"},
+  {name:"Equatorial Guinea",flag:"🇬🇶",slug:"equatorial-guinea"},{name:"Gabon",flag:"🇬🇦",slug:"gabon"},
+  {name:"Congo",flag:"🇨🇬",slug:"congo"},{name:"DR Congo",flag:"🇨🇩",slug:"dr-congo"},
+  {name:"Central African Republic",flag:"🇨🇫",slug:"central-african-republic"},{name:"South Sudan",flag:"🇸🇸",slug:"south-sudan"},
+  {name:"Somalia",flag:"🇸🇴",slug:"somalia"},{name:"Djibouti",flag:"🇩🇯",slug:"djibouti"},
+  {name:"Eritrea",flag:"🇪🇷",slug:"eritrea"},{name:"Burundi",flag:"🇧🇮",slug:"burundi"},
+  {name:"Comoros",flag:"🇰🇲",slug:"comoros"},{name:"Guatemala",flag:"🇬🇹",slug:"guatemala"},
+  {name:"Belize",flag:"🇧🇿",slug:"belize"},{name:"Honduras",flag:"🇭🇳",slug:"honduras"},
+  {name:"El Salvador",flag:"🇸🇻",slug:"el-salvador"},{name:"Nicaragua",flag:"🇳🇮",slug:"nicaragua"},
+  {name:"Costa Rica",flag:"🇨🇷",slug:"costa-rica"},{name:"Panama",flag:"🇵🇦",slug:"panama"},
+  {name:"Jamaica",flag:"🇯🇲",slug:"jamaica"},{name:"Trinidad & Tobago",flag:"🇹🇹",slug:"trinidad"},
+  {name:"Barbados",flag:"🇧🇧",slug:"barbados"},{name:"Bahamas",flag:"🇧🇸",slug:"bahamas"},
+  {name:"Haiti",flag:"🇭🇹",slug:"haiti"},{name:"Dominican Republic",flag:"🇩🇴",slug:"dominican-republic"},
+  {name:"Puerto Rico",flag:"🇵🇷",slug:"puerto-rico"},{name:"Guyana",flag:"🇬🇾",slug:"guyana"},
+  {name:"Suriname",flag:"🇸🇷",slug:"suriname"},{name:"French Guiana",flag:"🇬🇫",slug:"french-guiana"},
+  {name:"Afghanistan",flag:"🇦🇫",slug:"afghanistan"},{name:"Iraq",flag:"🇮🇶",slug:"iraq"},
+  {name:"Iran",flag:"🇮🇷",slug:"iran"},{name:"Syria",flag:"🇸🇾",slug:"syria"},
+  {name:"Yemen",flag:"🇾🇪",slug:"yemen"},{name:"Kyrgyzstan",flag:"🇰🇬",slug:"kyrgyzstan"},
+  {name:"Tajikistan",flag:"🇹🇯",slug:"tajikistan"},{name:"Turkmenistan",flag:"🇹🇲",slug:"turkmenistan"}
+];
+
+const ALL_PROVIDERS = [
+  {id:"airalo",name:"Airalo",emoji:"✈️",color:"#0066CC",desc:"The world's first eSIM store. Offers 200+ destinations with plans starting from $3.50. Known for reliability and wide coverage.",plans:2691,countries:201,from:"$3.50",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=airalo",url:"https://www.airalo.com"},
+  {id:"holafly",name:"Holafly",emoji:"🦋",color:"#FF6B35",desc:"Unlimited data eSIM plans for travelers. Perfect for heavy data users who want predictable costs. 24/7 customer support.",plans:980,countries:170,from:"$6.90",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=holafly",url:"https://holafly.com"},
+  {id:"nomad",name:"Nomad",emoji:"🌍",color:"#2D9CDB",desc:"Competitive pricing with excellent coverage. Nomad offers flexible data plans and a clean mobile app experience.",plans:1192,countries:207,from:"$1.00",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=nomad",url:"https://www.getnomad.app"},
+  {id:"maya",name:"Maya Mobile",emoji:"📱",color:"#6B48FF",desc:"Massive selection of plans with 8,400+ options across 203 countries. Great for finding niche destinations.",plans:8419,countries:203,from:"$2.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=maya",url:"https://www.mayamobile.com"},
+  {id:"bnesim",name:"BNESIM",emoji:"🔵",color:"#00B4D8",desc:"Ultra-affordable eSIM plans from just $0.65/day. BNESIM covers 178 countries with competitive per-day pricing.",plans:2217,countries:178,from:"$0.65",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=bnesim",url:"https://bnesim.com"},
+  {id:"globalesim",name:"GlobaleSIM",emoji:"🌐",color:"#00897B",desc:"1,300+ plans across 180 destinations. GlobaleSIM is trusted by frequent travelers for consistent performance.",plans:1323,countries:180,from:"$2.70",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=globalesim",url:"https://globalesim.com"},
+  {id:"keepgo",name:"Keepgo",emoji:"🔋",color:"#E91E63",desc:"Lifetime data plans that never expire. Keepgo is perfect for occasional travelers who want a one-time purchase.",plans:420,countries:100,from:"$9.00",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=keepgo",url:"https://keepgo.com"},
+  {id:"esim2fly",name:"eSIM2Fly",emoji:"🚀",color:"#F4511E",desc:"Thai-based provider with exceptional Asia coverage. eSIM2Fly offers superfast activation for Asian destinations.",plans:380,countries:85,from:"$4.00",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=esim2fly",url:"https://esim2fly.com"},
+  {id:"flexiroam",name:"Flexiroam",emoji:"📡",color:"#1565C0",desc:"Global eSIM with roaming across 200+ countries on a single plan. Perfect for multi-country itineraries.",plans:560,countries:200,from:"$2.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=flexiroam",url:"https://www.flexiroam.com"},
+  {id:"instabridge",name:"Instabridge",emoji:"🌉",color:"#7B1FA2",desc:"Super affordable data starting from $0.80. Covers 161 countries. Good option for budget-conscious travelers.",plans:644,countries:161,from:"$0.80",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=instabridge",url:"https://instabridge.com"},
+  {id:"yoho",name:"YOHO Mobile",emoji:"📶",color:"#388E3C",desc:"Asia-Pacific specialist with great deals for Japan, Korea, Thailand, and Southeast Asia.",plans:310,countries:60,from:"$3.00",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=yoho",url:"https://yohomobile.com"},
+  {id:"ubigi",name:"Ubigi",emoji:"🔗",color:"#C62828",desc:"Owned by Transatel (NTT Group). Ubigi offers premium network quality in 190+ countries with great Europe coverage.",plans:890,countries:190,from:"$2.50",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=ubigi",url:"https://cellulardata.ubigi.com"},
+  {id:"drimsim",name:"DrimSim",emoji:"💧",color:"#0097A7",desc:"Universal SIM card for 197 countries. Unique automatic network switching ensures always the best available signal.",plans:290,countries:197,from:"$5.00",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=drimsim",url:"https://drimsim.com"},
+  {id:"jetpac",name:"Jetpac",emoji:"💼",color:"#5D4037",desc:"Unlimited data plans for frequent travelers with excellent US and Canada coverage.",plans:180,countries:60,from:"$4.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=jetpac",url:"https://www.jetpacglobal.com"},
+  {id:"truphone",name:"Truphone",emoji:"📞",color:"#283593",desc:"Enterprise-grade eSIM for business travelers. Truphone offers voice + data plans with premium network access.",plans:240,countries:80,from:"$5.50",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=truphone",url:"https://truphone.com"},
+  {id:"simify",name:"Simify",emoji:"⚡",color:"#F57C00",desc:"Australian-based eSIM provider with excellent Pacific and Asia-Pacific coverage for Aussie and NZ travelers.",plans:160,countries:50,from:"$3.90",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=simify",url:"https://simify.com.au"},
+  {id:"esimdb",name:"eSimDB",emoji:"🗄️",color:"#455A64",desc:"Data-heavy plans for power users. eSimDB specializes in high-GB options for digital nomads and long stays.",plans:340,countries:120,from:"$5.00",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=esimdb",url:"https://esimdb.com"},
+  {id:"manet",name:"Manet Mobile",emoji:"🗺️",color:"#AD1457",desc:"Italy-based eSIM provider with strong Europe coverage and innovative unlimited + hotspot combo plans.",plans:200,countries:70,from:"$4.50",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=manet",url:"https://www.manetmobile.com"},
+  {id:"simOptions",name:"SimOptions",emoji:"🎛️",color:"#00695C",desc:"A curated marketplace with plans from multiple carriers. Great for comparing options within a single checkout.",plans:1500,countries:190,from:"$3.00",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=simoptions",url:"https://www.simoptions.com"},
+  {id:"eiotclub",name:"EIOTCLUB",emoji:"🔌",color:"#6A1B9A",desc:"IoT and travel eSIM specialist with unique multi-IMSI technology for seamless network switching.",plans:260,countries:100,from:"$2.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=eiotclub",url:"https://eiotclub.com"},
+  {id:"siminn",name:"Siminn",emoji:"🏔️",color:"#1B5E20",desc:"Iceland's leading telecoms provider. Best choice for travelers visiting Iceland needing local network access.",plans:40,countries:3,from:"$8.00",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=siminn",url:"https://siminn.is"},
+  {id:"esimworld",name:"eSIM World",emoji:"🌏",color:"#E65100",desc:"Global reseller with competitive pricing. Great UI and multi-language support for international travelers.",plans:720,countries:155,from:"$3.25",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=esimworld",url:"https://esim.world"},
+  {id:"giga",name:"Giga",emoji:"📊",color:"#0D47A1",desc:"High-data plans at competitive prices. Giga is popular with digital nomads needing 20GB+ for remote work.",plans:180,countries:80,from:"$6.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=giga",url:"https://gigasim.com"},
+  {id:"esimplus",name:"eSIM Plus",emoji:"➕",color:"#B71C1C",desc:"eSIM + virtual number combo. Keep a local number in any country without buying a separate phone number.",plans:420,countries:130,from:"$4.00",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=esimplus",url:"https://esimplus.me"},
+  {id:"esim-access",name:"eSIM Access",emoji:"🔑",color:"#37474F",desc:"Business-focused eSIM plans with volume discounts. Excellent for teams traveling together.",plans:290,countries:110,from:"$4.50",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=esim-access",url:"https://esimaccess.com"},
+  {id:"roamless",name:"Roamless",emoji:"🌊",color:"#006064",desc:"Pay-as-you-go eSIM without subscriptions. Roamless charges by MB so you only pay for what you use.",plans:160,countries:90,from:"$1.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=roamless",url:"https://roamless.com"},
+  {id:"datago",name:"DataGo",emoji:"📤",color:"#880E4F",desc:"Straightforward eSIM plans with no tricks. DataGo is known for honest pricing and great customer service.",plans:310,countries:95,from:"$3.50",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=datago",url:"https://datago.io"},
+  {id:"alosim",name:"Aloha",emoji:"🌺",color:"#E64A19",desc:"Hawaii-inspired brand with solid Asia-Pacific plans. Aloha has a vibrant community of frequent fliers.",plans:220,countries:55,from:"$3.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=alosim",url:"https://alohasim.io"},
+  {id:"knowroaming",name:"KnowRoaming",emoji:"🧭",color:"#1A237E",desc:"Canadian eSIM brand with excellent North America coverage. Good value plans for US-Canada travel.",plans:190,countries:65,from:"$4.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=knowroaming",url:"https://www.knowroaming.com"},
+  {id:"redteago",name:"RedteaGo",emoji:"☕",color:"#D32F2F",desc:"Tech-forward eSIM from a leading chipset manufacturer. Deep network integrations ensure superior reliability.",plans:480,countries:160,from:"$2.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=redteago",url:"https://www.redteago.com"},
+  {id:"gigsky",name:"GigSky",emoji:"☁️",color:"#1976D2",desc:"Apple-certified eSIM provider. GigSky is one of the original eSIM specialists with premium global coverage.",plans:350,countries:190,from:"$5.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=gigsky",url:"https://www.gigsky.com"},
+  {id:"simba",name:"Simba Mobile",emoji:"🦁",color:"#F57F17",desc:"Hong Kong-based eSIM with exceptional Asia coverage. Simba is popular for Japan, Korea and Greater China.",plans:280,countries:75,from:"$4.50",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=simba",url:"https://www.simbamobile.com"},
+  {id:"eratou",name:"Eratou",emoji:"🌿",color:"#2E7D32",desc:"Eco-conscious eSIM brand planting trees for every plan sold. Good coverage in Europe and Americas.",plans:200,countries:85,from:"$3.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=eratou",url:"https://eratou.com"},
+  {id:"esim-europe",name:"eSIM Europe",emoji:"🇪🇺",color:"#0033A0",desc:"Specialized in European destinations. Single plans cover all EU countries plus Switzerland, Norway and UK.",plans:120,countries:35,from:"$5.00",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=esim-europe",url:"https://esim-europe.com"},
+  {id:"smartsim",name:"SmartSIM",emoji:"🧠",color:"#512DA8",desc:"AI-powered eSIM that recommends the best plan based on your travel history and usage patterns.",plans:430,countries:140,from:"$3.75",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=smartsim",url:"https://smartsim.com"},
+  {id:"mogo",name:"Mogo Mobile",emoji:"🏄",color:"#00838F",desc:"Surf the web from 120 countries with Mogo's data-only plans. Exceptionally easy app experience.",plans:280,countries:120,from:"$3.49",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=mogo",url:"https://mogo.com"},
+  {id:"esimhub",name:"eSIM Hub",emoji:"🔄",color:"#4527A0",desc:"Marketplace connecting travelers with local operators. eSIM Hub guarantees the lowest price or refunds the difference.",plans:1800,countries:195,from:"$2.00",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=esimhub",url:"https://esimhub.com"},
+  {id:"travelsim",name:"TravelSIM",emoji:"🧳",color:"#6D4C41",desc:"Veteran travel SIM company now offering eSIM. 20+ years of experience. Strong in Europe and Middle East.",plans:340,countries:120,from:"$4.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=travelsim",url:"https://travelsim.com"},
+  {id:"esim-go",name:"eSIM.me",emoji:"🎯",color:"#00897B",desc:"Physical card + eSIM hybrid solution. eSIM.me's adapter works in older devices that don't natively support eSIM.",plans:280,countries:100,from:"$6.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=esim-me",url:"https://esim.me"},
+  {id:"surfroam",name:"Surfroam",emoji:"🏊",color:"#0277BD",desc:"Pay-as-you-go global data with no monthly fees. Ideal for light travelers who need occasional connectivity.",plans:180,countries:80,from:"$4.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=surfroam",url:"https://surfroam.com"},
+  {id:"celitech",name:"Celitech",emoji:"📡",color:"#558B2F",desc:"Developer-friendly eSIM API with a consumer frontend. Great network quality at competitive prices.",plans:350,countries:110,from:"$3.49",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=celitech",url:"https://celitech.net"},
+  {id:"digital2go",name:"Digital2Go",emoji:"💫",color:"#E040FB",desc:"Modern eSIM brand with sleek app. Digital2Go rewards loyal customers with data bonuses and referral credits.",plans:210,countries:90,from:"$3.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=digital2go",url:"https://digital2go.com"},
+  {id:"eskimo",name:"Eskimo",emoji:"🧊",color:"#4FC3F7",desc:"Nordic-based eSIM with excellent Scandinavia coverage. Great prices for Norway, Sweden, Denmark and Finland.",plans:150,countries:45,from:"$4.50",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=eskimo",url:"https://www.esimgo.com"},
+  {id:"kuki",name:"KUKI Mobile",emoji:"🍪",color:"#FF8F00",desc:"Budget-friendly eSIM starting under $2. KUKI covers 90+ countries and offers simple weekly/monthly plans.",plans:260,countries:90,from:"$1.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=kuki",url:"https://kukimobile.com"},
+  {id:"simo",name:"Simo Holdings",emoji:"⭐",color:"#8D6E63",desc:"US-listed eSIM company with premium multi-country bundle plans. Strong track record and financial stability.",plans:520,countries:140,from:"$4.00",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=simo",url:"https://simoholdings.com"},
+  {id:"iplum",name:"iPlum",emoji:"🍎",color:"#C0392B",desc:"US-focused eSIM with virtual number + data bundles. Popular with business travelers needing a US number abroad.",plans:120,countries:30,from:"$5.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=iplum",url:"https://iplum.com"},
+  {id:"mobimatter",name:"Mobimatter",emoji:"🌀",color:"#1565C0",desc:"API-first eSIM marketplace powering many third-party apps. Consumer portal offers 200+ country plans.",plans:1200,countries:195,from:"$2.50",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=mobimatter",url:"https://mobimatter.com"},
+  {id:"esim_go",name:"eSIM Go",emoji:"🟢",color:"#00C853",desc:"UK-based eSIM startup with aggressive pricing. eSIM Go specializes in Europe and offers excellent GBP pricing.",plans:280,countries:85,from:"$3.50",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=esim-go",url:"https://esim.go.com"},
+  {id:"connect2go",name:"Connect2Go",emoji:"🔗",color:"#424242",desc:"Canada's leading eSIM for North America travelers. Free incoming calls and texts across US and Canada.",plans:150,countries:40,from:"$5.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=connect2go",url:"https://connect2go.com"},
+  {id:"esimcard",name:"eSIM Card",emoji:"💳",color:"#00B0FF",desc:"Simple, no-frills eSIM plans at competitive prices. eSIM Card has 150+ country coverage and reliable speeds.",plans:340,countries:150,from:"$3.99",utm:"?utm_source=esimly&utm_medium=affiliate&utm_campaign=esimcard",url:"https://esimcard.com"},
+];
+
+const ALL_BLOGS = [
+  {id:"best-esim-japan",title:"Best eSIM Plans for Japan 2025: Complete Guide",category:"Guide",flag:"🇯🇵",date:"Jan 15, 2025",excerpt:"Everything you need to know about staying connected in Japan. We tested 12 providers and ranked the best options for tourists.",country:"japan"},
+  {id:"best-esim-europe",title:"Top 10 eSIM Plans for Europe — Full 2025 Comparison",category:"Comparison",flag:"🌍",date:"Jan 22, 2025",excerpt:"Traveling across Europe? One regional eSIM can cover 30+ countries. Here are the best options across all budgets.",country:null},
+  {id:"what-is-esim",title:"What Is an eSIM? Complete Beginner's Guide (2025)",category:"Explainer",flag:"📱",date:"Dec 10, 2024",excerpt:"eSIM technology explained in plain English. Learn what an eSIM is, how it works, and whether your device is compatible.",country:null},
+  {id:"best-esim-usa",title:"Best eSIM Plans for the USA — Tourists & Visitors 2025",category:"Guide",flag:"🇺🇸",date:"Jan 8, 2025",excerpt:"Visiting the US? Local eSIM plans are 10x cheaper than roaming. We compared Airalo, T-Mobile and more.",country:"united-states"},
+  {id:"esim-vs-roaming",title:"eSIM vs Roaming: Which Saves More Money in 2025?",category:"Comparison",flag:"💸",date:"Dec 28, 2024",excerpt:"We ran the numbers on 20 countries. In every case, an eSIM was cheaper than international roaming from your home carrier.",country:null},
+  {id:"compatible-devices",title:"Complete List of eSIM Compatible Devices in 2025",category:"Guide",flag:"📋",date:"Nov 15, 2024",excerpt:"Does your phone support eSIM? Our comprehensive device compatibility list covers every iPhone, Samsung, Pixel and more.",country:null},
+  {id:"best-esim-thailand",title:"Best eSIM Plans for Thailand — Budget Travel Guide",category:"Guide",flag:"🇹🇭",date:"Jan 30, 2025",excerpt:"Thailand is one of the most popular eSIM destinations. Here are the top plans for tourists visiting Bangkok, Phuket and beyond.",country:"thailand"},
+  {id:"activate-esim",title:"How to Activate an eSIM on iPhone and Android (2025)",category:"How-To",flag:"⚙️",date:"Dec 5, 2024",excerpt:"Step-by-step guide to activating an eSIM on any device. Works for Airalo, Holafly, Nomad and all major providers.",country:null},
+  {id:"best-esim-uae",title:"Best eSIM Plans for UAE & Dubai — Tourist Guide 2025",category:"Guide",flag:"🇦🇪",date:"Feb 2, 2025",excerpt:"Visiting Dubai or Abu Dhabi? Here are the most reliable eSIM plans for UAE with fast 5G connectivity.",country:"uae"},
+  {id:"digital-nomad-esim",title:"Best eSIM Plans for Digital Nomads — Long-Term Travelers",category:"Guide",flag:"🌏",date:"Jan 19, 2025",excerpt:"Need internet in 10+ countries this year? These are the best eSIM plans for digital nomads and remote workers.",country:null},
+  {id:"best-esim-india",title:"Best eSIM Plans for India 2025 — Tourists & NRIs",category:"Guide",flag:"🇮🇳",date:"Feb 8, 2025",excerpt:"Comparing the top eSIM providers for India. Coverage, speed, and value tested across Mumbai, Delhi and Bangalore.",country:"india"},
+  {id:"esim-data-usage",title:"How Much Mobile Data Do You Need for Travel?",category:"Guide",flag:"📊",date:"Nov 28, 2024",excerpt:"Maps, social media, video calls. We calculated exactly how many GBs the average traveler needs per day.",country:null},
+  {id:"best-esim-uk",title:"Best eSIM Plans for the United Kingdom — 2025 Guide",category:"Guide",flag:"🇬🇧",date:"Feb 15, 2025",excerpt:"Visiting London or the UK? Discover the best eSIM plans for tourists with full 4G/5G coverage across England.",country:"united-kingdom"},
+  {id:"unlimited-esim",title:"Best Unlimited Data eSIM Plans — Are They Worth It?",category:"Review",flag:"♾️",date:"Jan 25, 2025",excerpt:"Holafly and others offer unlimited data eSIMs. We tested whether they truly deliver unlimited speeds or throttle heavily.",country:null},
+  {id:"best-esim-australia",title:"Best eSIM Plans for Australia & New Zealand 2025",category:"Guide",flag:"🇦🇺",date:"Feb 10, 2025",excerpt:"Visiting the Land Down Under? Here are the top eSIM options for Australia and New Zealand with great coverage.",country:"australia"},
+];
+
+const ALL_FAQS = [
+  {q:"What is an eSIM?",a:"An eSIM (embedded SIM) is a digital SIM card that is built directly into your device. Unlike a physical SIM card, an eSIM can be programmed remotely and lets you switch carriers without swapping cards. eSIMs are supported by most modern smartphones including all iPhones from XR onwards and Samsung Galaxy S21+."},
+  {q:"Is my phone compatible with eSIM?",a:"Most smartphones released after 2019 support eSIM. This includes all iPhones from XR (2018) onwards, Samsung Galaxy S21 and newer, Google Pixel 3 and newer, and most flagship Android phones from Motorola, Huawei, and Sony. Check your phone's settings or manufacturer website to confirm eSIM support."},
+  {q:"How do I activate an eSIM?",a:"After purchasing an eSIM, you'll receive a QR code. On iPhone: go to Settings → Cellular → Add Cellular Plan → scan the QR code. On Android: go to Settings → Network → SIM → Add eSIM → scan QR code. The process takes under 2 minutes and the eSIM is active immediately."},
+  {q:"Can I use eSIM and my regular SIM at the same time?",a:"Yes! Most eSIM-compatible phones are dual SIM devices that let you run two numbers simultaneously. You can keep your home SIM active for calls and texts while using the eSIM data plan for internet. This is particularly useful to receive 2FA messages on your home number while browsing on a local eSIM."},
+  {q:"Are eSIM plans cheaper than international roaming?",a:"Almost always yes. International roaming from major carriers typically costs $5-15 per day. A local eSIM for the same destination often costs $5-10 per week. Over a 2-week trip, you could save $60-180 by using an eSIM instead of roaming."},
+  {q:"How does eSIMly earn money?",a:"eSIMly is an affiliate comparison platform. When you click through to a provider and make a purchase, we receive a small commission from the provider at no extra cost to you. In fact, our affiliate links often include exclusive discounts, so you may pay less than buying directly."},
+  {q:"Which eSIM providers does eSIMly compare?",a:"We compare 50+ leading providers including Airalo, Holafly, Nomad, BNESIM, Maya Mobile, GlobaleSIM, Keepgo, Flexiroam, Ubigi, and many more. We add new providers regularly and remove any that receive poor user reviews."},
+  {q:"Can I get a refund on an eSIM?",a:"Refund policies vary by provider. Most providers offer refunds if the eSIM hasn't been activated. Once activated, refunds are typically not available. We recommend checking each provider's refund policy before purchasing. If you experience technical issues, contact the provider's customer support directly."},
+  {q:"How long does it take to activate an eSIM?",a:"Most eSIMs activate within seconds to 2 minutes after scanning the QR code. Some providers may take up to 30 minutes for first-time activation. We recommend activating your eSIM before you travel so you have connectivity from the moment you land."},
+  {q:"Do eSIMs support 5G?",a:"Yes, many eSIM plans now include 5G connectivity. However, 5G availability depends on both your device supporting 5G and the destination country having 5G network coverage. Most modern phones and premium eSIM plans support 5G where networks are available."},
+  {q:"Can I share my eSIM data as a hotspot?",a:"Hotspot availability depends on the specific eSIM plan. Many data-only plans include hotspot/tethering functionality. Check the plan details before purchasing if hotspot capability is important to you. Some unlimited plans may restrict hotspot usage."},
+  {q:"What happens if I lose my phone with an eSIM?",a:"Your eSIM data is tied to your account with the provider, not the physical device. If you get a replacement phone, you can often re-download the eSIM profile. Contact your eSIM provider immediately if you lose your device, as they may be able to suspend the eSIM remotely."},
+  {q:"How many eSIM profiles can I have on one device?",a:"Most devices can store between 5-20 eSIM profiles, though only 1-2 can be active at the same time. This means you can download eSIM plans for multiple countries and switch between them as you travel without deleting old profiles."},
+  {q:"Is eSIMly safe to use?",a:"Yes, eSIMly is a trusted comparison platform used by over 2 million travelers. We only list verified, legitimate eSIM providers and never store your payment information (all purchases are processed directly by the provider on their secure website)."},
+  {q:"What if I need help with my eSIM?",a:"For technical support with your eSIM, contact the provider you purchased from directly — each provider has their own customer support team. For questions about comparing or choosing plans, you can reach eSIMly through our contact page and we'll help guide you to the right solution."},
+];
+
+// ========== STATE ==========
+let homeCountriesShown = 20;
+let homeProvidersShown = 9;
+let allCountriesShown = 20;
+let allProvidersShown = 20;
+let blogShown = 10;
+let allBlogShown = 10;
+let currentPage = 'home';
+let currentCountry = null;
+
+// ========== NAVIGATION ==========
+function navigate(page, params) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('page-' + page);
+  if (el) el.classList.add('active');
+  currentPage = page;
+  window.scrollTo(0,0);
+  
+  // update nav
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + page);
+  if (navEl) navEl.classList.add('active');
+  
+  if (page === 'country-detail' && params) {
+    loadCountryDetail(params);
+  }
+  if (page === 'blog-post' && params) {
+    loadBlogPost(params);
+  }
+}
+
+// ========== MOBILE MENU ==========
+function toggleMobileMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ========== SEARCH ==========
+function handleSearch(val) {
+  const q = val.toLowerCase().trim();
+  const sug = document.getElementById('searchSuggestions');
+  if (q.length < 1) { sug.classList.remove('show'); return; }
+  const matches = ALL_COUNTRIES.filter(c => c.name.toLowerCase().includes(q)).slice(0, 7);
+  if (!matches.length) { sug.classList.remove('show'); return; }
+  sug.innerHTML = matches.map(c =>
+    `<div class="search-suggestion" onclick="navigate('country-detail',{slug:'${c.slug}',name:'${c.name}',flag:'${c.flag}'})">
+      <span class="flag">${c.flag}</span>${c.name}
+    </div>`
+  ).join('');
+  sug.classList.add('show');
+}
+function showSuggestions() { handleSearch(document.getElementById('heroSearch').value); }
+function hideSuggestions() { document.getElementById('searchSuggestions').classList.remove('show'); }
+function doSearch() {
+  const val = document.getElementById('heroSearch').value.trim();
+  if (!val) return;
+  const m = ALL_COUNTRIES.find(c => c.name.toLowerCase().includes(val.toLowerCase()));
+  if (m) navigate('country-detail', {slug:m.slug,name:m.name,flag:m.flag});
+  else navigate('countries');
+}
+
+// ========== RENDER COUNTRY CARD ==========
+function renderCountryCard(c) {
+  return `<a class="country-card" onclick="navigate('country-detail',{slug:'${c.slug}',name:'${c.name}',flag:'${c.flag}'})">
+    <span class="flag">${c.flag}</span>${c.name}
+  </a>`;
+}
+
+// ========== RENDER PROVIDER CARD ==========
+function renderProviderCard(p, countryName) {
+  const link = p.url + p.utm + (countryName ? `&utm_content=${countryName.toLowerCase().replace(/\s/g,'-')}` : '');
+  return `<div class="provider-card">
+    <div class="provider-top">
+      <div class="provider-logo" style="background:${p.color}20;color:${p.color};font-size:28px;">${p.emoji}</div>
+      <div>
+        <div class="provider-name">${p.name}</div>
+        <div class="provider-meta">${p.plans.toLocaleString()} plans · ${p.countries}+ countries</div>
+        <div class="provider-badge" style="margin-top:5px;">✓ Verified Provider</div>
+      </div>
+    </div>
+    <p class="provider-desc">${p.desc}</p>
+    <div class="provider-footer">
+      <div class="provider-price">From <strong>${p.from}</strong></div>
+      <a class="provider-cta" href="${link}" target="_blank" rel="noopener">Get This Plan ↗</a>
+    </div>
+  </div>`;
+}
+
+// ========== RENDER BLOG CARD ==========
+function renderBlogCard(b) {
+  return `<div class="blog-card" onclick="navigate('blog-post',{id:'${b.id}'})">
+    <div class="blog-img">
+      <div style="font-size:56px;z-index:1;position:relative;">${b.flag}</div>
+      <div class="blog-img-overlay"></div>
+      <div class="blog-category">${b.category}</div>
+    </div>
+    <div class="blog-body">
+      <div class="blog-date">${b.date}</div>
+      <div class="blog-title">${b.title}</div>
+      <div class="blog-excerpt">${b.excerpt}</div>
+      <div class="blog-read-more">Read Article →</div>
+    </div>
+  </div>`;
+}
+
+// ========== FAQ RENDER ==========
+function renderFaq(faq, id) {
+  return `<div class="faq-item" id="${id}">
+    <div class="faq-question" onclick="toggleFaq('${id}')">
+      <span>${faq.q}</span><span class="faq-toggle">+</span>
+    </div>
+    <div class="faq-answer">${faq.a}</div>
+  </div>`;
+}
+function toggleFaq(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+// ========== HOME PAGE INIT ==========
+function initHome() {
+  // Countries
+  const hcg = document.getElementById('homeCountriesGrid');
+  if (hcg && !hcg.innerHTML) {
+    hcg.innerHTML = ALL_COUNTRIES.slice(0, homeCountriesShown).map(renderCountryCard).join('');
+    if (ALL_COUNTRIES.length <= homeCountriesShown) document.getElementById('homeLoadMoreCountries').style.display='none';
+  }
+  
+  // Providers
+  const hpg = document.getElementById('homeProvidersGrid');
+  if (hpg && !hpg.innerHTML) {
+    hpg.innerHTML = ALL_PROVIDERS.slice(0, homeProvidersShown).map(p => renderProviderCard(p, null)).join('');
+    if (ALL_PROVIDERS.length <= homeProvidersShown) document.getElementById('homeLoadMoreProviders').style.display='none';
+  }
+
+  // Blog
+  const hbg = document.getElementById('homeBlogGrid');
+  if (hbg && !hbg.innerHTML) {
+    hbg.innerHTML = ALL_BLOGS.slice(0, blogShown).map(renderBlogCard).join('');
+    if (ALL_BLOGS.length <= blogShown) document.getElementById('blogLoadMoreBtn').style.display='none';
+  }
+
+  // FAQ
+  const hfl = document.getElementById('homeFaqList');
+  if (hfl && !hfl.innerHTML) {
+    hfl.innerHTML = ALL_FAQS.slice(0, 5).map((f,i) => renderFaq(f,'hfaq'+i)).join('');
+  }
+}
+
+function loadMoreHomeCountries() {
+  homeCountriesShown += 20;
+  const g = document.getElementById('homeCountriesGrid');
+  g.innerHTML = ALL_COUNTRIES.slice(0, homeCountriesShown).map(renderCountryCard).join('');
+  if (homeCountriesShown >= ALL_COUNTRIES.length) document.getElementById('homeLoadMoreCountries').style.display='none';
+}
+function loadMoreHomeProviders() {
+  homeProvidersShown += 9;
+  const g = document.getElementById('homeProvidersGrid');
+  g.innerHTML = ALL_PROVIDERS.slice(0, homeProvidersShown).map(p => renderProviderCard(p, null)).join('');
+  if (homeProvidersShown >= ALL_PROVIDERS.length) document.getElementById('homeLoadMoreProviders').style.display='none';
+}
+function loadMoreBlogs() {
+  blogShown += 10;
+  const g = document.getElementById('homeBlogGrid');
+  g.innerHTML = ALL_BLOGS.slice(0, blogShown).map(renderBlogCard).join('');
+  if (blogShown >= ALL_BLOGS.length) document.getElementById('blogLoadMoreBtn').style.display='none';
+}
+
+// ========== COUNTRIES PAGE ==========
+function initCountriesPage() {
+  const g = document.getElementById('allCountriesGrid');
+  if (g && !g.innerHTML) {
+    g.innerHTML = ALL_COUNTRIES.slice(0, allCountriesShown).map(renderCountryCard).join('');
+    if (ALL_COUNTRIES.length <= allCountriesShown) document.getElementById('allCountriesLoadMore').style.display='none';
+  }
+}
+function loadMoreAllCountries() {
+  allCountriesShown += 20;
+  const g = document.getElementById('allCountriesGrid');
+  g.innerHTML = ALL_COUNTRIES.slice(0, allCountriesShown).map(renderCountryCard).join('');
+  if (allCountriesShown >= ALL_COUNTRIES.length) document.getElementById('allCountriesLoadMore').style.display='none';
+}
+
+// ========== COUNTRY DETAIL PAGE ==========
+function loadCountryDetail(params) {
+  currentCountry = params;
+  const n = params.name; const f = params.flag; const s = params.slug;
+  
+  document.getElementById('detailCountryName').textContent = n;
+  document.getElementById('detailCountryFlag').textContent = f;
+  document.getElementById('detailCountryTitle').textContent = `eSIM Plans for ${n}`;
+  document.getElementById('detailCountryTitle2').textContent = n;
+  document.getElementById('detailCountryTitle3').textContent = n;
+  
+  // Show all providers for this country
+  const grid = document.getElementById('countryProvidersGrid');
+  // Show providers that support this country (show all as it's a demo, randomize slightly)
+  const shuffled = ALL_PROVIDERS.sort(() => Math.random() - 0.5);
+  const countProviders = shuffled.slice(0, 12);
+  document.getElementById('detailCountrySubtitle').textContent = `Compare ${countProviders.length} plans from top providers`;
+  grid.innerHTML = countProviders.map(p => renderProviderCard(p, n)).join('');
+
+  // SEO content
+  document.getElementById('countrySeoCOntent').innerHTML = `
+    <h2>Best eSIM Plans for ${n} — ${new Date().getFullYear()} Guide</h2>
+    <p>Traveling to ${n}? You don't need to hunt for a local SIM card or pay expensive roaming fees to your home carrier. An eSIM lets you get local data coverage in ${n} instantly — before you even board your flight. Simply purchase a plan below, scan the QR code, and you're connected the moment you land.</p>
+    <h3>What to Look for in a ${n} eSIM</h3>
+    <p>When choosing an eSIM for ${n}, consider these key factors: the amount of data you'll need per day (most tourists use 1-3GB/day for maps, social media and browsing), the plan duration relative to your trip length, and network quality. 4G LTE is widely available across ${n}, with 5G available in major cities.</p>
+    <h3>How to Activate Your ${n} eSIM</h3>
+    <p>After purchasing from any provider above, you'll receive a QR code via email. On iPhone, go to Settings → Cellular → Add Cellular Plan and scan the code. On Android, go to Settings → SIM → Add eSIM. Activation takes under 2 minutes and you can do it before your trip so you're connected immediately upon arrival.</p>
+    <h3>Top Networks in ${n}</h3>
+    <p>The major networks in ${n} provide excellent 4G/LTE coverage across urban and tourist areas. Most eSIM providers connect to these top-tier networks to ensure you get reliable speeds. For rural areas, coverage may vary — check your provider's coverage map if you're planning to travel off the beaten path.</p>
+  `;
+
+  // Country-specific FAQs
+  const ffl = document.getElementById('countryFaqList');
+  const cFaqs = [
+    {q:`Do I need an eSIM for ${n}?`, a:`While you can use international roaming in ${n}, it's almost always significantly more expensive than a local eSIM. A local eSIM for ${n} can cost 5-10x less than roaming charges from major carriers. We highly recommend getting an eSIM before your trip.`},
+    {q:`Which eSIM network has the best coverage in ${n}?`, a:`Coverage quality in ${n} varies by provider and which local networks they partner with. Generally, providers partnering with the major national carrier offer the best coverage. All providers listed above have been verified to work well in ${n} for most travelers.`},
+    {q:`Can I get unlimited data for ${n}?`, a:`Yes! Several providers including Holafly offer unlimited data plans for ${n}. However, "unlimited" often comes with fair use speed throttling after a certain threshold. For most travelers, a 3-10GB plan is sufficient and better value.`},
+    {q:`How much data do I need for a week in ${n}?`, a:`For a typical 7-day trip to ${n}, most travelers need 5-15GB depending on their usage. Light users (maps + occasional social media) need 3-5GB. Heavy users (video calls, streaming, navigation all day) may need 15GB+. When in doubt, choose a slightly larger plan.`},
+    {q:`Is my phone compatible with eSIM in ${n}?`, a:`If your phone supports eSIM (iPhone XR+, Samsung S21+, Pixel 3+), it will work in ${n} with any of the providers listed above. There are no region-locked restrictions for eSIMs in ${n}. Simply purchase, activate, and enjoy local data rates.`},
+  ];
+  ffl.innerHTML = cFaqs.map((f,i) => renderFaq(f,'cfaq'+i)).join('');
+}
+
+// ========== PROVIDERS PAGE ==========
+function initProvidersPage() {
+  const g = document.getElementById('allProvidersGrid');
+  if (g && !g.innerHTML) {
+    g.innerHTML = ALL_PROVIDERS.slice(0, allProvidersShown).map(p => renderProviderCard(p, null)).join('');
+    if (ALL_PROVIDERS.length <= allProvidersShown) document.getElementById('providersLoadMore').style.display='none';
+  }
+}
+function loadMoreAllProviders() {
+  allProvidersShown += 10;
+  const g = document.getElementById('allProvidersGrid');
+  g.innerHTML = ALL_PROVIDERS.slice(0, allProvidersShown).map(p => renderProviderCard(p, null)).join('');
+  if (allProvidersShown >= ALL_PROVIDERS.length) document.getElementById('providersLoadMore').style.display='none';
+}
+
+// ========== BLOG PAGE ==========
+function initBlogPage() {
+  const g = document.getElementById('allBlogGrid');
+  if (g && !g.innerHTML) {
+    g.innerHTML = ALL_BLOGS.slice(0, allBlogShown).map(renderBlogCard).join('');
+    if (ALL_BLOGS.length <= allBlogShown) document.getElementById('allBlogLoadMore').style.display='none';
+  }
+}
+function loadMoreAllBlogs() {
+  allBlogShown += 10;
+  const g = document.getElementById('allBlogGrid');
+  g.innerHTML = ALL_BLOGS.slice(0, allBlogShown).map(renderBlogCard).join('');
+  if (allBlogShown >= ALL_BLOGS.length) document.getElementById('allBlogLoadMore').style.display='none';
+}
+
+// ========== BLOG POST ==========
+function loadBlogPost(params) {
+  const b = ALL_BLOGS.find(x => x.id === params.id);
+  if (!b) return;
+  document.getElementById('blogPostTitle').textContent = b.title;
+  document.getElementById('blogPostCategory').textContent = b.category;
+  
+  const country = b.country ? ALL_COUNTRIES.find(c => c.slug === b.country) : null;
+  
+  document.getElementById('blogPostBody').innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--border);">
+      <div style="display:inline-flex;align-items:center;gap:6px;background:var(--primary-light);color:var(--primary);font-size:12px;font-weight:700;padding:5px 12px;border-radius:50px;">${b.category}</div>
+      <span style="font-size:13px;color:var(--text3);">${b.date}</span>
+      <span style="font-size:13px;color:var(--text3);">· 5 min read</span>
+    </div>
+    
+    <p style="font-size:18px;color:var(--text2);line-height:1.8;font-weight:500;margin-bottom:32px;">${b.excerpt}</p>
+    
+    <h2>Introduction</h2>
+    <p>Whether you're a first-time traveler or a seasoned globetrotter, staying connected while abroad has never been easier thanks to eSIM technology. In this comprehensive guide, we'll walk you through everything you need to know to make the right choice for your trip.</p>
+    
+    <h2>Why eSIM Is the Smart Choice</h2>
+    <p>Traditional SIM cards require physical swapping, trips to local stores upon arrival, and often come with confusing contracts. An eSIM eliminates all of this friction. You purchase online, activate with a QR code scan, and you're connected — often before you leave home.</p>
+    <p>The cost savings are significant. International roaming from major carriers like AT&T, Verizon, or EE can cost $10-15 per day. An eSIM for the same destination typically costs $5-12 per week. For a 2-week trip, that's a saving of $130-196.</p>
+    
+    <h2>What to Look for When Comparing Plans</h2>
+    <p>When comparing eSIM plans, focus on these key metrics:</p>
+    <ul>
+      <li><strong>Price per GB:</strong> Divide the total cost by the data included. Anything under $3/GB is generally good value.</li>
+      <li><strong>Plan duration:</strong> Make sure the validity covers your entire trip, with a day or two buffer.</li>
+      <li><strong>Network partners:</strong> Check which local networks the eSIM connects to. Tier-1 networks offer the best coverage.</li>
+      <li><strong>Hotspot capability:</strong> If you need to share data with a laptop or tablet, verify hotspot is included.</li>
+      <li><strong>Customer support:</strong> Check that the provider offers 24/7 support in case of issues.</li>
+    </ul>
+    
+    <h2>Top Recommendations</h2>
+    <p>Based on our testing and thousands of user reviews, here are our top picks. For budget travelers, Airalo and BNESIM offer the best price-to-quality ratio. For those who want unlimited data without worrying about GBs, Holafly is the top choice. For heavy users who need reliable high-speed data, GlobaleSIM consistently delivers.</p>
+    
+    <h2>How to Activate Your eSIM</h2>
+    <p>Once you've purchased a plan, you'll receive a QR code by email. Here's the activation process:</p>
+    <ul>
+      <li><strong>iPhone:</strong> Settings → Cellular → Add Cellular Plan → Scan QR Code</li>
+      <li><strong>Samsung:</strong> Settings → Connections → SIM Manager → Add Mobile Plan</li>
+      <li><strong>Google Pixel:</strong> Settings → Network → SIM → Download SIM</li>
+    </ul>
+    <p>Activation typically completes within 2-5 minutes. We recommend activating while still on WiFi, so you're ready to switch over when you land.</p>
+
+    <h2>Final Verdict</h2>
+    <p>eSIMs are hands-down the best way to stay connected when traveling internationally. The convenience of instant activation, combined with significantly lower costs compared to roaming, makes it a no-brainer for any traveler. Use our comparison tool above to find the perfect plan for your next trip.</p>
+
+    <div style="margin-top:48px;padding:28px;background:var(--primary-light);border-radius:var(--radius);border-left:4px solid var(--primary);">
+      <div style="font-size:16px;font-weight:700;color:var(--primary);margin-bottom:8px;">Ready to Find Your Perfect eSIM?</div>
+      <p style="color:var(--text2);margin-bottom:16px;">Compare plans from 50+ providers for 200+ countries. Instant activation guaranteed.</p>
+      ${country ? `<button class="btn-primary" onclick="navigate('country-detail',{slug:'${country.slug}',name:'${country.name}',flag:'${country.flag}'})">Compare Plans for ${country.name} ${country.flag} →</button>` : `<button class="btn-primary" onclick="navigate('countries')">Browse All Destinations →</button>`}
+    </div>
+  `;
+}
+
+// ========== FAQ PAGE ==========
+function initFaqPage() {
+  const g = document.getElementById('allFaqList');
+  if (g && !g.innerHTML) {
+    g.innerHTML = ALL_FAQS.map((f,i) => renderFaq(f,'afaq'+i)).join('');
+  }
+}
+
+// ========== OBSERVE PAGE CHANGES ==========
+const originalNavigate = navigate;
+window.navigate = function(page, params) {
+  originalNavigate(page, params);
+  if (page === 'home') initHome();
+  if (page === 'countries') initCountriesPage();
+  if (page === 'providers') initProvidersPage();
+  if (page === 'blog') initBlogPage();
+  if (page === 'faq') initFaqPage();
+};
+
+// ========== INIT ==========
+window.addEventListener('DOMContentLoaded', () => {
+  initHome();
+});
+</script>
+</body>
+</html>
